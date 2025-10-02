@@ -1,6 +1,6 @@
 public class MovableObject extends GameObject{
-    private double dx;
-    private double dy;
+    protected double dx;
+    protected double dy;
 
     public void setDx(double dx) {
         this.dx = dx;
