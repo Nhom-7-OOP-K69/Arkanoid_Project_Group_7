@@ -20,7 +20,7 @@ public class Main extends Application {
 
             @Override
             public void handle(ActionEvent event) {
-                System.out.println("Hello World!");
+                System.out.println("Hello Hải!");
             }
         });
 
@@ -28,5 +28,6 @@ public class Main extends Application {
         root.getChildren().add(btn);
         primaryStage.setScene(new Scene(root, 500, 500));
         primaryStage.show();
+
     }
 }
