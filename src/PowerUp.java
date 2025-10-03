@@ -3,7 +3,7 @@ public abstract class PowerUp extends GameObject{
     private int duration;
 
     public PowerUp(double x, double y, double width, double height, int type, int duration){
-        super(x, y, width, height);
+         super(x, y, width, height);
         this.type = type;
         this.duration = duration;
     }
