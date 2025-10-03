@@ -23,11 +23,11 @@ public class Paddle extends MovableObject {
     }
 
     public void moveLeft() {
-
+        dx = -speed;
     }
 
     public void moveRight() {
-
+        dx = speed;
     }
 
     public void applyPowerUp() {
