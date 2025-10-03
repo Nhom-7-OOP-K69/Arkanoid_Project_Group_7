@@ -1,8 +1,20 @@
+import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.paint.Color;
+
 public class GameObject {
     private double x;
     private double y;
     private double height;
     private double width;
+
+    public GameObject(double x, double y, double width, double height) {
+        this.x = x;
+        this.y = y;
+        this.width = width;
+        this.height = height;
+    }
+
+    public GameObject() {}
 
     public double getX() {
         return x;
@@ -33,14 +45,14 @@ public class GameObject {
     }
 
     public void setWidth(double width) {
-        this.width = this.width;
+        this.width = width;
     }
 
     public void update() {
 
     }
 
-    public void render() {
+    public void render(GraphicsContext gc) {
 
     }
 }
