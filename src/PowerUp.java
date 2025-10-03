@@ -1,12 +1,21 @@
-public class PowerUp extends GameObject{
-    private int type;
+public abstract class PowerUp extends GameObject{
+    protected int type;
     private int duration;
 
-    public void applyEffect(Paddle paddle) {
-
+    public PowerUp(double x, double y, double width, double height, int type, int duration){
+        super(x, y, width, height);
+        this.type = type;
+        this.duration = duration;
     }
 
-    public void removeEffect(Paddle paddle) {
-
+    public int getType(){
+        return type;
     }
+
+    public int getDuration(){
+        return duration;
+    }
+
+    public abstract void applyEffect(Paddle paddle, Ball ball);
+    public abstract void removeEffect(Paddle paddle, Ball ball);
 }
