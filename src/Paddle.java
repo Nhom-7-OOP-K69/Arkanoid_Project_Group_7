@@ -2,11 +2,8 @@ public class Paddle extends MovableObject {
     private double speed;
     private int currentPowerUp;
 
-    public Paddle(int x, int y, int w, int h) {
-        setX(x);
-        setY(y);
-        setHeight(h);
-        setWidth(w);
+    public Paddle(double x, double y, double width, double height) {
+        super(x, y, width, height);
     }
 
     public void setSpeed(double speed) {
