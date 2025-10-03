@@ -2,6 +2,10 @@ public class Paddle extends MovableObject {
     private double speed;
     private int currentPowerUp;
 
+    public Paddle(double x, double y, double width, double height) {
+        super(x, y, width, height);
+    }
+
     public void setSpeed(double speed) {
         this.speed = speed;
     }
@@ -19,11 +23,11 @@ public class Paddle extends MovableObject {
     }
 
     public void moveLeft() {
-
+        dx = -speed;
     }
 
     public void moveRight() {
-
+        dx = speed;
     }
 
     public void applyPowerUp() {
