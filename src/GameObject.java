@@ -1,6 +1,7 @@
+package Arkanoid_Project_Group_7.src;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
-
+import javafx.scene.image.Image;
 public class GameObject {
     private double x;
     private double y;
@@ -52,7 +53,7 @@ public class GameObject {
 
     }
 
-    public void render(GraphicsContext gc) {
+    public void render(Image image,GraphicsContext gc) {
 
     }
 }

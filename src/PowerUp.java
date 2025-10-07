@@ -1,3 +1,4 @@
+package Arkanoid_Project_Group_7.src;
 public abstract class PowerUp extends GameObject{
     protected int type;
     private int duration;

@@ -1,3 +1,5 @@
+package Arkanoid_Project_Group_7.src;
+
 public class MovableObject extends GameObject{
     protected double dx;
     protected double dy;

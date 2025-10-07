@@ -1,3 +1,5 @@
+package Arkanoid_Project_Group_7.src;
+
 public class ExpandPaddlePowerUp extends PowerUp {
     private double expandSize = 40;
 

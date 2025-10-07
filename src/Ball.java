@@ -1,6 +1,9 @@
+package Arkanoid_Project_Group_7.src;
+
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
+import javafx.scene.image.Image;
 
 public class Ball extends MovableObject {
     public Ball(double x, double y, double width, double height) {
@@ -40,8 +43,7 @@ public class Ball extends MovableObject {
         }
     }
 
-    public void render(GraphicsContext gc) {
-        gc.setFill(Color.BLUE);
-        gc.fillOval(this.getX(), this.getY(), this.getWidth(), this.getHeight());
+    public void render(Image img,GraphicsContext gc) {
+        gc.drawImage(img,this.getX(),this.getY());
     }
 }
