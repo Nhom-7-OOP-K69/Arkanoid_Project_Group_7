@@ -1,18 +1,22 @@
 public class Brick extends GameObject {
     private int hitPoints;
-    private String type;
+    private int type;
 
-    public Brick(double x, double y, double width, double height, int hitPoints, String type) {
-        super(x, y, width, height);
+    public Brick(double x, double y, int hitPoints, int type) {
+        super(x, y, GameConstants.BRICK_WIDTH, GameConstants.BRICK_HEIGHT);
         this.hitPoints = hitPoints;
         this.type = type;
+    }
+
+    public void HandleHit() {
+        hitPoints--;
     }
 
     public void setHitPoints(int hitPoints) {
         this.hitPoints = hitPoints;
     }
 
-    public void setType(String type) {
+    public void setType(int type) {
         this.type = type;
     }
 
@@ -20,7 +24,7 @@ public class Brick extends GameObject {
         return hitPoints;
     }
 
-    public String getType() {
+    public int getType() {
         return type;
     }
 

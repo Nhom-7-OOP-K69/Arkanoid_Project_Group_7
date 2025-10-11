@@ -22,8 +22,5 @@ public class MovableObject extends GameObject{
         return dy;
     }
 
-    public void move() {
-        this.setX(this.getX() + this.dx);
-        this.setY(this.getY() + this.dy);
-    }
+    public void move(double deltaTime) {}
 }
