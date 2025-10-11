@@ -26,4 +26,5 @@ public class MovableObject extends GameObject{
         this.setX(this.getX() + this.dx);
         this.setY(this.getY() + this.dy);
     }
+
 }

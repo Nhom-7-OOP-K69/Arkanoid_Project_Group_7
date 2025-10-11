@@ -6,10 +6,13 @@ import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+
+import java.awt.event.KeyEvent;
 
 
 public class Main extends Application {
@@ -19,40 +22,62 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        Canvas canvas = new Canvas(400, 300);
+        Canvas canvas = new Canvas(800, 600);
         GraphicsContext gc = canvas.getGraphicsContext2D();
 
-        Ball ball = new Ball(50, 100, 40, 40);
-        Ball ball1 = new Ball(200, 50, 40, 40);
-        Ball ball2 = new Ball(250, 200, 40, 40);
+        // Ve paddle
+        Paddle pd = new Paddle(340, 550, 90, 15);
+
+        // them keyevent
+        Scene scene = new Scene(new StackPane(canvas), 800, 600);
+        scene.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.LEFT || event.getCode() == KeyCode.A) {
+                pd.moveLeft();
+            } else if (event.getCode() == KeyCode.RIGHT || event.getCode() == KeyCode.D) {
+                pd.moveRight();
+            }
+        });
+
+        scene.setOnKeyReleased(event -> {
+            if (event.getCode() == KeyCode.LEFT || event.getCode() == KeyCode.RIGHT
+                    || event.getCode() == KeyCode.A || event.getCode() == KeyCode.D) {
+                pd.dx = 0;  // paddle dung lai.
+            }
+        });
+
+
+        // ve bong
+        Ball ball = new Ball(50, 100, 20, 20);
+
+
+        /**
+         * test game.
+         */
 
         new AnimationTimer() {
             @Override
             public void handle(long now) {
-                gc.clearRect(0, 0, 500, 500);
+                gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
 
-                ball2.checkCollisionWall(canvas);
-                ball2.checkCollision(ball);
-                ball2.checkCollision(ball1);
-                ball2.move();
-                ball2.render(gc);
-
-                ball1.checkCollisionWall(canvas);
-                ball1.checkCollision(ball);
-                ball1.checkCollision(ball2);
-                ball1.move();
-                ball1.render(gc);
+               // render ball
 
                 ball.checkCollisionWall(canvas);
-                ball.checkCollision(ball1);
-                ball.checkCollision(ball2);
+                ball.checkCollision(pd);
                 ball.move();
                 ball.render(gc);
+
+                //render paddle
+                pd.move();
+                pd.checkCollisionWall(canvas);
+                pd.render(gc);
+                pd.setSpeed(4);
+
             }
         }.start();
 
-        primaryStage.setScene(new Scene(new StackPane(canvas), 400, 300));
+        primaryStage.setScene(scene);
         primaryStage.setTitle("GameObject Render Demo");
         primaryStage.show();
+        primaryStage.requestFocus(); // nhận lệnh phím khi mở sang cửa sổ khác.
     }
 }
