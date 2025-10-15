@@ -17,26 +17,9 @@ public class Main extends Application {
         launch(args);
     }
 
+
+
     @Override
     public void start(Stage primaryStage) {
-        Canvas canvas = new Canvas(800, 600);
-        GraphicsContext gc = canvas.getGraphicsContext2D();
-
-        Ball ball = new Ball(50, 100, 40, 40);
-        Ball ball1 = new Ball(200, 50, 40, 40);
-        Ball ball2 = new Ball(250, 200, 40, 40);
-
-        NormalBrick normalBrick1 = new NormalBrick(200,0);
-
-        new AnimationTimer() {
-            @Override
-            public void handle(long now) {
-                gc.clearRect(0, 0, 800, 600);
-            }
-        }.start();
-
-        primaryStage.setScene(new Scene(new StackPane(canvas), 800, 600));
-        primaryStage.setTitle("GameObject Render Demo");
-        primaryStage.show();
     }
 }
