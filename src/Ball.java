@@ -4,6 +4,7 @@ import javafx.scene.image.Image;
 
 public class Ball extends MovableObject {
     private double speed = 300;
+    private Image img;
 
     public void setSpeed(double speed) {
         this.speed = speed;
@@ -17,9 +18,11 @@ public class Ball extends MovableObject {
         super(x, y, width, height);
         this.setDy(speed);
         this.setDx(speed);
+        this.img = ImgManager.getInstance().getImage("BALL");
     }
 
-    public void collisionWall(Canvas canvas) {
+    public boolean collisionWall(Canvas canvas) {
+        // Va chạm tường trái và phải (Giữ nguyên logic của bạn)
         if (this.getX() <= 0 || this.getX() + this.getWidth() >= canvas.getWidth()) {
             this.setDx(-this.getDx());
             if (this.getX() <= 0) {
@@ -29,44 +32,77 @@ public class Ball extends MovableObject {
             }
         }
 
-        if (this.getY() <= 0 || this.getY() + this.getHeight() >= canvas.getHeight()) {
+        // Va chạm với thanh menu ở trên
+        if (this.getY() <= GameConstants.UI_TOP_BAR_HEIGHT) {
             this.setDy(-this.getDy());
-            if (this.getY() <= 0) {
-                this.setY(1);
-            } else {
-                this.setY(canvas.getHeight() - this.getHeight() - 1);
-            }
+            this.setY(GameConstants.UI_TOP_BAR_HEIGHT + 1); // Đẩy bóng ra khỏi thanh
         }
+
+        // Kiểm tra va chạm đáy
+        if (this.getY() + this.getHeight() >= canvas.getHeight()) {
+            return true; // Báo hiệu bóng đã rơi
+        }
+
+        return false; // Bóng vẫn trong sân
     }
 
+    /**
+     * Kiểm tra va chạm với một đối tượng khác.
+     */
     public boolean checkCollision(GameObject other) {
-        return this.getX() <= other.getX() + other.getWidth() &&
-                this.getX() + this.getWidth() >= other.getX() &&
-                this.getY() <= other.getY() + other.getHeight() &&
-                this.getY() + this.getHeight() >= other.getY();
+        return this.getX() < other.getX() + other.getWidth() &&
+                this.getX() + this.getWidth() > other.getX() &&
+                this.getY() < other.getY() + other.getHeight() &&
+                this.getY() + this.getHeight() > other.getY();
     }
 
+    /**
+     * Xử lý va chạm dựa trên loại đối tượng.
+     * @param other Đối tượng mà bóng va chạm.
+     */
     public void bounceOff(GameObject other) {
-        double overlapX = Math.min(this.getX() + this.getWidth() - other.getX(),
-                other.getX() + other.getWidth() - this.getX());
-        double overlapY = Math.min(this.getY() + this.getHeight() - other.getY(),
-                other.getY() + other.getHeight() - this.getY());
+        // KIỂM TRA: Nếu đối tượng va chạm là PADDLE
+        if (other instanceof Paddle) {
+            Paddle paddle = (Paddle) other; // Ép kiểu để xử lý riêng
 
-        if (overlapX < overlapY) {
-            this.setDx(-this.getDx());
-
-            if (this.getX() < other.getX()) {
-                this.setX(this.getX() - overlapX);
-            } else {
-                this.setX(this.getX() + overlapX);
+            // 1. Luôn nảy lên
+            if (this.getDy() > 0) {
+                this.setDy(-this.getDy());
             }
-        } else {
-            this.setDy(-this.getDy());
 
-            if (this.getY() < other.getY()) {
-                this.setY(this.getY() - overlapY);
+            // 2. Thay đổi góc nảy dựa trên vị trí va chạm
+            double paddleCenter = paddle.getX() + paddle.getWidth() / 2;
+            double ballCenter = this.getX() + this.getWidth() / 2;
+            double difference = ballCenter - paddleCenter;
+            this.setDx(difference * 5); // Thay đổi vận tốc ngang
+
+            // 3. Đặt lại vị trí bóng ngay trên paddle
+            this.setY(paddle.getY() - this.getHeight());
+        }
+        // NẾU LÀ ĐỐI TƯỢNG KHÁC (ví dụ: gạch)
+        else {
+            // Giữ nguyên logic va chạm chung của bạn
+            double overlapX = Math.min(this.getX() + this.getWidth() - other.getX(),
+                    other.getX() + other.getWidth() - this.getX());
+            double overlapY = Math.min(this.getY() + this.getHeight() - other.getY(),
+                    other.getY() + other.getHeight() - this.getY());
+
+            if (overlapX < overlapY) {
+                this.setDx(-this.getDx());
+
+                if (this.getX() < other.getX()) {
+                    this.setX(this.getX() - overlapX);
+                } else {
+                    this.setX(this.getX() + overlapX);
+                }
             } else {
-                this.setY(this.getY() + overlapY);
+                this.setDy(-this.getDy());
+
+                if (this.getY() < other.getY()) {
+                    this.setY(this.getY() - overlapY);
+                } else {
+                    this.setY(this.getY() + overlapY);
+                }
             }
         }
     }
@@ -76,7 +112,7 @@ public class Ball extends MovableObject {
         this.setY(this.getY() + this.dy * deltaTime);
     }
 
-    public void render(Image img,GraphicsContext gc) {
-        gc.drawImage(img,this.getX(),this.getY());
+    public void render( GraphicsContext gc) {
+        gc.drawImage(img, this.getX(), this.getY());
     }
 }

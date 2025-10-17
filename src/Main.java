@@ -1,3 +1,5 @@
+import java.util.*;
+
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -10,33 +12,44 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-
+import javafx.scene.image.Image;
 
 public class Main extends Application {
+    //JavaFX variables
+    private Canvas bkgCanvas = new Canvas(GameConstants.SCREEN_WIDTH, GameConstants.SCREEN_HEIGHT);      // Canvas chứa background
+    private GraphicsContext bkgCtx = bkgCanvas.getGraphicsContext2D();                                  //Context vẽ background
+    private Canvas canvas = new Canvas(GameConstants.SCREEN_WIDTH, GameConstants.SCREEN_HEIGHT);          // Canvas chứa enity: ball,paddle,...
+    private GraphicsContext ctx = canvas.getGraphicsContext2D();                                         // Context vẽ entity
+    private Canvas UICanvas = new Canvas(GameConstants.SCREEN_WIDTH, GameConstants.SCREEN_HEIGHT);        // Canvas chứa UI
+    private GraphicsContext UIctx = UICanvas.getGraphicsContext2D();                                     // Context vẽ UI
+
+
+    //Entity
+    private Paddle paddle;
+    private Ball ball;
+    private List<NormalBrick> normal_bricks;
+    private List<StrongBrick> strong_bricks;
+    private List<SuperBrick> super_bricks;
+
+
+    //Img variables
+    private Image blueBrickImg;
+    private Image greenBrickImg;
+    private Image purpleBrickImg;
+    private Image redBrickImg;
+    private Image break_blueBrickImg;
+    private Image break_greenBrickImg;
+    private Image break_redBrickImg;
+    private Image break_purpleBrickImg;
+    private Image ballImg;
+    private List<Image> paddleImgs = new ArrayList<>();
+
     public static void main(String[] args) {
         launch(args);
     }
 
     @Override
-    public void start(Stage primaryStage) {
-        Canvas canvas = new Canvas(800, 600);
-        GraphicsContext gc = canvas.getGraphicsContext2D();
-
-        Ball ball = new Ball(50, 100, 40, 40);
-        Ball ball1 = new Ball(200, 50, 40, 40);
-        Ball ball2 = new Ball(250, 200, 40, 40);
-
-        NormalBrick normalBrick1 = new NormalBrick(200,0);
-
-        new AnimationTimer() {
-            @Override
-            public void handle(long now) {
-                gc.clearRect(0, 0, 800, 600);
-            }
-        }.start();
-
-        primaryStage.setScene(new Scene(new StackPane(canvas), 800, 600));
-        primaryStage.setTitle("GameObject Render Demo");
-        primaryStage.show();
+    public void start(Stage stage) throws Exception {
+        stage.setTitle("Arkanoid Group7");
     }
 }

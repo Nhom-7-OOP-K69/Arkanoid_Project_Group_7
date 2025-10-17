@@ -1,6 +1,6 @@
 public final class GameConstants {
-    public static final int SCREEN_WIDTH = 800;
-    public static final int SCREEN_HEIGHT = 600;
+    public static final int SCREEN_WIDTH = 900;
+    public static final int SCREEN_HEIGHT = 700;
     public static final int BRICK_WIDTH = 60;
     public static final int BRICK_HEIGHT = 30;
     public static final int NORMAL_BRICK_HP = 1;
@@ -16,4 +16,5 @@ public final class GameConstants {
     public static final int PADDLE_HEIGHT = 32;
     public static final int PADDLE_FRAMES = 3;
     public static final int PADDLE_SPEED = 3;
+    public static final double UI_TOP_BAR_HEIGHT = 50;
 }

@@ -1,5 +1,6 @@
 import java.util.*;
 
+import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
@@ -7,9 +8,14 @@ public class Paddle extends MovableObject {
     private double speed = 500;
     private int currentPowerUp;
     private int frame = 0;
+    private List<Image> images;
 
     public Paddle(double x, double y, double width, double height) {
         super(x, y, width, height);
+        images = new ArrayList<>();
+        images.add(ImgManager.getInstance().getImage("PADDLE0"));
+        images.add(ImgManager.getInstance().getImage("PADDLE1"));
+        images.add(ImgManager.getInstance().getImage("PADDLE2"));
     }
 
     public void setSpeed(double speed) {
@@ -47,7 +53,16 @@ public class Paddle extends MovableObject {
 
     }
 
-    public void render(List<Image> images, GraphicsContext ctx) {
+    public void checkCollisionWall(Canvas canvas) {
+        if (this.getX() <= 0) {
+            this.setX(0);
+        }
+        if (this.getX() + this.getWidth() >= canvas.getWidth()) {
+            this.setX(canvas.getWidth() - this.getWidth());
+        }
+    }
+
+    public void render(GraphicsContext ctx) {
         frame++;
         if (frame >= GameConstants.PADDLE_FRAMES) {
             frame = 0;
