@@ -1,0 +1,99 @@
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"0c2c2745-22e6-49e3-8791-87cb328c1f44\" name=\"Changes\" comment=\"sửa paddle và collion của ball\">\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/Ball.class\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/Brick.class\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/ExpandPaddlePowerUp.class\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/FastBallPowerUp.class\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/GameConstants.class\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/GameManager$1.class\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/GameManager$2.class\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/GameManager.class\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/GameObject.class\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/Main$1.class\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/Main.class\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/MovableObject.class\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/NormalBrick.class\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/Paddle.class\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/PowerUp.class\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/StrongBrick.class\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/SuperBrick.class\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/Wall.class\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/org/example/Main.class\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/Ball.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/Ball.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/GameConstants.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/GameConstants.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/GameManager.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/GameManager.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/Main.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/Main.java\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"Class\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_BRANCH_BY_REPOSITORY\">\r\n      <map>\r\n        <entry key=\"$PROJECT_DIR$\" value=\"Khang\" />\r\n      </map>\r\n    </option>\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"GitHubPullRequestSearchHistory\">{\r\n  &quot;lastFilter&quot;: {\r\n    &quot;state&quot;: &quot;OPEN&quot;,\r\n    &quot;assignee&quot;: &quot;khangnb0111&quot;\r\n  }\r\n}</component>\r\n  <component name=\"GithubPullRequestsUISettings\">{\r\n  &quot;selectedUrlAndAccountId&quot;: {\r\n    &quot;url&quot;: &quot;https://github.com/Nhom-7-OOP-K69/Arkanoid_Project_Group_7.git&quot;,\r\n    &quot;accountId&quot;: &quot;048ae3cb-35e4-48c8-a1ab-0879c5a14516&quot;\r\n  }\r\n}</component>\r\n  <component name=\"ProblemsViewState\">\r\n    <option name=\"selectedTabId\" value=\"CurrentFile\" />\r\n  </component>\r\n  <component name=\"ProjectColorInfo\">{\r\n  &quot;associatedIndex&quot;: 2\r\n}</component>\r\n  <component name=\"ProjectId\" id=\"33QWT78om3D3hwtGH9cvYxlwJjK\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\">{\r\n  &quot;keyToString&quot;: {\r\n    &quot;Application.Main.executor&quot;: &quot;Run&quot;,\r\n    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,\r\n    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,\r\n    &quot;git-widget-placeholder&quot;: &quot;main&quot;,\r\n    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,\r\n    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,\r\n    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,\r\n    &quot;last_opened_file_path&quot;: &quot;E:/Java/Arkanoid_Project_Group_7 - Copy&quot;,\r\n    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,\r\n    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,\r\n    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,\r\n    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,\r\n    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,\r\n    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,\r\n    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,\r\n    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,\r\n    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,\r\n    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,\r\n    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;\r\n  }\r\n}</component>\r\n  <component name=\"RunManager\">\r\n    <configuration name=\"Main\" type=\"Application\" factoryName=\"Application\">\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"GameManager\" />\r\n      <module name=\"Arkanoid_Project_Group__7\" />\r\n      <option name=\"VM_PARAMETERS\" value=\"--module-path &quot;C:\\Users\\doanm\\Downloads\\openjfx-25_windows-x64_bin-sdk\\javafx-sdk-25\\lib&quot; --add-modules javafx.controls,javafx.fxml --enable-native-access=javafx.graphics\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n  </component>\r\n  <component name=\"SharedIndexes\">\r\n    <attachedChunks>\r\n      <set>\r\n        <option value=\"bundled-jdk-9823dce3aa75-bf35d07a577b-intellij.indexing.shared.core-IU-252.26199.169\" />\r\n        <option value=\"bundled-js-predefined-d6986cc7102b-9c94529fcfe0-JavaScript-IU-252.26199.169\" />\r\n      </set>\r\n    </attachedChunks>\r\n  </component>\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"0c2c2745-22e6-49e3-8791-87cb328c1f44\" name=\"Changes\" comment=\"\" />\r\n      <created>1759249780378</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1759249780378</updated>\r\n      <workItem from=\"1760203731844\" duration=\"1605000\" />\r\n      <workItem from=\"1760232915201\" duration=\"2260000\" />\r\n      <workItem from=\"1760314977776\" duration=\"1657000\" />\r\n      <workItem from=\"1760328870391\" duration=\"445000\" />\r\n      <workItem from=\"1760343709306\" duration=\"3000\" />\r\n      <workItem from=\"1760411612092\" duration=\"1315000\" />\r\n      <workItem from=\"1760414639254\" duration=\"474000\" />\r\n      <workItem from=\"1760423446234\" duration=\"8664000\" />\r\n      <workItem from=\"1760432220183\" duration=\"143000\" />\r\n      <workItem from=\"1760458329699\" duration=\"9035000\" />\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"ok\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1759308981323</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1759308981323</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00002\" summary=\"ok\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1759309023229</created>\r\n      <option name=\"number\" value=\"00002\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1759309023229</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00003\" summary=\"ok\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1759393151369</created>\r\n      <option name=\"number\" value=\"00003\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1759393151369</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00004\" summary=\"sửa paddle và collion của ball\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1759940391364</created>\r\n      <option name=\"number\" value=\"00004\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1759940391364</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"5\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"3\" />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State />\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"ok\" />\r\n    <MESSAGE value=\"sửa paddle và collion của ball\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"sửa paddle và collion của ball\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision d3dfbe224c7d5a8eeac4033ac9e91753a3948f18)
++++ b/.idea/workspace.xml	(date 1760675202147)
+@@ -4,31 +4,8 @@
+     <option name="autoReloadType" value="SELECTIVE" />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="0c2c2745-22e6-49e3-8791-87cb328c1f44" name="Changes" comment="sửa paddle và collion của ball">
++    <list default="true" id="0c2c2745-22e6-49e3-8791-87cb328c1f44" name="Changes" comment="vẽ menu và sửa hàm va chạm ball với paddle">
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/Ball.class" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/Brick.class" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/ExpandPaddlePowerUp.class" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/FastBallPowerUp.class" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/GameConstants.class" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/GameManager$1.class" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/GameManager$2.class" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/GameManager.class" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/GameObject.class" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/Main$1.class" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/Main.class" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/MovableObject.class" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/NormalBrick.class" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/Paddle.class" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/PowerUp.class" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/StrongBrick.class" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/SuperBrick.class" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/Wall.class" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/org/example/Main.class" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/Ball.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Ball.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/GameConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameConstants.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/GameManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameManager.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -45,7 +22,7 @@
+   <component name="Git.Settings">
+     <option name="RECENT_BRANCH_BY_REPOSITORY">
+       <map>
+-        <entry key="$PROJECT_DIR$" value="Khang" />
++        <entry key="$PROJECT_DIR$" value="main" />
+       </map>
+     </option>
+     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+@@ -78,7 +55,7 @@
+     &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
++    &quot;git-widget-placeholder&quot;: &quot;hai4&quot;,
+     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+     &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
+     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+@@ -130,7 +107,9 @@
+       <workItem from="1760414639254" duration="474000" />
+       <workItem from="1760423446234" duration="8664000" />
+       <workItem from="1760432220183" duration="143000" />
+-      <workItem from="1760458329699" duration="9035000" />
++      <workItem from="1760458329699" duration="9819000" />
++      <workItem from="1760543256274" duration="1787000" />
++      <workItem from="1760629491732" duration="743000" />
+     </task>
+     <task id="LOCAL-00001" summary="ok">
+       <option name="closed" value="true" />
+@@ -164,7 +143,15 @@
+       <option name="project" value="LOCAL" />
+       <updated>1759940391364</updated>
+     </task>
+-    <option name="localTasksCounter" value="5" />
++    <task id="LOCAL-00005" summary="vẽ menu và sửa hàm va chạm ball với paddle">
++      <option name="closed" value="true" />
++      <created>1760531092858</created>
++      <option name="number" value="00005" />
++      <option name="presentableId" value="LOCAL-00005" />
++      <option name="project" value="LOCAL" />
++      <updated>1760531092858</updated>
++    </task>
++    <option name="localTasksCounter" value="6" />
+     <servers />
+   </component>
+   <component name="TypeScriptGeneratedFilesManager">
+@@ -184,6 +171,7 @@
+   <component name="VcsManagerConfiguration">
+     <MESSAGE value="ok" />
+     <MESSAGE value="sửa paddle và collion của ball" />
+-    <option name="LAST_COMMIT_MESSAGE" value="sửa paddle và collion của ball" />
++    <MESSAGE value="vẽ menu và sửa hàm va chạm ball với paddle" />
++    <option name="LAST_COMMIT_MESSAGE" value="vẽ menu và sửa hàm va chạm ball với paddle" />
+   </component>
+ </project>
+\ No newline at end of file

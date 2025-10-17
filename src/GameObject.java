@@ -1,5 +1,4 @@
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.paint.Color;
 import javafx.scene.image.Image;
 public class GameObject {
     private double x;
@@ -48,7 +47,7 @@ public class GameObject {
         this.width = width;
     }
 
-    public void update() {
+    public void update(double deltaTime) {
 
     }
 
