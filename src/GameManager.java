@@ -70,6 +70,8 @@ public class GameManager extends Application {
     private BrickLayer brickLayer = new BrickLayer();
     private List<Brick> brickList = new ArrayList<>();
 
+    private Score score = new Score();
+
     private AnimationTimer gameLoop;
 
     @Override
@@ -320,8 +322,11 @@ public class GameManager extends Application {
 
             for (Brick brick : brickList) {
                 if (ball.checkCollision(brick)) {
-                    brick.isDestroyed();
-                    bricksToRemove.add(brick);
+                    brick.takeHit();
+                    if (brick.isDestroyed()) {
+                        bricksToRemove.add(brick);
+                        score.updateScore();
+                    }
                     ball.bounceOff(brick);
                 }
             }
@@ -330,13 +335,17 @@ public class GameManager extends Application {
 
             boolean isBallLost = ball.collisionWall(canvas);
             if (isBallLost) {
+                score.resetSorePlus();
                 resetGame();
                 return;
             }
 
             if (ball.checkCollision(paddle)) {
                 ball.bounceOff(paddle);
+                score.resetSorePlus();
             }
+
+            System.out.println(score.getScore());
         }
     }
 

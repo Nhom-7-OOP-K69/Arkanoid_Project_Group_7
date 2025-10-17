@@ -3,7 +3,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
 public class Ball extends MovableObject {
-    private double speed = 300;
+    private double speed = 350;
     private Image img;
 
     public void setSpeed(double speed) {
@@ -16,8 +16,6 @@ public class Ball extends MovableObject {
 
     public Ball(double x, double y, double width, double height) {
         super(x, y, width, height);
-        this.setDy(speed);
-        this.setDx(speed);
         this.img = ImgManager.getInstance().getImage("BALL");
     }
 

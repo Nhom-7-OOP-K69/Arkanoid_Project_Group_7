@@ -4,32 +4,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0c2c2745-22e6-49e3-8791-87cb328c1f44" name="Changes" comment="check">
-      <change afterPath="$PROJECT_DIR$/src/BrickLayer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+    <list default="true" id="0c2c2745-22e6-49e3-8791-87cb328c1f44" name="Changes" comment="push tạm">
+      <change afterPath="$PROJECT_DIR$/src/Score.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/Level_1.txt" beforeDir="false" afterPath="$PROJECT_DIR$/data/Level_1.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/Ball.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/Ball.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/Brick.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/Brick.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/BrickLayer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/BrickLayer.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/GameConstants.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/GameConstants.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/GameManager$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/GameManager$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/GameManager$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/GameManager$2.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/GameManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/GameManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/Main$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/NormalBrick.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/NormalBrick.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/Paddle.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/Paddle.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/StrongBrick.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/StrongBrick.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/SuperBrick.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/SuperBrick.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/ImgManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/ImgManager.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Ball.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Ball.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Brick.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Brick.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/BrickLayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BrickLayer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GameConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameConstants.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GameManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/NormalBrick.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/NormalBrick.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Paddle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Paddle.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/StrongBrick.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/StrongBrick.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SuperBrick.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SuperBrick.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Wall.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Wall.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,7 +35,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="Khang2" />
+        <entry key="$PROJECT_DIR$" value="Khang4" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -74,21 +63,21 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;Khang3&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;E:/Java/Arkanoid_Project_Group_7 - Copy&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Main.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "Khang5",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "E:/Java/Arkanoid_Project_Group_7 - Copy",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.pluginManager"
   }
-}</component>
+}]]></component>
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="GameManager" />
@@ -147,7 +136,15 @@
       <option name="project" value="LOCAL" />
       <updated>1760202649618</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="thêm ImgManager để load ảnh&#10;thêm BrickLayer để load map gạch từ file txt&#10;sửa collision ở ball&#10;thêm folder data để thêm level">
+      <option name="closed" value="true" />
+      <created>1760539260990</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1760539260991</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -164,7 +161,10 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="ok" />
     <MESSAGE value="sửa paddle và collion của ball" />
+    <MESSAGE value="Merge pull request #12 from Nhom-7-OOP-K69/Khang3&#10;&#10;check" />
     <MESSAGE value="check" />
-    <option name="LAST_COMMIT_MESSAGE" value="check" />
+    <MESSAGE value="thêm ImgManager để load ảnh&#10;thêm BrickLayer để load map gạch từ file txt&#10;sửa collision ở ball&#10;thêm folder data để thêm level" />
+    <MESSAGE value="push tạm" />
+    <option name="LAST_COMMIT_MESSAGE" value="push tạm" />
   </component>
 </project>
