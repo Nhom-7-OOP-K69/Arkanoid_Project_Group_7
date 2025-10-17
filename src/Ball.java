@@ -60,28 +60,49 @@ public class Ball extends MovableObject {
      * Xử lý va chạm dựa trên loại đối tượng.
      * @param other Đối tượng mà bóng va chạm.
      */
+    /**
+     * Hệ số ảnh hưởng của paddle lên bóng.
+     * Tăng giá trị này để paddle "đẩy" bóng mạnh hơn.
+     * 0.0 = không ảnh hưởng, 1.0 = ảnh hưởng rất mạnh.
+     * Giá trị tốt thường nằm trong khoảng 0.3 đến 0.6.
+     */
+    private static final double PADDLE_INFLUENCE_FACTOR = 0.4;
+
+    /**
+     * Tốc độ ngang tối đa của bóng, để tránh bóng di chuyển quá nhanh không thể kiểm soát.
+     */
+    private static final double MAX_BALL_SPEED_X = 600.0; // Đơn vị: pixel/giây
+
     public void bounceOff(GameObject other) {
         // KIỂM TRA: Nếu đối tượng va chạm là PADDLE
-        if (other instanceof Paddle) {
-            Paddle paddle = (Paddle) other; // Ép kiểu để xử lý riêng
+        if (other instanceof Paddle paddle) {
 
-            // 1. Luôn nảy lên
+            // 1. Nảy bóng theo chiều dọc (luôn nảy lên)
+            // Chỉ đảo chiều khi bóng đang đi xuống để tránh lỗi kẹt bóng
             if (this.getDy() > 0) {
                 this.setDy(-this.getDy());
             }
 
-            // 2. Thay đổi góc nảy dựa trên vị trí va chạm
-            double paddleCenter = paddle.getX() + paddle.getWidth() / 2;
-            double ballCenter = this.getX() + this.getWidth() / 2;
-            double difference = ballCenter - paddleCenter;
-            this.setDx(difference * 5); // Thay đổi vận tốc ngang
+            // 2. TÍNH TOÁN QUÁN TÍNH - CẢI TIẾN CỐT LÕI
+            // Lấy vận tốc ngang của paddle (giả sử paddle có phương thức getDx())
+            double paddleDx = paddle.getDx();
 
-            // 3. Đặt lại vị trí bóng ngay trên paddle
+            // Vận tốc ngang mới của bóng = vận tốc hiện tại + một phần vận tốc của paddle
+            double newBallDx = this.getDx() + (paddleDx * PADDLE_INFLUENCE_FACTOR);
+
+            // 3. Giới hạn tốc độ ngang của bóng
+            // Dùng Math.signum để giữ nguyên hướng (dương/âm) của vận tốc
+            if (Math.abs(newBallDx) > MAX_BALL_SPEED_X) {
+                newBallDx = MAX_BALL_SPEED_X * Math.signum(newBallDx);
+            }
+
+            this.setDx(newBallDx);
+
+            // 4. Đặt lại vị trí của bóng ngay trên paddle để tránh bị kẹt
             this.setY(paddle.getY() - this.getHeight());
         }
-        // NẾU LÀ ĐỐI TƯỢNG KHÁC (ví dụ: gạch)
+        // NẾU LÀ ĐỐI TƯỢNG KHÁC (ví dụ: gạch) -> giữ nguyên logic cũ
         else {
-            // Giữ nguyên logic va chạm chung của bạn
             double overlapX = Math.min(this.getX() + this.getWidth() - other.getX(),
                     other.getX() + other.getWidth() - this.getX());
             double overlapY = Math.min(this.getY() + this.getHeight() - other.getY(),
@@ -89,7 +110,6 @@ public class Ball extends MovableObject {
 
             if (overlapX < overlapY) {
                 this.setDx(-this.getDx());
-
                 if (this.getX() < other.getX()) {
                     this.setX(this.getX() - overlapX);
                 } else {
@@ -97,7 +117,6 @@ public class Ball extends MovableObject {
                 }
             } else {
                 this.setDy(-this.getDy());
-
                 if (this.getY() < other.getY()) {
                     this.setY(this.getY() - overlapY);
                 } else {

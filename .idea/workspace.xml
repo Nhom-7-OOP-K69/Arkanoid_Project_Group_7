@@ -5,7 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0c2c2745-22e6-49e3-8791-87cb328c1f44" name="Changes" comment="check">
+      <change afterPath="$PROJECT_DIR$/src/AssetManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/GameStateManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/InputHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/UIManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Ball.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Ball.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GameManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GameObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameObject.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,7 +30,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="Khang2" />
+        <entry key="$PROJECT_DIR$" value="main" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -33,12 +41,12 @@
     &quot;assignee&quot;: &quot;khangnb0111&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/Nhom-7-OOP-K69/Arkanoid_Project_Group_7.git",
-    "accountId": "a8cc4c78-118b-4dcd-bac2-623078c7c06c"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Nhom-7-OOP-K69/Arkanoid_Project_Group_7.git&quot;,
+    &quot;accountId&quot;: &quot;f3d38698-a25b-4f56-996e-ddaa8ebeb632&quot;
   }
-}]]></component>
+}</component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
   </component>
@@ -55,11 +63,12 @@
     "Application.Main.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "hai5",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/Admin/IdeaProjects/demo1",
-    "project.structure.last.edited": "Modules",
+    "last_opened_file_path": "E:/Java/Arkanoid_Project_Group_7 - Copy",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "project.structure.last.edited": "Libraries",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
     "settings.editor.selected.configurable": "preferences.pluginManager"
@@ -67,9 +76,9 @@
 }]]></component>
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application">
-      <option name="MAIN_CLASS_NAME" value="GameManager" />
-      <module name="demo1" />
-      <option name="VM_PARAMETERS" value="--module-path &quot;D:\openjfx-25_windows-x64_bin-sdk\javafx-sdk-25\lib&quot; --add-modules javafx.controls,javafx.fxml --enable-native-access=javafx.graphics" />
+      <option name="MAIN_CLASS_NAME" value="Main" />
+      <module name="Arkanoid_Project_Group__7" />
+      <option name="VM_PARAMETERS" value="--module-path &quot;C:\Users\doanm\Downloads\openjfx-25_windows-x64_bin-sdk\javafx-sdk-25\lib&quot; --add-modules javafx.controls,javafx.fxml --enable-native-access=javafx.graphics" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
