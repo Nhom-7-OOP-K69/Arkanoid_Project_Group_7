@@ -15,15 +15,6 @@ import javafx.stage.Stage;
 import javafx.scene.image.Image;
 
 public class Main extends Application {
-    //JavaFX variables
-    private Canvas bkgCanvas = new Canvas(GameConstants.SCREEN_WIDTH, GameConstants.SCREEN_HEIGHT);      // Canvas chứa background
-    private GraphicsContext bkgCtx = bkgCanvas.getGraphicsContext2D();                                  //Context vẽ background
-    private Canvas canvas = new Canvas(GameConstants.SCREEN_WIDTH, GameConstants.SCREEN_HEIGHT);          // Canvas chứa enity: ball,paddle,...
-    private GraphicsContext ctx = canvas.getGraphicsContext2D();                                         // Context vẽ entity
-    private Canvas UICanvas = new Canvas(GameConstants.SCREEN_WIDTH, GameConstants.SCREEN_HEIGHT);        // Canvas chứa UI
-    private GraphicsContext UIctx = UICanvas.getGraphicsContext2D();                                     // Context vẽ UI
-
-
     //Entity
     private Paddle paddle;
     private Ball ball;
@@ -44,12 +35,17 @@ public class Main extends Application {
     private Image ballImg;
     private List<Image> paddleImgs = new ArrayList<>();
 
-    public static void main(String[] args) {
-        launch(args);
+    @Override
+    public void start(Stage primaryStage) {
+        // 1. Tạo một đối tượng quản lý game
+        GameManager gameManager = new GameManager();
+
+        // 2. Yêu cầu gameManager bắt đầu và "giao" cửa sổ chính (primaryStage) cho nó
+        gameManager.initializeAndRun(primaryStage);
     }
 
-    @Override
-    public void start(Stage stage) throws Exception {
-        stage.setTitle("Arkanoid Group7");
+    public static void main(String[] args) {
+        // Đây là nơi chương trình thực sự bắt đầu
+        launch(args);
     }
 }
