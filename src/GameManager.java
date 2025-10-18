@@ -27,6 +27,12 @@ public class GameManager {
     private BrickLayer brickLayer = new BrickLayer();
     private List<Brick> brickList = new ArrayList<>();
 
+    // ==== TEST POWER-UP ====
+    private ExpandPaddlePowerUp expandPU;
+    private double lastPaddleWidth = -1;
+    private BulletPowerUp bulletPU;
+    private List<Bullet> bullets = new ArrayList<>();
+
     private AnimationTimer gameLoop;
 
     // Phương thức được gọi bởi Main.java để khởi chạy toàn bộ game
@@ -59,6 +65,10 @@ public class GameManager {
     private void createGameEntities() {
         this.ball = new Ball(442, 570, GameConstants.BALL_WIDTH, GameConstants.BALL_HEIGHT);
         this.paddle = new Paddle(390, 600, GameConstants.PADDLE_WIDTH, GameConstants.PADDLE_HEIGHT);
+
+        // Tạo power-up để test
+        expandPU = new ExpandPaddlePowerUp(0, 0, 0, 0, 300); // 300 tick = ~5s
+        bulletPU = new BulletPowerUp(0, 0, 0, 0, 600);      // 600 tick = ~10s
     }
 
     // Phương thức reset game và tải lại gạch
@@ -127,6 +137,40 @@ public class GameManager {
                 ball.bounceOff(paddle);
             }
         }
+
+        // ==== TEST POWER-UP UPDATE ====
+        if (expandPU != null && expandPU.isActive()) {
+            if (!expandPU.tick()) {
+                expandPU.removeEffect(paddle, ball);
+            }
+        }
+
+        if (bulletPU != null && bulletPU.isActive()) {
+            if (!bulletPU.tick()) {
+                bulletPU.removeEffect(paddle, ball);
+            } else {
+                // mỗi frame có thể bắn nếu đủ thời gian
+                List<Bullet> newBullets = bulletPU.maybeShoot(paddle);
+                bullets.addAll(newBullets);
+            }
+        }
+
+        // Cập nhật vị trí đạn (nếu có)
+        List<Bullet> bulletsToRemove = new ArrayList<>();
+        for (Bullet b : bullets) {
+            b.update();
+            if (b.getY() < 0) { // ra khỏi màn hình
+                bulletsToRemove.add(b);
+            }
+        }
+        bullets.removeAll(bulletsToRemove);
+
+        if (paddle.getWidth() != lastPaddleWidth) {
+            System.out.println("Paddle width thay đổi: " + paddle.getWidth());
+            lastPaddleWidth = paddle.getWidth();
+        }
+
+
     }
 
     private void render() {
@@ -134,6 +178,7 @@ public class GameManager {
         paddle.render(ctx);
         ball.render(ctx);
         brickLayer.render(ctx);
+
     }
 
     public void startGame() {
@@ -144,6 +189,19 @@ public class GameManager {
         uiManager.pauseButton.setDisable(false);
         uiManager.startButton.setText("Chơi Lại");
         resetGame();
+
+        // TEST: kích hoạt power-up Expand trước, rồi Bullet sau 5s
+        expandPU.applyEffect(paddle, ball);
+
+        new Thread(() -> {
+            try {
+                Thread.sleep(5000); // chờ 5 giây
+                bulletPU.applyEffect(paddle, ball);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }).start();
+
         System.out.println("Game bắt đầu! Nhấn Space để phóng bóng.");
     }
 
