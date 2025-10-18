@@ -149,6 +149,7 @@ public class GameManager {
                     ball.bounceOff(brick);
                 }
             }
+
             brickList.removeAll(bricksToRemove);
 
             if (ball.checkCollision(paddle)) {
