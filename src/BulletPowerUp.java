@@ -58,6 +58,8 @@ public class BulletPowerUp extends PowerUp {
             lastShotTime = currentTime;
 
             System.out.println("[BulletPowerUp] Bắn 2 viên đạn tại Y=" + y);
+            System.out.println("[BulletPowerUp] Bắn đạn tại X=" + leftX + " và " + rightX + ", Y=" + y);
+
         }
 
         return newBullets;

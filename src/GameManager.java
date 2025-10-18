@@ -66,9 +66,6 @@ public class GameManager {
         this.ball = new Ball(442, 570, GameConstants.BALL_WIDTH, GameConstants.BALL_HEIGHT);
         this.paddle = new Paddle(390, 600, GameConstants.PADDLE_WIDTH, GameConstants.PADDLE_HEIGHT);
 
-        // Tạo power-up để test
-        expandPU = new ExpandPaddlePowerUp(0, 0, 0, 0, 300); // 300 tick = ~5s
-        bulletPU = new BulletPowerUp(0, 0, 0, 0, 600);      // 600 tick = ~10s
     }
 
     // Phương thức reset game và tải lại gạch
@@ -139,7 +136,7 @@ public class GameManager {
         }
 
         // ==== TEST POWER-UP UPDATE ====
-        if (expandPU != null && expandPU.isActive()) {
+        /*if (expandPU != null && expandPU.isActive()) {
             if (!expandPU.tick()) {
                 expandPU.removeEffect(paddle, ball);
             }
@@ -168,8 +165,7 @@ public class GameManager {
         if (paddle.getWidth() != lastPaddleWidth) {
             System.out.println("Paddle width thay đổi: " + paddle.getWidth());
             lastPaddleWidth = paddle.getWidth();
-        }
-
+        }*/
 
     }
 
@@ -190,17 +186,24 @@ public class GameManager {
         uiManager.startButton.setText("Chơi Lại");
         resetGame();
 
-        // TEST: kích hoạt power-up Expand trước, rồi Bullet sau 5s
+        // Tạo mới các power-up mỗi khi bắt đầu hoặc chơi lại
+        /*expandPU = new ExpandPaddlePowerUp(0, 0, 0, 0, 300);
+        bulletPU = new BulletPowerUp(0, 0, 0, 0, 600);
+
+        // Kích hoạt ngay Expand, sau 5 giây thì Bullet
         expandPU.applyEffect(paddle, ball);
+        System.out.println("[TEST] ExpandPaddlePowerUp được kích hoạt khi bắt đầu game.");
 
         new Thread(() -> {
             try {
-                Thread.sleep(5000); // chờ 5 giây
+                Thread.sleep(5000); // 5 giây sau mới bắn đạn
                 bulletPU.applyEffect(paddle, ball);
+                System.out.println("[TEST] BulletPowerUp được kích hoạt sau 5 giây.");
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-        }).start();
+        }).start();*/
+
 
         System.out.println("Game bắt đầu! Nhấn Space để phóng bóng.");
     }
