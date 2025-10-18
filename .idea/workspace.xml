@@ -4,24 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0c2c2745-22e6-49e3-8791-87cb328c1f44" name="Changes" comment="push tạm">
+    <list default="true" id="0c2c2745-22e6-49e3-8791-87cb328c1f44" name="Changes" comment="check">
+      <change afterPath="$PROJECT_DIR$/src/PowerUpManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/SpawnPowerUp.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/Level_1.txt" beforeDir="false" afterPath="$PROJECT_DIR$/data/Level_1.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/Ball.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/Ball.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/BrickLayer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/BrickLayer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/GameConstants.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/GameConstants.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/GameManager$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/GameManager$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/GameManager$GameState.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/GameManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/GameManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/GameObject.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/GameObject.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/ImgManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/ImgManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Ball.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Ball.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/BrickLayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BrickLayer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/FastBallPowerUp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ExtraBallPowerUp.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GameConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameConstants.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GameManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ImgManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ImgManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Score.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Score.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Paddle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Paddle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PowerUp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/PowerUp.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,11 +63,12 @@
     &quot;Application.Main.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;Khang5&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;E:/Java/Arkanoid_Project_Group_7 - Copy&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Admin/OneDrive/Documents/Arkanoid_Project_Group_7_1&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
@@ -84,8 +77,8 @@
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="Main" />
-      <module name="Arkanoid_Project_Group_7" />
-      <option name="VM_PARAMETERS" value="--module-path &quot;E:\javafx-sdk-25\lib&quot; --add-modules javafx.controls,javafx.fxml --enable-native-access=javafx.graphics" />
+      <module name="Arkanoid_Project_Group_7_1" />
+      <option name="VM_PARAMETERS" value="--module-path &quot;C:\Users\Admin\Downloads\openjfx-25_windows-x64_bin-sdk\javafx-sdk-25\lib&quot; --add-modules javafx.controls,javafx.fxml --enable-native-access=javafx.graphics" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
