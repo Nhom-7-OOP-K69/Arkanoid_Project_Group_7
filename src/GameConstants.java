@@ -15,6 +15,14 @@ public final class GameConstants {
     public static final int PADDLE_WIDTH = 120;
     public static final int PADDLE_HEIGHT = 32;
     public static final int PADDLE_FRAMES = 3;
-    public static final int PADDLE_SPEED = 3;
+    public static final int PADDLE_SPEED = 400;
     public static final double UI_TOP_BAR_HEIGHT = 50;
+    public static final int POWERUP_WIDTH = 60;
+    public static final int POWERUP_HEIGHT = 15;
+    public static final int BULLET_WIDTH = 5;
+    public static final int BULLET_HEIGHT = 10;
+    public static final int HEART_WIDTH = 30;
+    public static final int HEART_HEIGHT = 30;
+    public static final int EXTRAPADDLE_WIDTH = 173;
+    public static final int SPAWN_POWER_UP_SPEED = 200;
 }

@@ -5,7 +5,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
 public class Paddle extends MovableObject {
-    private double speed = 500;
+    private double speed = GameConstants.PADDLE_SPEED;
     private int currentPowerUp;
     private int frame = 0;
     private List<Image> images;
