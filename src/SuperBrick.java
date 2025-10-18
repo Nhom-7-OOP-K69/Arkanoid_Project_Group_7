@@ -1,15 +1,19 @@
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class SuperBrick extends Brick {
     private List<Image> img;
+    private Image currentImage;
 
     public SuperBrick(double x, double y) {
-        super(x, y, GameConstants.STRONG_BRICK_HP, GameConstants.STRONG_TYPE);
+        super(x, y, GameConstants.SUPER_BRICK_HP, GameConstants.SUPER_TYPE);
+        img = new ArrayList<>();
         img.add(ImgManager.getInstance().getImage("PURPLE_BRICK"));
         img.add(ImgManager.getInstance().getImage("PURPLE_BRICK_"));
+        currentImage = img.getFirst();
     }
 
     public void render(GraphicsContext gc) {
