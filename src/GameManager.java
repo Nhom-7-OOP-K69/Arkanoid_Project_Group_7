@@ -39,7 +39,7 @@ public class GameManager {
         this.uiManager = new UIManager(this, this.gameStateManager);
 
         // Tải tài nguyên và tạo giao diện
-        this.assetManager.loadResources();
+
         this.uiManager.createMenuScene();
         this.createGameEntities();
         this.uiManager.createGameScene(this.canvas);
