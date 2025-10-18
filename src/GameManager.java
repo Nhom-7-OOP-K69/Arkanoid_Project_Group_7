@@ -8,6 +8,7 @@ import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -16,22 +17,19 @@ public class GameManager {
     private Stage primaryStage;
     private GameStateManager gameStateManager;
     private UIManager uiManager;
-    private AssetManager assetManager;
     private InputHandler inputHandler;
 
-    private Canvas canvas = new Canvas(GameConstants.SCREEN_WIDTH, GameConstants.SCREEN_HEIGHT);
-    private GraphicsContext ctx = canvas.getGraphicsContext2D();
+    private final Canvas canvas = new Canvas(GameConstants.SCREEN_WIDTH, GameConstants.SCREEN_HEIGHT);
+    private final GraphicsContext ctx = canvas.getGraphicsContext2D();
+    private String[] fileName = new String[5];
 
     private Paddle paddle;
     private Ball ball;
     private BrickLayer brickLayer = new BrickLayer();
     private List<Brick> brickList = new ArrayList<>();
 
-    // ==== TEST POWER-UP ====
-    private ExpandPaddlePowerUp expandPU;
-    private double lastPaddleWidth = -1;
-    private BulletPowerUp bulletPU;
-    private List<Bullet> bullets = new ArrayList<>();
+    private final Score score = new Score();
+    private int currentLevel = 0;
 
     private AnimationTimer gameLoop;
 
@@ -41,11 +39,10 @@ public class GameManager {
 
         // Khởi tạo các trình quản lý
         this.gameStateManager = new GameStateManager();
-        this.assetManager = new AssetManager();
         this.uiManager = new UIManager(this, this.gameStateManager);
 
         // Tải tài nguyên và tạo giao diện
-        this.assetManager.loadResources();
+        this.loadFileName();
         this.uiManager.createMenuScene();
         this.createGameEntities();
         this.uiManager.createGameScene(this.canvas);
@@ -61,21 +58,46 @@ public class GameManager {
         primaryStage.show();
     }
 
+    // Tạo đường dẫn cho các file txt
+    public void loadFileName() {
+        for (int i = 0; i < GameConstants.LEVEL; i++) {
+            fileName[i] = "data/Level_" + (i + 1) + ".txt";
+        }
+    }
+
     // Tạo các thực thể trong game
     private void createGameEntities() {
         this.ball = new Ball(442, 570, GameConstants.BALL_WIDTH, GameConstants.BALL_HEIGHT);
         this.paddle = new Paddle(390, 600, GameConstants.PADDLE_WIDTH, GameConstants.PADDLE_HEIGHT);
-
     }
 
     // Phương thức reset game và tải lại gạch
     private void resetGame() {
         // 1. Tải lại các viên gạch từ file
-        File file = new File("data/Level_1.txt");
+        currentLevel = 0;
         brickLayer = new BrickLayer(); // Tạo lại để đảm bảo không còn gạch cũ
-        brickLayer.loadBrick(file);
+        brickLayer.loadBrick(fileName[currentLevel]);
+        System.out.println(fileName[currentLevel]);
+        System.out.println(currentLevel);
 
         // 2. Reset vị trí của paddle
+        paddle.setX((double) (GameConstants.SCREEN_WIDTH - GameConstants.PADDLE_WIDTH) / 2);
+        paddle.setY(GameConstants.SCREEN_HEIGHT - 100);
+
+        // 3. Đặt trạng thái về sẵn sàng
+        gameStateManager.setCurrentState(GameStateManager.GameState.READY);
+
+        score.resetScore();
+
+        System.out.println("Bóng đã reset. Nhấn Space để chơi tiếp.");
+    }
+
+    private void nextLevel() {
+        currentLevel++;
+
+        brickLayer = new BrickLayer();
+        brickLayer.loadBrick(fileName[currentLevel]);
+
         paddle.setX((double) (GameConstants.SCREEN_WIDTH - GameConstants.PADDLE_WIDTH) / 2);
         paddle.setY(GameConstants.SCREEN_HEIGHT - 100);
 
@@ -119,54 +141,34 @@ public class GameManager {
             List<Brick> bricksToRemove = new ArrayList<>();
             for (Brick brick : brickList) {
                 if (ball.checkCollision(brick)) {
-                    brick.isDestroyed();
-                    bricksToRemove.add(brick);
+                    brick.takeHit();
+                    if (brick.isDestroyed()) {
+                        bricksToRemove.add(brick);
+                        score.updateScore();
+                    }
                     ball.bounceOff(brick);
                 }
             }
+
             brickList.removeAll(bricksToRemove);
+
+            if (ball.checkCollision(paddle)) {
+                ball.bounceOff(paddle);
+                score.resetScorePlus();
+            }
+
             boolean isBallLost = ball.collisionWall(canvas);
             if (isBallLost) {
                 resetGame();
                 return;
             }
-            if (ball.checkCollision(paddle)) {
-                ball.bounceOff(paddle);
+
+            if (brickLayer.isEmpty()) {
+                nextLevel();
             }
-        }
 
-        // ==== TEST POWER-UP UPDATE ====
-        if (expandPU != null && expandPU.isActive()) {
-            if (!expandPU.tick()) {
-                expandPU.removeEffect(paddle, ball);
-            }
+            System.out.println(score.getScore());
         }
-
-        if (bulletPU != null && bulletPU.isActive()) {
-            if (!bulletPU.tick()) {
-                bulletPU.removeEffect(paddle, ball);
-            } else {
-                // mỗi frame có thể bắn nếu đủ thời gian
-                List<Bullet> newBullets = bulletPU.maybeShoot(paddle);
-                bullets.addAll(newBullets);
-            }
-        }
-
-        // Cập nhật vị trí đạn (nếu có)
-        List<Bullet> bulletsToRemove = new ArrayList<>();
-        for (Bullet b : bullets) {
-            b.update();
-            if (b.getY() < 0) { // ra khỏi màn hình
-                bulletsToRemove.add(b);
-            }
-        }
-        bullets.removeAll(bulletsToRemove);
-
-        if (paddle.getWidth() != lastPaddleWidth) {
-            System.out.println("Paddle width thay đổi: " + paddle.getWidth());
-            lastPaddleWidth = paddle.getWidth();
-        }
-
     }
 
     private void render() {
@@ -174,7 +176,6 @@ public class GameManager {
         paddle.render(ctx);
         ball.render(ctx);
         brickLayer.render(ctx);
-
     }
 
     public void startGame() {
@@ -185,26 +186,6 @@ public class GameManager {
         uiManager.pauseButton.setDisable(false);
         uiManager.startButton.setText("Chơi Lại");
         resetGame();
-
-        // Tạo mới các power-up mỗi khi bắt đầu hoặc chơi lại
-        expandPU = new ExpandPaddlePowerUp(0, 0, 0, 0, 300);
-        bulletPU = new BulletPowerUp(0, 0, 0, 0, 600);
-
-        // Kích hoạt ngay Expand, sau 5 giây thì Bullet
-        expandPU.applyEffect(paddle, ball);
-        System.out.println("[TEST] ExpandPaddlePowerUp được kích hoạt khi bắt đầu game.");
-
-        new Thread(() -> {
-            try {
-                Thread.sleep(5000); // 5 giây sau mới bắn đạn
-                bulletPU.applyEffect(paddle, ball);
-                System.out.println("[TEST] BulletPowerUp được kích hoạt sau 5 giây.");
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }).start();
-
-
         System.out.println("Game bắt đầu! Nhấn Space để phóng bóng.");
     }
 
@@ -270,12 +251,7 @@ public class GameManager {
 
     public void launchBall() {
         gameStateManager.setCurrentState(GameStateManager.GameState.PLAYING);
-        ball.setDy(-300);
-        if (Math.random() < 0.5) {
-            ball.setDx(-150);
-        } else {
-            ball.setDx(150);
-        }
+        ball.setDy(ball.getSpeed());
     }
 
     public void exitGame() {
