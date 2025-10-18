@@ -20,7 +20,12 @@ public class Score {
         scorePlus += 5;
     }
 
-    public void resetSorePlus() {
+    public void resetScorePlus() {
         scorePlus = 0;
+    }
+
+    public void resetScore() {
+        resetScorePlus();
+        score = 0;
     }
 }

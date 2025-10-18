@@ -13,7 +13,9 @@ public class BrickLayer {
         return brickList;
     }
 
-    public void loadBrick(File file) {
+    public void loadBrick(String fileName) {
+        File file = new File(fileName);
+
         try (Scanner scanner = new Scanner(file)) {
             int j = 0;
             while (scanner.hasNextLine()) {
@@ -55,6 +57,10 @@ public class BrickLayer {
     public void removeBrick(Brick brick) {
         brickList.removeIf(brick1 -> brick1.getX() == brick.getX()
                             && brick1.getY() == brick.getY());
+    }
+
+    public boolean isEmpty() {
+        return brickList.isEmpty();
     }
 
     public void render(GraphicsContext gc) {

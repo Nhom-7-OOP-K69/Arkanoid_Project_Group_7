@@ -8,6 +8,7 @@ import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -19,15 +20,17 @@ public class GameManager {
     private AssetManager assetManager;
     private InputHandler inputHandler;
 
-    private Canvas canvas = new Canvas(GameConstants.SCREEN_WIDTH, GameConstants.SCREEN_HEIGHT);
-    private GraphicsContext ctx = canvas.getGraphicsContext2D();
+    private final Canvas canvas = new Canvas(GameConstants.SCREEN_WIDTH, GameConstants.SCREEN_HEIGHT);
+    private final GraphicsContext ctx = canvas.getGraphicsContext2D();
+    private String[] fileName = new String[5];
 
     private Paddle paddle;
     private Ball ball;
     private BrickLayer brickLayer = new BrickLayer();
     private List<Brick> brickList = new ArrayList<>();
 
-    private Score score = new Score();
+    private final Score score = new Score();
+    private int currentLevel = 0;
 
     private AnimationTimer gameLoop;
 
@@ -41,6 +44,7 @@ public class GameManager {
         this.uiManager = new UIManager(this, this.gameStateManager);
 
         // Tải tài nguyên và tạo giao diện
+        this.loadFileName();
         this.assetManager.loadResources();
         this.uiManager.createMenuScene();
         this.createGameEntities();
@@ -57,6 +61,13 @@ public class GameManager {
         primaryStage.show();
     }
 
+    // Tạo đường dẫn cho các file txt
+    public void loadFileName() {
+        for (int i = 0; i < GameConstants.LEVEL; i++) {
+            fileName[i] = "data/Level_" + (i + 1) + ".txt";
+        }
+    }
+
     // Tạo các thực thể trong game
     private void createGameEntities() {
         this.ball = new Ball(442, 570, GameConstants.BALL_WIDTH, GameConstants.BALL_HEIGHT);
@@ -66,11 +77,30 @@ public class GameManager {
     // Phương thức reset game và tải lại gạch
     private void resetGame() {
         // 1. Tải lại các viên gạch từ file
-        File file = new File("data/Level_1.txt");
+        currentLevel = 0;
         brickLayer = new BrickLayer(); // Tạo lại để đảm bảo không còn gạch cũ
-        brickLayer.loadBrick(file);
+        brickLayer.loadBrick(fileName[currentLevel]);
+        System.out.println(fileName[currentLevel]);
+        System.out.println(currentLevel);
 
         // 2. Reset vị trí của paddle
+        paddle.setX((double) (GameConstants.SCREEN_WIDTH - GameConstants.PADDLE_WIDTH) / 2);
+        paddle.setY(GameConstants.SCREEN_HEIGHT - 100);
+
+        // 3. Đặt trạng thái về sẵn sàng
+        gameStateManager.setCurrentState(GameStateManager.GameState.READY);
+
+        score.resetScore();
+
+        System.out.println("Bóng đã reset. Nhấn Space để chơi tiếp.");
+    }
+
+    private void nextLevel() {
+        currentLevel++;
+
+        brickLayer = new BrickLayer();
+        brickLayer.loadBrick(fileName[currentLevel]);
+
         paddle.setX((double) (GameConstants.SCREEN_WIDTH - GameConstants.PADDLE_WIDTH) / 2);
         paddle.setY(GameConstants.SCREEN_HEIGHT - 100);
 
@@ -123,15 +153,20 @@ public class GameManager {
                 }
             }
             brickList.removeAll(bricksToRemove);
+
+            if (ball.checkCollision(paddle)) {
+                ball.bounceOff(paddle);
+                score.resetScorePlus();
+            }
+
             boolean isBallLost = ball.collisionWall(canvas);
             if (isBallLost) {
-                score.resetSorePlus();
                 resetGame();
                 return;
             }
-            if (ball.checkCollision(paddle)) {
-                ball.bounceOff(paddle);
-                score.resetSorePlus();
+
+            if (brickLayer.isEmpty()) {
+                nextLevel();
             }
 
             System.out.println(score.getScore());
@@ -218,12 +253,7 @@ public class GameManager {
 
     public void launchBall() {
         gameStateManager.setCurrentState(GameStateManager.GameState.PLAYING);
-        ball.setDy(-300);
-        if (Math.random() < 0.5) {
-            ball.setDx(-150);
-        } else {
-            ball.setDx(150);
-        }
+        ball.setDy(ball.getSpeed());
     }
 
     public void exitGame() {
