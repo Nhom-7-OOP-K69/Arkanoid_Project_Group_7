@@ -20,7 +20,6 @@ public class ImgManager {
         textures.put("GREEN_BRICK", new Image("file:images/03-Breakout-Tiles.png", GameConstants.BRICK_WIDTH, 0, true, false));
         textures.put("GREEN_BRICK_", new Image("file:images/04-Breakout-Tiles.png", GameConstants.BRICK_WIDTH, 0, true, false));
         textures.put("PURPLE_BRICK", new Image("file:images/05-Breakout-Tiles.png", GameConstants.BRICK_WIDTH, 0, true, false));
-        textures.put("PURPLE_BRICK_", new Image("file:images/06-Breakout-Tiles.png", GameConstants.BRICK_WIDTH, 0, true, false));
         textures.put("EXTRA_BALL",new Image("file:images/43-Breakout-Tiles.png", GameConstants.POWERUP_WIDTH, 0, true, false));
         textures.put("LASER",new Image("file:images/48-Breakout-Tiles.png", GameConstants.POWERUP_WIDTH, 0, true, false));
         textures.put("EXPAND_PADDLE",new Image("file:images/56-Breakout-Tiles.png", GameConstants.EXTRAPADDLE_WIDTH, 0, true, false));
