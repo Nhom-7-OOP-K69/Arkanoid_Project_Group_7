@@ -136,7 +136,7 @@ public class GameManager {
         }
 
         // ==== TEST POWER-UP UPDATE ====
-        /*if (expandPU != null && expandPU.isActive()) {
+        if (expandPU != null && expandPU.isActive()) {
             if (!expandPU.tick()) {
                 expandPU.removeEffect(paddle, ball);
             }
@@ -165,7 +165,7 @@ public class GameManager {
         if (paddle.getWidth() != lastPaddleWidth) {
             System.out.println("Paddle width thay đổi: " + paddle.getWidth());
             lastPaddleWidth = paddle.getWidth();
-        }*/
+        }
 
     }
 
@@ -187,7 +187,7 @@ public class GameManager {
         resetGame();
 
         // Tạo mới các power-up mỗi khi bắt đầu hoặc chơi lại
-        /*expandPU = new ExpandPaddlePowerUp(0, 0, 0, 0, 300);
+        expandPU = new ExpandPaddlePowerUp(0, 0, 0, 0, 300);
         bulletPU = new BulletPowerUp(0, 0, 0, 0, 600);
 
         // Kích hoạt ngay Expand, sau 5 giây thì Bullet
@@ -202,7 +202,7 @@ public class GameManager {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-        }).start();*/
+        }).start();
 
 
         System.out.println("Game bắt đầu! Nhấn Space để phóng bóng.");

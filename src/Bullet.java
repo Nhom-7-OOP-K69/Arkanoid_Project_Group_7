@@ -1,4 +1,4 @@
-public class Bullet extends GameObject {
+public class Bullet extends MovableObject {
     private double bullet_speed = GameConstants.BULLET_SPEED;
 
     public Bullet(double x, double y, double width, double height) {
