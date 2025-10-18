@@ -6,13 +6,14 @@ import java.util.List;
 
 public class StrongBrick extends Brick {
     private List<Image> img;
-    private int frame = 0;
+    private Image current_img;
 
     public StrongBrick(double x, double y) {
         super(x, y, GameConstants.STRONG_BRICK_HP, GameConstants.STRONG_TYPE);
         img = new ArrayList<>();
         img.add(ImgManager.getInstance().getImage("RED_BRICK"));
         img.add(ImgManager.getInstance().getImage("RED_BRICK_"));
+        current_img = img.get(0);
     }
 
     public void render(GraphicsContext gc) {

@@ -112,11 +112,14 @@ public class GameManager {
             List<Brick> bricksToRemove = new ArrayList<>();
             for (Brick brick : brickList) {
                 if (ball.checkCollision(brick)) {
-                    brick.isDestroyed();
-                    bricksToRemove.add(brick);
+                    brick.takeHit();
+                    if (brick.isDestroyed()) {
+                        bricksToRemove.add(brick);
+                    }
                     ball.bounceOff(brick);
                 }
             }
+
             brickList.removeAll(bricksToRemove);
             boolean isBallLost = ball.collisionWall(canvas);
             if (isBallLost) {
