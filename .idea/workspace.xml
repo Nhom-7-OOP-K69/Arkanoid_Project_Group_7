@@ -4,16 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0c2c2745-22e6-49e3-8791-87cb328c1f44" name="Changes" comment="check">
-      <change afterPath="$PROJECT_DIR$/src/AssetManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/GameStateManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/InputHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/UIManager.java" afterDir="false" />
+    <list default="true" id="0c2c2745-22e6-49e3-8791-87cb328c1f44" name="Changes" comment="tách file">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group__7/Ball.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group__7/Ball.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AssetManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AssetManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Ball.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Ball.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Brick.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Brick.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/BrickLayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BrickLayer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GameManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GameObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameObject.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GameStateManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameStateManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/InputHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/InputHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MovableObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MovableObject.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -132,7 +134,15 @@
       <option name="project" value="LOCAL" />
       <updated>1760202649618</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="tách file">
+      <option name="closed" value="true" />
+      <created>1760713687207</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1760713687207</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -150,6 +160,7 @@
     <MESSAGE value="ok" />
     <MESSAGE value="sửa paddle và collion của ball" />
     <MESSAGE value="check" />
-    <option name="LAST_COMMIT_MESSAGE" value="check" />
+    <MESSAGE value="tách file" />
+    <option name="LAST_COMMIT_MESSAGE" value="tách file" />
   </component>
 </project>

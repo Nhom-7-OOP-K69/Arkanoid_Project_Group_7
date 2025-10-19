@@ -1,4 +1,6 @@
-public class MovableObject extends GameObject{
+import javafx.scene.canvas.GraphicsContext;
+
+public abstract class MovableObject extends GameObject{
     protected double dx;
     protected double dy;
 
@@ -23,4 +25,6 @@ public class MovableObject extends GameObject{
     }
 
     public void move(double deltaTime) {}
+
+    public abstract void render(GraphicsContext gc);
 }
