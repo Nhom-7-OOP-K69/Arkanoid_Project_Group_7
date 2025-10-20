@@ -16,6 +16,6 @@ public abstract class PowerUp extends GameObject{
         return duration;
     }
 
-    public abstract void applyEffect(Paddle paddle, Ball ball);
+    public abstract void applyEffect(Paddle paddle, BallLayer ballLayer);
     public abstract void removeEffect(Paddle paddle, Ball ball);
 }

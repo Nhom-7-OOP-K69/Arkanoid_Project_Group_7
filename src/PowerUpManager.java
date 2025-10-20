@@ -9,13 +9,13 @@ public class PowerUpManager {
     private List<Ball> gameBalls; // tham chiếu đến danh sách bóng trong GameManager
     private Image img;
 
-    public PowerUpManager(List<Ball> gameBalls) {
-        this.gameBalls = gameBalls;
+    public PowerUpManager(BallLayer ballLayer) {
+        this.gameBalls = ballLayer.getBallList();
     }
 
     // gọi khi brick bị phá
     public void spawnPowerUp(double x, double y) {
-        if (Math.random() < 0.5) { // 30% tỉ lệ rơi
+        if (Math.random() < 0.3) { // 30% tỉ lệ rơi
             PowerUp powerUp = new ExtraBallPowerUp(
                     x, y,
                     GameConstants.POWERUP_WIDTH,
@@ -26,7 +26,7 @@ public class PowerUpManager {
         }
     }
 
-    public void update(double deltaTime, Paddle paddle, Ball ball) {
+    public void update(double deltaTime, Paddle paddle, BallLayer ballLayer) {
         Iterator<PowerUp> iterator = activePowerUps.iterator();
 
         while (iterator.hasNext()) {
@@ -36,13 +36,17 @@ public class PowerUpManager {
             // check va chạm
             if (checkCollision(powerUp, paddle)) {
                 System.out.println("Paddle đã hứng PowerUp!");
-                powerUp.applyEffect(paddle, ball);
+                powerUp.applyEffect(paddle, ballLayer);
                 iterator.remove();
             }
             else if (powerUp.getY() > GameConstants.SCREEN_HEIGHT) {
                 iterator.remove();
             }
         }
+    }
+
+    public void clearPowerUp() {
+        activePowerUps.clear();
     }
 
     private boolean checkCollision(PowerUp powerUp, Paddle paddle) {
