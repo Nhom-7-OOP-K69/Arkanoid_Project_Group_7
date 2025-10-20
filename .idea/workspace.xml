@@ -4,30 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0c2c2745-22e6-49e3-8791-87cb328c1f44" name="Changes" comment="push tạm">
-      <change afterPath="$PROJECT_DIR$/src/BallLayer.java" afterDir="false" />
+    <list default="true" id="0c2c2745-22e6-49e3-8791-87cb328c1f44" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/Level_3.txt" beforeDir="false" afterPath="$PROJECT_DIR$/data/Level_3.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/Level_4.txt" beforeDir="false" afterPath="$PROJECT_DIR$/data/Level_4.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/Level_5.txt" beforeDir="false" afterPath="$PROJECT_DIR$/data/Level_5.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/Ball.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/Ball.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/ExpandPaddlePowerUp.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/ExpandPaddlePowerUp.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/FastBallPowerUp.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/FastBallPowerUp.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/GameManager$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/GameManager$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/GameManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/GameManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/MovableObject.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/MovableObject.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/PowerUp.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/PowerUp.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/Score.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/Score.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Ball.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Ball.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ExpandPaddlePowerUp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ExpandPaddlePowerUp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ExtraBallPowerUp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ExtraBallPowerUp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/FastBallPowerUp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FastBallPowerUp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GameManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MovableObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MovableObject.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/PowerUp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/PowerUp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/PowerUpManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/PowerUpManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Score.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Score.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SpawnPowerUp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SpawnPowerUp.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -172,7 +150,15 @@
       <option name="project" value="LOCAL" />
       <updated>1760806708402</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="push tạm">
+      <option name="closed" value="true" />
+      <created>1760947882312</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1760947882312</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
