@@ -5,10 +5,10 @@ public class FastBallPowerUp extends PowerUp {
     }
 
     @Override
-    public void applyEffect(Paddle paddle, Ball ball){
-        ball.setDx(ball.getDx() * GameConstants.EXTRA_SPEED);
+    public void applyEffect(Paddle paddle, BallLayer ballLayer){
+        /*ball.setDx(ball.getDx() * GameConstants.EXTRA_SPEED);
         ball.setDy(ball.getDy() * GameConstants.EXTRA_SPEED);
-        paddle.setCurrentPowerUp(this.type);
+        paddle.setCurrentPowerUp(this.type);*/
     }
 
     @Override
