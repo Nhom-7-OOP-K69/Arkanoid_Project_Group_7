@@ -33,9 +33,9 @@ public class SpawnPowerUp extends MovableObject {
     }
 
     // active power up
-    public void activate(Paddle paddle, Ball ball) {
+    public void activate(Paddle paddle, BallLayer ballLayer) {
         if (isActive && poweUpEffect != null) {
-            poweUpEffect.applyEffect(paddle, ball);
+            poweUpEffect.applyEffect(paddle, ballLayer);
             isActive = false;
         }
     }
