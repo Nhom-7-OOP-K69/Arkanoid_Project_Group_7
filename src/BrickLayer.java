@@ -13,7 +13,9 @@ public class BrickLayer {
         return brickList;
     }
 
-    public void loadBrick(File file) {
+    public void loadBrick(String fileName) {
+        File file = new File(fileName);
+
         try (Scanner scanner = new Scanner(file)) {
             int j = 0;
             while (scanner.hasNextLine()) {
@@ -23,13 +25,13 @@ public class BrickLayer {
                     Brick brick = null;
                     switch (line.charAt(i)) {
                         case '1':
-                            brick = new NormalBrick(GameConstants.BRICK_WIDTH * i, GameConstants.BRICK_HEIGHT * j + GameConstants.UI_TOP_BAR_HEIGHT);
+                            brick = new NormalBrick(GameConstants.BRICK_WIDTH * i, GameConstants.BRICK_HEIGHT * j + 50 + GameConstants.UI_TOP_BAR_HEIGHT);
                             break;
                         case '2':
-                            brick = new StrongBrick(GameConstants.BRICK_WIDTH * i, GameConstants.BRICK_HEIGHT * j + GameConstants.UI_TOP_BAR_HEIGHT);
+                            brick = new StrongBrick(GameConstants.BRICK_WIDTH * i, GameConstants.BRICK_HEIGHT * j + 50 + GameConstants.UI_TOP_BAR_HEIGHT);
                             break;
                         case '3':
-                            brick = new SuperBrick(GameConstants.BRICK_WIDTH * i, GameConstants.BRICK_HEIGHT * j + GameConstants.UI_TOP_BAR_HEIGHT);
+                            brick = new SuperBrick(GameConstants.BRICK_WIDTH * i, GameConstants.BRICK_HEIGHT * j + 50 + GameConstants.UI_TOP_BAR_HEIGHT);
                             break;
                         default:
                             break;
@@ -55,6 +57,10 @@ public class BrickLayer {
     public void removeBrick(Brick brick) {
         brickList.removeIf(brick1 -> brick1.getX() == brick.getX()
                             && brick1.getY() == brick.getY());
+    }
+
+    public boolean isEmpty() {
+        return brickList.isEmpty();
     }
 
     public void render(GraphicsContext gc) {

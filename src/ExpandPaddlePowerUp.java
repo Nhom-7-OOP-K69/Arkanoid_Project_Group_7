@@ -6,7 +6,7 @@ public class ExpandPaddlePowerUp extends PowerUp {
     }
 
     @Override
-    public void applyEffect(Paddle paddle, Ball ball) {
+    public void applyEffect(Paddle paddle, BallLayer ballLayer) {
         paddle.setWidth(paddle.getWidth() + expandSize);
         paddle.setCurrentPowerUp(this.type);
     }

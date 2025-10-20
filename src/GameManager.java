@@ -8,6 +8,7 @@ import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -16,20 +17,21 @@ public class GameManager {
     private Stage primaryStage;
     private GameStateManager gameStateManager;
     private UIManager uiManager;
-    private AssetManager assetManager;
     private InputHandler inputHandler;
 
-    private Canvas canvas = new Canvas(GameConstants.SCREEN_WIDTH, GameConstants.SCREEN_HEIGHT);
-    private GraphicsContext ctx = canvas.getGraphicsContext2D();
+    private final Canvas canvas = new Canvas(GameConstants.SCREEN_WIDTH, GameConstants.SCREEN_HEIGHT);
+    private final GraphicsContext ctx = canvas.getGraphicsContext2D();
+    private String[] fileName = new String[5];
 
     private Paddle paddle;
     private Ball ball;
     private BrickLayer brickLayer = new BrickLayer();
-    private List<Brick> brickList = new ArrayList<>();
-    private List<Ball> ballList = new ArrayList<>();
-    private PowerUpManager powerUpManager = new PowerUpManager(ballList);
+    private BallLayer ballLayer = new BallLayer();
+    private PowerUpManager powerUpManager = new PowerUpManager(ballLayer);
 
-
+    private final Score score = new Score();
+    private int currentLevel = 0;
+    private int HP = 3;
 
     private AnimationTimer gameLoop;
 
@@ -39,11 +41,10 @@ public class GameManager {
 
         // Khởi tạo các trình quản lý
         this.gameStateManager = new GameStateManager();
-        this.assetManager = new AssetManager();
         this.uiManager = new UIManager(this, this.gameStateManager);
 
         // Tải tài nguyên và tạo giao diện
-        this.assetManager.loadResources();
+        this.loadFileName();
         this.uiManager.createMenuScene();
         this.createGameEntities();
         this.uiManager.createGameScene(this.canvas);
@@ -59,21 +60,29 @@ public class GameManager {
         primaryStage.show();
     }
 
+    // Tạo đường dẫn cho các file txt
+    public void loadFileName() {
+        for (int i = 0; i < GameConstants.LEVEL; i++) {
+            fileName[i] = "data/Level_" + (i + 1) + ".txt";
+        }
+    }
+
     // Tạo các thực thể trong game
     private void createGameEntities() {
-        this.ball = new Ball(442, 570, GameConstants.BALL_WIDTH, GameConstants.BALL_HEIGHT);
+        ball = new Ball(442, 570, GameConstants.BALL_WIDTH, GameConstants.BALL_HEIGHT);
         this.paddle = new Paddle(390, 600, GameConstants.PADDLE_WIDTH, GameConstants.PADDLE_HEIGHT);
-        ballList.add(this.ball);
-
-
+        ballLayer.addBall(this.ball);
     }
 
     // Phương thức reset game và tải lại gạch
     private void resetGame() {
         // 1. Tải lại các viên gạch từ file
-        File file = new File("data/Level_1.txt");
+        currentLevel = 0;
+        HP = 3;
         brickLayer = new BrickLayer(); // Tạo lại để đảm bảo không còn gạch cũ
-        brickLayer.loadBrick(file);
+        brickLayer.loadBrick(fileName[currentLevel]);
+        System.out.println(fileName[currentLevel]);
+        System.out.println(currentLevel);
 
         // 2. Reset vị trí của paddle
         paddle.setX((double) (GameConstants.SCREEN_WIDTH - GameConstants.PADDLE_WIDTH) / 2);
@@ -83,8 +92,46 @@ public class GameManager {
         gameStateManager.setCurrentState(GameStateManager.GameState.READY);
 
         // 4. Xóa hết ball trong list và chừa lại 1 ball
-        ballList.clear();
-        ballList.add(ball);
+        ballLayer.clearBall();
+        ballLayer.addBall(ball);
+
+        powerUpManager.clearPowerUp();
+
+        score.resetScore();
+
+        System.out.println("Bóng đã reset. Nhấn Space để chơi tiếp.");
+    }
+
+    public void resetLaunch() {
+        paddle.setX((double) (GameConstants.SCREEN_WIDTH - GameConstants.PADDLE_WIDTH) / 2);
+        paddle.setY(GameConstants.SCREEN_HEIGHT - 100);
+
+        gameStateManager.setCurrentState(GameStateManager.GameState.READY);
+
+        ballLayer.clearBall();
+        ballLayer.addBall(ball);
+
+        powerUpManager.clearPowerUp();
+
+        System.out.println("Bóng đã reset. Nhấn Space để chơi tiếp.");
+    }
+
+    private void nextLevel() {
+        currentLevel++;
+
+        brickLayer = new BrickLayer();
+        brickLayer.loadBrick(fileName[currentLevel]);
+
+        ballLayer.clearBall();
+        ballLayer.addBall(ball);
+
+        paddle.setX((double) (GameConstants.SCREEN_WIDTH - GameConstants.PADDLE_WIDTH) / 2);
+        paddle.setY(GameConstants.SCREEN_HEIGHT - 100);
+
+        powerUpManager.clearPowerUp();
+
+        // 3. Đặt trạng thái về sẵn sàng
+        gameStateManager.setCurrentState(GameStateManager.GameState.READY);
 
         System.out.println("Bóng đã reset. Nhấn Space để chơi tiếp.");
     }
@@ -114,60 +161,41 @@ public class GameManager {
         paddle.move(deltaTime);
         paddle.checkCollisionWall(canvas);
 
-
         if (gameStateManager.getCurrentState() == GameStateManager.GameState.READY) {
             ball.setX(paddle.getX() + (paddle.getWidth() / 2) - (ball.getWidth() / 2));
             ball.setY(paddle.getY() - ball.getHeight());
         } else if (gameStateManager.getCurrentState() == GameStateManager.GameState.PLAYING) {
-            for (Ball b : ballList) {
-                b.move(deltaTime);
-                b.collisionWall(canvas);
-                if (b.checkCollision(paddle)) {
-                    b.bounceOff(paddle);
+            ballLayer.move(deltaTime);
+
+            int scorePlus = ballLayer.checkCollisionBricks(brickLayer, powerUpManager);
+            score.updateScore(scorePlus);
+
+            ballLayer.checkCollisionPaddle(paddle);
+            ballLayer.collisionWall(canvas);
+
+            if (ballLayer.isEmpty()) {
+                HP--;
+                if (HP == 0) {
+                    resetGame();
+                } else {
+                    resetLaunch();
                 }
-            }
-            brickList = brickLayer.getBrickList();
-            List<Brick> bricksToRemove = new ArrayList<>();
-            for (Ball b : ballList) {
-                for (Brick brick : brickList) {
-                    if (b.checkCollision(brick)) {
-                        brick.isDestroyed();
-                        bricksToRemove.add(brick);
-                        b.bounceOff(brick);
-                        powerUpManager.spawnPowerUp(brick.getX(), brick.getY());
-                    }
-                }
-            }
-            brickList.removeAll(bricksToRemove);
-            List<Ball> ballsToRemove = new ArrayList<>();
-            List<PowerUpManager> powerUpToRemove = new ArrayList<>();
-            for (Ball b : ballList) {
-                if (b.collisionWall(canvas)) {
-                    ballsToRemove.add(b);
-                }
-            }
-            ballList.removeAll(ballsToRemove);
-            if (ballList.isEmpty()) {
-                resetGame();
-                return;
             }
 
-            if (ball.checkCollision(paddle)) {
-                ball.bounceOff(paddle);
+            if (brickLayer.isEmpty()) {
+                nextLevel();
             }
 
+            powerUpManager.update(deltaTime, paddle, ballLayer);
+
+            System.out.println(score.getScore());
         }
-
-        // ==== TEST POWER-UP UPDATE ====
-        powerUpManager.update(deltaTime, paddle, ballList.get(0));
     }
 
     private void render() {
         ctx.clearRect(0, 0, GameConstants.SCREEN_WIDTH, GameConstants.SCREEN_HEIGHT);
         paddle.render(ctx);
-        for (Ball b : ballList) {
-            b.render(ctx);
-        }
+        ballLayer.render(ctx);
         brickLayer.render(ctx);
         powerUpManager.render(ctx);
     }
@@ -181,8 +209,6 @@ public class GameManager {
         uiManager.startButton.setText("Chơi Lại");
         resetGame();
         System.out.println("Game bắt đầu! Nhấn Space để phóng bóng.");
-
-
     }
 
     public void pauseGame() {
@@ -247,12 +273,7 @@ public class GameManager {
 
     public void launchBall() {
         gameStateManager.setCurrentState(GameStateManager.GameState.PLAYING);
-        ball.setDy(-300);
-        if (Math.random() < 0.5) {
-            ball.setDx(-150);
-        } else {
-            ball.setDx(150);
-        }
+        ballLayer.launch();
     }
 
     public void exitGame() {
