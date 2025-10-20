@@ -6,9 +6,20 @@
   <component name="ChangeListManager">
     <list default="true" id="0c2c2745-22e6-49e3-8791-87cb328c1f44" name="Changes" comment="check">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/demo1/Ball.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/demo1/Ball.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/demo1/Brick.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/demo1/Brick.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/demo1/BrickLayer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/demo1/BrickLayer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/demo1/ExpandPaddlePowerUp.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/demo1/ExpandPaddlePowerUp.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/demo1/GameConstants.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/demo1/GameConstants.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/demo1/GameManager$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/demo1/GameManager$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/demo1/GameManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/demo1/GameManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Bullet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Bullet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GameManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/demo1/ImgManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/demo1/ImgManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/demo1/PowerUp.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/demo1/PowerUp.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/demo1/StrongBrick.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/demo1/StrongBrick.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/demo1/SuperBrick.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/demo1/SuperBrick.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/BulletPowerUp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BulletPowerUp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GameConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameConstants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PowerUp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/PowerUp.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,6 +67,7 @@
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;DANH5&quot;,
@@ -151,7 +163,15 @@
       <option name="project" value="LOCAL" />
       <updated>1760776491109</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="check">
+      <option name="closed" value="true" />
+      <created>1760808324852</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1760808324852</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

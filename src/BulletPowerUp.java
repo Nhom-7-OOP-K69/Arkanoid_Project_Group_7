@@ -10,7 +10,7 @@ public class BulletPowerUp extends PowerUp {
     }
 
     @Override
-    public void applyEffect(Paddle paddle, Ball ball) {
+    public void applyEffect(Paddle paddle, BallLayer balllayer) {
         if (!active) {
             paddle.setCurrentPowerUp(this.type);
             start(); // đánh dấu power-up đang hoạt động
