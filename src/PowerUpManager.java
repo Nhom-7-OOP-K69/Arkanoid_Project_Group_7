@@ -17,13 +17,24 @@ public class PowerUpManager {
 
     // gọi khi brick bị phá
     public void spawnPowerUp(double x, double y) {
-        if (Math.random() < 0.7) { // 30% tỉ lệ rơi
-            PowerUp powerUp = new BulletPowerUp(
-                    x, y,
-                    GameConstants.POWERUP_WIDTH,
-                    GameConstants.POWERUP_HEIGHT,
-                    3); // Sửa duration thành 3 giây
-            fallingPowerUps.add(powerUp);
+        if (Math.random() < 0.9) { // 30% tỉ lệ rơi
+            if(Math.random() < 0.5){
+                PowerUp powerUp = new BulletPowerUp(
+                        x, y,
+                        GameConstants.POWERUP_WIDTH,
+                        GameConstants.POWERUP_HEIGHT,
+                        3); // Sửa duration thành 3 giây
+                fallingPowerUps.add(powerUp);
+            }
+            else{
+                PowerUp powerUp = new ExtraBallPowerUp(
+                        x, y,
+                        GameConstants.POWERUP_WIDTH,
+                        GameConstants.POWERUP_HEIGHT,
+                        10,
+                        gameBalls);
+                fallingPowerUps.add(powerUp);
+            }
         }
     }
 
@@ -55,7 +66,9 @@ public class PowerUpManager {
 
                 if (!alreadyActive) {
                     powerUp.applyEffect(paddle, ballLayer);
-                    activePowerUps.add(powerUp);
+                    if (powerUp.isActive()) { // Chỉ add nếu power-up set active (Bullet=yes, Extra=no)
+                        activePowerUps.add(powerUp);
+                    }
                 }
 
                 iterator.remove(); // Xóa power-up rơi khỏi danh sách
@@ -69,6 +82,14 @@ public class PowerUpManager {
         while (activeIterator.hasNext()) {
             PowerUp p = activeIterator.next();
 
+            // Xử lý chung: Tick duration cho mọi power-up active
+            if (!p.tick()) {
+                p.removeEffect(paddle, ballLayer.getBallList().isEmpty() ? null : ballLayer.getBallList().get(0));
+                activeIterator.remove();
+                continue;
+            }
+
+            // Xử lý cụ thể cho Bullet
             if (p instanceof BulletPowerUp bulletPU && bulletPU.isActive()) {
                 bullets.addAll(bulletPU.maybeShoot(paddle));
 
@@ -139,7 +160,8 @@ public class PowerUpManager {
 
     public void render(GraphicsContext gc) {
         for (PowerUp powerUp : fallingPowerUps) { // Chỉ render power-up đang rơi
-            gc.drawImage(ImgManager.getInstance().getImage("LASER"),
+            String imageKey = (powerUp.getType() == 3) ? "LASER" : "EXTRA_BALL";
+            gc.drawImage(ImgManager.getInstance().getImage(imageKey),
                     powerUp.getX(), powerUp.getY(),
                     powerUp.getWidth(), powerUp.getHeight());
         }

@@ -8,7 +8,7 @@ public class BulletPowerUp extends PowerUp {
     private int durationMs;          // thời gian hiệu lực (ms)
 
     public BulletPowerUp(double x, double y, double width, double height, int duration) {
-        super(x, y, width, height, 2, duration); // type = 2
+        super(x, y, width, height, 3, duration); // type = 2
         this.durationMs = duration * 1000; // Sửa thành *1000 để duration là giây -> ms (3*1000=3000ms=3s)
         this.shotInterval = 500;
     }
@@ -63,5 +63,15 @@ public class BulletPowerUp extends PowerUp {
         }
 
         return newBullets;
+    }
+
+    @Override
+    public boolean tick() {
+        if (!active) return false;
+        if (isExpired()) {
+            active = false;
+            return false;
+        }
+        return true; // Không decrement duration, dùng time-based
     }
 }

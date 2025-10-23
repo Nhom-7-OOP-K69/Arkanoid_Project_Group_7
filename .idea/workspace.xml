@@ -4,12 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0c2c2745-22e6-49e3-8791-87cb328c1f44" name="Changes" comment="check">
+    <list default="true" id="0c2c2745-22e6-49e3-8791-87cb328c1f44" name="Changes" comment="bullet">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/demo1/GameManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/demo1/GameManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Bullet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Bullet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/demo1/BulletPowerUp.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/demo1/BulletPowerUp.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/demo1/FastBallPowerUp.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/demo1/PowerUpManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/demo1/PowerUpManager.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/BulletPowerUp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BulletPowerUp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GameManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/PowerUpManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/PowerUpManager.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -27,7 +27,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="main" />
+        <entry key="$PROJECT_DIR$" value="DANH5" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -61,7 +61,7 @@
     &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;DANH5&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;DANH6&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
     &quot;last_opened_file_path&quot;: &quot;E:/Java/Arkanoid_Project_Group_7 - Copy&quot;,
@@ -170,7 +170,23 @@
       <option name="project" value="LOCAL" />
       <updated>1760948978446</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="check">
+      <option name="closed" value="true" />
+      <created>1761051112902</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1761051112902</updated>
+    </task>
+    <task id="LOCAL-00012" summary="bullet">
+      <option name="closed" value="true" />
+      <created>1761051232783</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1761051232783</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -188,6 +204,7 @@
     <MESSAGE value="ok" />
     <MESSAGE value="sửa paddle và collion của ball" />
     <MESSAGE value="check" />
-    <option name="LAST_COMMIT_MESSAGE" value="check" />
+    <MESSAGE value="bullet" />
+    <option name="LAST_COMMIT_MESSAGE" value="bullet" />
   </component>
 </project>
