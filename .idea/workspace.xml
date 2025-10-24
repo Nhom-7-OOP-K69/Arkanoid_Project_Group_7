@@ -6,19 +6,37 @@
   <component name="ChangeListManager">
     <list default="true" id="0c2c2745-22e6-49e3-8791-87cb328c1f44" name="Changes" comment="thêm ExplosionBrick và Explosion">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/Level_1.txt" beforeDir="false" afterPath="$PROJECT_DIR$/data/Level_1.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/BrickLayer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/BrickLayer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/GameConstants.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/GameConstants.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/GameManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/GameManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/ImgManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/ImgManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/UIManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/UIManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/Wall.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/Wall.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/BrickLayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BrickLayer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Arkanoid_Project_Group_7.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Arkanoid_Project_Group_7.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/5.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/6.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/62-Breakout-Tiles.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/63-Breakout-Tiles.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/64-Breakout-Tiles.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/65-Breakout-Tiles.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/66-Breakout-Tiles.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/67-Breakout-Tiles.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/68-Breakout-Tiles.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/69-Breakout-Tiles.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/7.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/70-Breakout-Tiles.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/71-Breakout-Tiles.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/8.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/BrickLayer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/GameConstants.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/GameManager.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/ImgManager.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/UIManager.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/Wall.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ranking.txt" beforeDir="false" afterPath="$PROJECT_DIR$/ranking.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ExtraBallPowerUp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ExtraBallPowerUp.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GameConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameConstants.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GameManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ImgManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ImgManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/UIManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UIManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Wall.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Wall.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PowerUpManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/PowerUpManager.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,7 +91,7 @@
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "E:/Java/Arkanoid_Project_Group_7 - Copy",
-    "project.structure.last.edited": "Modules",
+    "project.structure.last.edited": "Libraries",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
     "settings.editor.selected.configurable": "preferences.pluginManager"
@@ -83,7 +101,7 @@
     <configuration name="Main" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="Main" />
       <module name="Arkanoid_Project_Group_7" />
-      <option name="VM_PARAMETERS" value="--module-path &quot;E:\javafx-sdk-25\lib&quot;  --add-modules javafx.controls,javafx.fxml,javafx.media  --enable-native-access=javafx.graphics,javafx.media  --add-opens=javafx.base/com.sun.javafx=ALL-UNNAMED  --add-opens=javafx.graphics/com.sun.javafx.tk=ALL-UNNAMED" />
+      <option name="VM_PARAMETERS" value="--module-path &quot;E:\javafx-sdk-25\lib&quot; --add-modules javafx.controls,javafx.fxml,javafx.media --enable-native-access=javafx.graphics,javafx.media --add-opens=javafx.base/com.sun.javafx=ALL-UNNAMED --add-opens=javafx.graphics/com.sun.javafx.tk=ALL-UNNAMED" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -188,7 +206,15 @@
       <option name="project" value="LOCAL" />
       <updated>1761307992234</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="thêm ExplosionBrick và Explosion">
+      <option name="closed" value="true" />
+      <created>1761317179369</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1761317179369</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
