@@ -1,8 +1,3 @@
-/**
- * Lớp GameStateManager chịu trách nhiệm quản lý và theo dõi trạng thái chung của trò chơi,
- * cũng như các cài đặt như âm thanh và nhạc nền.
- * Nó hoạt động như một máy trạng thái (state machine) đơn giản.
- */
 public class GameStateManager {
 
     /**
@@ -33,51 +28,45 @@ public class GameStateManager {
         this.isMusicOn = true;
     }
 
-    /**
-     * Lấy (get) trạng thái hiện tại của game.
-     * @return Trạng thái game hiện tại (GameState).
-     */
+    // --- Các phương thức Getter và Setter ---
+
     public GameState getCurrentState() {
         return currentState;
     }
 
-    /**
-     * Thiết lập (set) một trạng thái mới cho game.
-     * @param currentState Trạng thái mới cần đặt.
-     */
     public void setCurrentState(GameState currentState) {
         this.currentState = currentState;
     }
 
-    /**
-     * Kiểm tra xem âm thanh hiệu ứng có đang được bật hay không.
-     * @return true nếu đang bật, ngược lại là false.
-     */
     public boolean isSoundEffectsOn() {
         return isSoundEffectsOn;
     }
 
-    /**
-     * Bật hoặc tắt âm thanh hiệu ứng.
-     * @param soundEffectsOn Trạng thái mới (true = bật, false = tắt).
-     */
     public void setSoundEffectsOn(boolean soundEffectsOn) {
         isSoundEffectsOn = soundEffectsOn;
     }
 
-    /**
-     * Kiểm tra xem nhạc nền có đang được bật hay không.
-     * @return true nếu đang bật, ngược lại là false.
-     */
     public boolean isMusicOn() {
         return isMusicOn;
     }
 
-    /**
-     * Bật hoặc tắt nhạc nền.
-     * @param musicOn Trạng thái mới (true = bật, false = tắt).
-     */
     public void setMusicOn(boolean musicOn) {
         isMusicOn = musicOn;
     }
+
+    // --- CÁC PHƯƠNG THỨC TIỆN ÍCH  ---
+    public void toggleSoundEffects() {
+        this.isSoundEffectsOn = !this.isSoundEffectsOn;
+        System.out.println("Sound: " + (isSoundEffectsOn ? "On" : "Off"));
+    }
+
+    public void toggleMusic() {
+        this.isMusicOn = !this.isMusicOn;
+        System.out.println("Music: " + (isMusicOn ? "On" : "Off"));
+    }
+
+    public boolean isPausedOrOnMenu() {
+        return currentState == GameState.PAUSED || currentState == GameState.MENU;
+    }
 }
+

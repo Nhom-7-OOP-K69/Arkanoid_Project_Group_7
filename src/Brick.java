@@ -79,6 +79,11 @@ public class Brick extends GameObject {
         return hitPoints <= 0;
     }
 
+    public int getPoints() {
+        return 10;
+    }
+
+
     /**
      * Vẽ viên gạch lên màn hình.
      * @param gc Đối tượng GraphicsContext được sử dụng để vẽ.
