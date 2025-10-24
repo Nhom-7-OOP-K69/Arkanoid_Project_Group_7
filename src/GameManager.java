@@ -186,7 +186,7 @@ public class GameManager {
                 nextLevel();
             }
 
-            powerUpManager.update(deltaTime, paddle, ballLayer);
+            powerUpManager.update(deltaTime, paddle, ballLayer, brickLayer);
 
             System.out.println(score.getScore());
         }
