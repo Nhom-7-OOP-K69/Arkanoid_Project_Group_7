@@ -6,14 +6,12 @@ import java.util.List;
 
 public class SuperBrick extends Brick {
     private List<Image> img;
-    private Image current_img;
 
     public SuperBrick(double x, double y) {
-        super(x, y, GameConstants.STRONG_BRICK_HP, GameConstants.STRONG_TYPE);
+        super(x, y, GameConstants.SUPER_BRICK_HP, GameConstants.SUPER_TYPE);
         this.img = new ArrayList<>();
         img.add(ImgManager.getInstance().getImage("PURPLE_BRICK"));
         img.add(ImgManager.getInstance().getImage("PURPLE_BRICK_"));
-        current_img = img.get(0);
     }
 
     @Override

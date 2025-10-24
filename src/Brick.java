@@ -1,6 +1,6 @@
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
-public class Brick extends GameObject {
+public abstract class Brick extends GameObject {
     private int hitPoints;
     private int type;
 
@@ -35,6 +35,9 @@ public class Brick extends GameObject {
     }
 
     public boolean isDestroyed() {
+        if(hitPoints <= 0) {
+            AudioManager.getInstance().playSfx("BREAK");
+        }
         return hitPoints <= 0;
     }
 
