@@ -1,3 +1,5 @@
+import javafx.scene.canvas.GraphicsContext;
+
 import java.util.List;
 
 public class ExtraBallPowerUp extends PowerUp {
@@ -10,6 +12,7 @@ public class ExtraBallPowerUp extends PowerUp {
 
     @Override
     public void applyEffect(Paddle paddle, Ball ball){
+        AudioManager.getInstance().playSfx("get_item");
         System.out.println("Thêm 2 bóng mới");
 
         // tạo 2 bóng mới
@@ -46,6 +49,10 @@ public class ExtraBallPowerUp extends PowerUp {
 
     @Override
     public void removeEffect(Paddle paddle, Ball ball){
+
+    }
+    @Override
+    public void render(GraphicsContext gc) {
 
     }
 }

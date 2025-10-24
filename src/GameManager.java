@@ -1,5 +1,6 @@
 // File: GameManager.java
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import javafx.animation.AnimationTimer;
@@ -28,6 +29,7 @@ public class GameManager {
     private BrickLayer brickLayer = new BrickLayer();
     private List<Brick> brickList = new ArrayList<>();
 
+    private String playerName;
     private final Score score = new Score();
     private int currentLevel = 0;
 
@@ -108,6 +110,7 @@ public class GameManager {
     }
 
     private void createGameLoop() {
+        AudioManager.getInstance().playSfx("GAME_MUSIC");
         gameLoop = new AnimationTimer() {
             private long lastUpdate = 0;
             @Override
@@ -122,13 +125,17 @@ public class GameManager {
                 }
                 double deltaTime = (now - lastUpdate) / 1_000_000_000.0;
                 lastUpdate = now;
-                update(deltaTime);
+                try {
+                    update(deltaTime);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
                 render();
             }
         };
     }
 
-    private void update(double deltaTime) {
+    private void update(double deltaTime) throws IOException {
         paddle.move(deltaTime);
         paddle.checkCollisionWall(canvas);
 
@@ -159,6 +166,7 @@ public class GameManager {
 
             boolean isBallLost = ball.collisionWall(canvas);
             if (isBallLost) {
+                Ranking.saveScore(playerName,score.getScore());
                 resetGame();
                 return;
             }
@@ -167,7 +175,6 @@ public class GameManager {
                 nextLevel();
             }
 
-            System.out.println(score.getScore());
         }
     }
 
@@ -216,7 +223,7 @@ public class GameManager {
         primaryStage.setScene(uiManager.menuScene);
         gameLoop.stop();
         uiManager.pauseButton.setDisable(true);
-        uiManager.startButton.setText("Bắt Đầu");
+        uiManager.startButton.setText("PLAY");
         uiManager.pauseOverlay.setVisible(false);
         System.out.println("Quay về menu chính.");
     }
@@ -257,5 +264,8 @@ public class GameManager {
     public void exitGame() {
         System.out.println("Thoát game!");
         Platform.exit();
+    }
+    public void setPlayerName(String playerName) {
+        this.playerName = playerName;
     }
 }

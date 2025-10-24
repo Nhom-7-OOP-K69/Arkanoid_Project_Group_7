@@ -1,9 +1,10 @@
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
+import javafx.scene.media.Media;
 
 public class Ball extends MovableObject {
-    private double speed = 400;
+    private double speed = GameConstants.BALL_SPEED;
     private Image img;
 
     public void setSpeed(double speed) {
@@ -77,6 +78,7 @@ public class Ball extends MovableObject {
      * @param other Đối tượng mà bóng va chạm.
      */
     public void bounceOff(GameObject other) {
+        AudioManager.getInstance().playSfx("COLLISION");
         // KIỂM TRA: Nếu đối tượng va chạm là PADDLE
         if (other instanceof Paddle) {
             Paddle paddle = (Paddle) other; // Ép kiểu để xử lý riêng
