@@ -1,0 +1,5 @@
+Thuong:985
+Ngu:300
+huy:125
+THUONG:100
+dsagasg:60

@@ -1,3 +1,5 @@
+import javafx.scene.canvas.GraphicsContext;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -52,6 +54,11 @@ public class ExtraBallPowerUp extends PowerUp {
 
     @Override
     public void removeEffect(Paddle paddle, Ball ball){
+
+    }
+
+    @Override
+    public void render(GraphicsContext gc) {
 
     }
 }
