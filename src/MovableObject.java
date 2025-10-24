@@ -1,6 +1,11 @@
-public abstract class MovableObject extends GameObject{
+import javafx.scene.canvas.GraphicsContext;
+
+import javafx.scene.image.Image;
+
+public class MovableObject extends GameObject {
     protected double dx;
     protected double dy;
+    private Image image;
 
     public MovableObject(){
         dx = 0;

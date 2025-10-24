@@ -1,24 +1,36 @@
+import javafx.scene.canvas.GraphicsContext;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class BulletPowerUp extends PowerUp {
-    private long lastShotTime = 0;   // thời điểm bắn lần trước (tính bằng milliseconds)
-    private long shotInterval = 500; // thời gian chờ giữa hai lần bắn (0.5 giây)
+    private long lastShotTime = 0;   // thời điểm bắn lần trước
+    private long shotInterval = 1000; // 0.25 giây mỗi phát
+    protected long startTime;          // thời điểm bắt đầu hiệu lực
+    private int durationMs;          // thời gian hiệu lực (ms)
 
     public BulletPowerUp(double x, double y, double width, double height, int duration) {
-        super(x, y, width, height, 2, duration); // type = 4 (định danh riêng cho BulletPowerUp)
+        super(x, y, width, height, 3, duration); // type = 2
+        this.durationMs = duration * 1000; // Sửa thành *1000 để duration là giây -> ms (3*1000=3000ms=3s)
+        this.shotInterval = 500;
     }
 
     @Override
-    public void applyEffect(Paddle paddle, BallLayer balllayer) {
+    public void applyEffect(Paddle paddle, BallLayer ballLayer) {
         if (!active) {
             paddle.setCurrentPowerUp(this.type);
-            start(); // đánh dấu power-up đang hoạt động
+            startTime = System.currentTimeMillis();
+            lastShotTime = System.currentTimeMillis(); //reset để bắt đầu bắn liên tục
+            start();
             System.out.println("[BulletPowerUp] Paddle đã kích hoạt chế độ bắn đạn!");
-        } else {
-            // Nếu người chơi ăn thêm viên BulletPowerUp cùng loại -> reset lại thời gian hiệu lực
-            resetDuration(duration);
         }
+        // Bỏ phần else vì giờ xử lý reset ở PowerUpManager
+    }
+
+    public boolean isExpired() {
+        if (!active) return true;
+        long elapsed = System.currentTimeMillis() - startTime;
+        return elapsed >= durationMs;
     }
 
     @Override
@@ -30,38 +42,43 @@ public class BulletPowerUp extends PowerUp {
         }
     }
 
-    /**
-     * Hàm này được GameManager gọi mỗi frame/tick.
-     * Nếu đến thời điểm bắn đạn -> trả về 2 viên Bullet mới.
-     * Nếu chưa đến thời điểm -> trả về list rỗng.
-     */
+    // Mỗi frame gọi từ GameManager, nếu đến thời gian thì tạo 2 viên đạn mới
     public List<Bullet> maybeShoot(Paddle paddle) {
         List<Bullet> newBullets = new ArrayList<>();
-
         if (!active) return newBullets;
 
         long currentTime = System.currentTimeMillis();
         if (currentTime - lastShotTime >= shotInterval) {
-            // Xác định vị trí 2 viên đạn tại hai mép Paddle
+            lastShotTime = currentTime;
             double leftX = paddle.getX();
             double rightX = paddle.getX() + paddle.getWidth() - 10;
             double y = paddle.getY() - 10;
 
-            // Tạo 2 viên đạn
-            Bullet b1 = new Bullet(leftX, y, 5, 10);
-            Bullet b2 = new Bullet(rightX, y, 5, 10);
+            // tạo 2 viên đạn
+            Bullet b1 = new Bullet(leftX, y, GameConstants.BULLET_WIDTH, GameConstants.BULLET_HEIGHT);
+            Bullet b2 = new Bullet(rightX, y, GameConstants.BULLET_WIDTH, GameConstants.BULLET_HEIGHT);
 
             newBullets.add(b1);
             newBullets.add(b2);
 
-            // Ghi lại thời điểm bắn để chờ 0.5s lần tiếp theo
-            lastShotTime = currentTime;
-
-            System.out.println("[BulletPowerUp] Bắn 2 viên đạn tại Y=" + y);
-            System.out.println("[BulletPowerUp] Bắn đạn tại X=" + leftX + " và " + rightX + ", Y=" + y);
-
+            System.out.println("[BulletPowerUp] Bắn đạn tại X=" + leftX + ", " + rightX + " | Y=" + y);
         }
 
         return newBullets;
+    }
+
+    @Override
+    public boolean tick() {
+        if (!active) return false;
+        if (isExpired()) {
+            active = false;
+            return false;
+        }
+        return true; // Không decrement duration, dùng time-based
+    }
+
+    @Override
+    public void render(GraphicsContext gc) {
+
     }
 }
