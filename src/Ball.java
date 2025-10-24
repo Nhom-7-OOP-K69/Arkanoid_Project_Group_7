@@ -15,6 +15,10 @@ public class Ball extends MovableObject {
         return speed;
     }
 
+    public Ball() {
+        super();
+    }
+
     public Ball(double x, double y, double width, double height) {
         super(x, y, width, height);
         this.img = ImgManager.getInstance().getImage("BALL");

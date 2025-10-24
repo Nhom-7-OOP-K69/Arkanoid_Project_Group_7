@@ -7,6 +7,10 @@ public class MovableObject extends GameObject {
     protected double dy;
     private Image image;
 
+    public MovableObject(){
+
+    }
+
     public MovableObject(double x, double y, double width, double height) {
         super(x, y, width, height);
     }
