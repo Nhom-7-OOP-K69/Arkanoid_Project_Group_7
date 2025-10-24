@@ -28,45 +28,6 @@ public class BallLayer {
         ball.setDy(ball.getSpeed());
     }
 
-    public int checkCollisionBricks(BrickLayer brickLayer, PowerUpManager powerUpManager) {
-        int score = 0;
-
-        List<Brick> brickList = brickLayer.getBrickList();
-        List<Brick> bricksToRemove = new ArrayList<>();
-        for (Brick brick : brickList) {
-            for (Ball ball : ballList) {
-                if (ball.checkCollision(brick)) {
-                    brick.takeHit();
-                    if (brick.isDestroyed()) {
-                        powerUpManager.spawnPowerUp(brick.getX(), brick.getY());
-                        bricksToRemove.add(brick);
-                        int brickScore;
-                        switch (brick.getType()) {
-                            case GameConstants.NORMAL_TYPE:
-                                brickScore = 10;
-                                break;
-                            case GameConstants.STRONG_TYPE:
-                                brickScore = 20;
-                                break;
-                            case GameConstants.SUPER_TYPE:
-                                brickScore = 30;
-                                break;
-                            default:
-                                brickScore = 0;
-                                break;
-                        }
-                        score += brickScore;
-                    }
-                    ball.bounceOff(brick);
-                }
-            }
-        }
-
-        brickList.removeAll(bricksToRemove);
-
-        return score;
-    }
-
     public void move(double deltaTime) {
         for (Ball ball : ballList) {
             ball.move(deltaTime);

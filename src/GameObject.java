@@ -5,6 +5,7 @@ public abstract class GameObject {
     private double y;
     private double height;
     private double width;
+    protected Image img;
 
     public GameObject(double x, double y, double width, double height) {
         this.x = x;
@@ -47,9 +48,15 @@ public abstract class GameObject {
         this.width = width;
     }
 
-    public void update(double deltaTime) {
-
+    public void setImg(Image img) {
+        this.img = img;
     }
 
-    public abstract void  render(GraphicsContext gc) ;
+    public Image getImg() {
+        return img;
+    }
+
+    public void render(GraphicsContext gc) {
+        gc.drawImage(this.img, this.x, this.y);
+    }
 }

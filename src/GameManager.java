@@ -27,7 +27,9 @@ public class GameManager {
     private Paddle paddle;
     private Ball ball;
     private BrickLayer brickLayer = new BrickLayer();
-    private List<Brick> brickList = new ArrayList<>();
+    private ExplosionLayer explosionLayer = new ExplosionLayer();
+    private BallLayer ballLayer = new BallLayer();
+    private PowerUpManager powerUpManager = new PowerUpManager(ballLayer);
 
     private String playerName;
     private final Score score = new Score();
@@ -135,28 +137,74 @@ public class GameManager {
         };
     }
 
-    private void update(double deltaTime) throws IOException {
-        paddle.move(deltaTime);
-        paddle.checkCollisionWall(canvas);
+    public int checkCollisionBricks() {
+        int score = 0;
+        List<Brick> bricksToRemove = new ArrayList<>();
 
-        if (gameStateManager.getCurrentState() == GameStateManager.GameState.READY) {
-            ball.setX(paddle.getX() + (paddle.getWidth() / 2) - (ball.getWidth() / 2));
-            ball.setY(paddle.getY() - ball.getHeight());
-        } else if (gameStateManager.getCurrentState() == GameStateManager.GameState.PLAYING) {
-            ball.move(deltaTime);
-            brickList = brickLayer.getBrickList();
-            List<Brick> bricksToRemove = new ArrayList<>();
-            for (Brick brick : brickList) {
+        for (Brick brick : brickLayer.getBrickList()) {
+            for (Ball ball : ballLayer.getBallList()) {
                 if (ball.checkCollision(brick)) {
                     brick.takeHit();
                     if (brick.isDestroyed()) {
+                        powerUpManager.spawnPowerUp(brick.getX(), brick.getY());
                         bricksToRemove.add(brick);
+                        int brickScore;
+                        switch (brick.getType()) {
+                            case GameConstants.NORMAL_TYPE:
+                                brickScore = 10;
+                                break;
+                            case GameConstants.STRONG_TYPE:
+                                brickScore = 20;
+                                break;
+                            case GameConstants.SUPER_TYPE:
+                                brickScore = 30;
+                                break;
+                            case GameConstants.EXPLOSION_TYPE:
+                                brickScore = 10;
+                                brickLayer.addExplosionBrick(brick);
+                                break;
+                            default:
+                                brickScore = 0;
+                                break;
+                        }
+                        score += brickScore;
                     }
                     ball.bounceOff(brick);
                 }
             }
+        }
 
-            brickList.removeAll(bricksToRemove);
+        brickLayer.removeBricks(bricksToRemove);
+
+        return score;
+    }
+
+    private void update(double deltaTime) {
+        paddle.move(deltaTime);
+        paddle.checkCollisionWall(canvas);
+
+        int scorePlus = 0;
+
+        if (gameStateManager.getCurrentState() == GameStateManager.GameState.READY) {
+            ball.setX(paddle.getX() + (paddle.getWidth() / 2) - (ball.getWidth() / 2));
+            ball.setY(paddle.getY() - ball.getHeight());
+            brickLayer.update(deltaTime);
+            explosionLayer.addExplosionList(brickLayer.getExplosionList());
+            explosionLayer.update(deltaTime);
+            brickLayer.explosionClear();
+            scorePlus += brickLayer.processPendingExplosions();
+        } else if (gameStateManager.getCurrentState() == GameStateManager.GameState.PLAYING) {
+            brickLayer.update(deltaTime);
+
+            explosionLayer.addExplosionList(brickLayer.getExplosionList());
+            explosionLayer.update(deltaTime);
+
+            brickLayer.explosionClear();
+
+            ballLayer.move(deltaTime);
+
+            scorePlus += checkCollisionBricks();
+            scorePlus += brickLayer.processPendingExplosions();
 
             if (ball.checkCollision(paddle)) {
                 ball.bounceOff(paddle);
@@ -174,6 +222,7 @@ public class GameManager {
             }
 
         }
+        score.updateScore(scorePlus);
     }
 
     private void render() {
@@ -181,6 +230,8 @@ public class GameManager {
         paddle.render(ctx);
         ball.render(ctx);
         brickLayer.render(ctx);
+        explosionLayer.render(ctx);
+        powerUpManager.render(ctx);
     }
 
     public void startGame() {

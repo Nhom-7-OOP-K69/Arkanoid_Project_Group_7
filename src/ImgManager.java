@@ -35,7 +35,17 @@ public class ImgManager {
             Image paddleimg = Load.loadImage(j + "-Breakout-Tiles.png", GameConstants.PADDLE_WIDTH, 0, true, false);
             textures.put("PADDLE" + i, paddleimg);
         }
-        textures.put("BALL", Load.loadImage("58-Breakout-Tiles.png", GameConstants.BALL_WIDTH, 0, true, false));
+        for (int i = 0; i < 6; i++) {
+            int j = 62 + i;
+            Image explosionimg = new Image("file:images/" + j + "-Breakout-Tiles.png", GameConstants.PADDLE_WIDTH, 0, true, false);
+            textures.put("EXPLOSION" + i, explosionimg);
+        }
+        for (int i = 0; i < 3; i++) {
+            int j = 69 + i;
+            Image explosionbrickimg = new Image("file:images/" + j + "-Breakout-Tiles.png", GameConstants.PADDLE_WIDTH, 0, true, false);
+            textures.put("EXPLOSIONBRICK" + i, explosionbrickimg);
+        }
+        textures.put("BALL", new Image("file:images/58-Breakout-Tiles.png", GameConstants.BALL_WIDTH, 0, true, false));
     }
 
     public Image getImage(String id) {

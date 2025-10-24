@@ -13,9 +13,10 @@ public class StrongBrick extends Brick {
         img = new ArrayList<>();
         img.add(ImgManager.getInstance().getImage("RED_BRICK"));
         img.add(ImgManager.getInstance().getImage("RED_BRICK_"));
-        current_img = img.get(0);
+        current_img = img.getFirst();
     }
 
+    @Override
     public void render(GraphicsContext gc) {
         if (!this.isDestroyed()) {
             if (this.getHitPoints() >= GameConstants.STRONG_BRICK_HP) {
