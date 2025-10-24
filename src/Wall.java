@@ -1,5 +1,11 @@
-public class Wall extends GameObject{
-    public Wall(int x, int y, int width, int height) {
-        super(x, y, width, height);
+public class Wall extends Brick{
+    public Wall(double x, double y) {
+        super(x, y, 0, GameConstants.WALL_TYPE);
+        this.setImg(ImgManager.getInstance().getImage("SILVER_BRICK"));
+    }
+
+    @Override
+    public boolean isDestroyed() {
+        return false;
     }
 }

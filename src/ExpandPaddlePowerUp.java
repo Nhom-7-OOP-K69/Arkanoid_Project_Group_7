@@ -1,3 +1,5 @@
+import javafx.scene.canvas.GraphicsContext;
+
 public class ExpandPaddlePowerUp extends PowerUp {
     private double expandSize = 40;
 
@@ -15,5 +17,9 @@ public class ExpandPaddlePowerUp extends PowerUp {
     public void removeEffect(Paddle paddle, Ball ball){
         paddle.setWidth(paddle.getWidth() - expandSize);
         paddle.setCurrentPowerUp(0);
+    }
+    @Override
+    public void render(GraphicsContext gc) {
+        
     }
 }

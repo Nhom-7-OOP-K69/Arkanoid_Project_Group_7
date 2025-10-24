@@ -1,9 +1,15 @@
-public class MovableObject extends GameObject{
+import javafx.scene.canvas.GraphicsContext;
+
+import javafx.scene.image.Image;
+
+public class MovableObject extends GameObject {
     protected double dx;
     protected double dy;
+    private Image image;
 
     public MovableObject(){
-
+        dx = 0;
+        dy = 0;
     }
 
     public MovableObject(double x, double y, double width, double height) {
@@ -26,5 +32,8 @@ public class MovableObject extends GameObject{
         return dy;
     }
 
-    public void move(double deltaTime) {}
+    public void move(double deltaTime) {
+        this.setX(this.getX() + this.dx * deltaTime);
+        this.setY(this.getY() + this.dy * deltaTime);
+    }
 }

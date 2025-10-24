@@ -1,10 +1,11 @@
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
-public class GameObject {
+public abstract class GameObject {
     private double x;
     private double y;
     private double height;
     private double width;
+    protected Image img;
 
     public GameObject(double x, double y, double width, double height) {
         this.x = x;
@@ -47,11 +48,15 @@ public class GameObject {
         this.width = width;
     }
 
-    public void update(double deltaTime) {
-
+    public void setImg(Image img) {
+        this.img = img;
     }
 
-    public void render(Image image,GraphicsContext gc) {
+    public Image getImg() {
+        return img;
+    }
 
+    public void render(GraphicsContext gc) {
+        gc.drawImage(this.img, this.x, this.y);
     }
 }

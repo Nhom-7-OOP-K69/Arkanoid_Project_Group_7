@@ -1,9 +1,10 @@
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
+import javafx.scene.media.Media;
 
 public class Ball extends MovableObject {
-    private double speed = 400;
+    private double speed = GameConstants.BALL_SPEED;
     private Image img;
 
     public void setSpeed(double speed) {
@@ -20,7 +21,7 @@ public class Ball extends MovableObject {
 
     public Ball(double x, double y, double width, double height) {
         super(x, y, width, height);
-        this.img = ImgManager.getInstance().getImage("BALL");
+        this.setImg(ImgManager.getInstance().getImage("BALL"));
     }
 
     public boolean collisionWall(Canvas canvas) {
@@ -81,6 +82,7 @@ public class Ball extends MovableObject {
      * @param other Đối tượng mà bóng va chạm.
      */
     public void bounceOff(GameObject other) {
+        AudioManager.getInstance().playSfx("COLLISION");
         // KIỂM TRA: Nếu đối tượng va chạm là PADDLE
         if (other instanceof Paddle) {
             Paddle paddle = (Paddle) other; // Ép kiểu để xử lý riêng
@@ -143,14 +145,5 @@ public class Ball extends MovableObject {
                 }
             }
         }
-    }
-
-    public void move(double deltaTime) {
-        this.setX(this.getX() + this.dx * deltaTime);
-        this.setY(this.getY() + this.dy * deltaTime);
-    }
-
-    public void render( GraphicsContext gc) {
-        gc.drawImage(img, this.getX(), this.getY());
     }
 }
