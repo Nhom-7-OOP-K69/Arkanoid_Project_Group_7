@@ -1,5 +1,6 @@
 // File: GameManager.java
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import javafx.animation.AnimationTimer;
@@ -29,6 +30,7 @@ public class GameManager {
     private BallLayer ballLayer = new BallLayer();
     private PowerUpManager powerUpManager = new PowerUpManager(ballLayer);
 
+    private String playerName;
     private final Score score = new Score();
     private int currentLevel = 0;
     private int HP = 3;
@@ -157,6 +159,48 @@ public class GameManager {
         };
     }
 
+    public int checkCollisionBricks() {
+        int score = 0;
+        List<Brick> bricksToRemove = new ArrayList<>();
+
+        for (Brick brick : brickLayer.getBrickList()) {
+            for (Ball ball : ballLayer.getBallList()) {
+                if (ball.checkCollision(brick)) {
+                    brick.takeHit();
+                    if (brick.isDestroyed()) {
+                        powerUpManager.spawnPowerUp(brick.getX(), brick.getY());
+                        bricksToRemove.add(brick);
+                        int brickScore;
+                        switch (brick.getType()) {
+                            case GameConstants.NORMAL_TYPE:
+                                brickScore = 10;
+                                break;
+                            case GameConstants.STRONG_TYPE:
+                                brickScore = 20;
+                                break;
+                            case GameConstants.SUPER_TYPE:
+                                brickScore = 30;
+                                break;
+                            case GameConstants.EXPLOSION_TYPE:
+                                brickScore = 10;
+                                brickLayer.addExplosionBrick(brick);
+                                break;
+                            default:
+                                brickScore = 0;
+                                break;
+                        }
+                        score += brickScore;
+                    }
+                    ball.bounceOff(brick);
+                }
+            }
+        }
+
+        brickLayer.removeBricks(bricksToRemove);
+
+        return score;
+    }
+
     private void update(double deltaTime) {
         paddle.move(deltaTime);
         paddle.checkCollisionWall(canvas);
@@ -167,7 +211,7 @@ public class GameManager {
         } else if (gameStateManager.getCurrentState() == GameStateManager.GameState.PLAYING) {
             ballLayer.move(deltaTime);
 
-            int scorePlus = ballLayer.checkCollisionBricks(brickLayer, powerUpManager);
+            int scorePlus = checkCollisionBricks();
             score.updateScore(scorePlus);
 
             ballLayer.checkCollisionPaddle(paddle);
@@ -176,6 +220,11 @@ public class GameManager {
             if (ballLayer.isEmpty()) {
                 HP--;
                 if (HP == 0) {
+                    try {
+                        Ranking.saveScore(playerName, score.getScore());
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
                     resetGame();
                 } else {
                     resetLaunch();
@@ -279,5 +328,9 @@ public class GameManager {
     public void exitGame() {
         System.out.println("Thoát game!");
         Platform.exit();
+    }
+
+    public void setPlayerName(String playerName) {
+        this.playerName = playerName;
     }
 }

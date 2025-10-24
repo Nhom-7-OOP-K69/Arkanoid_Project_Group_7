@@ -1,3 +1,5 @@
+import javafx.scene.canvas.GraphicsContext;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -73,5 +75,10 @@ public class BulletPowerUp extends PowerUp {
             return false;
         }
         return true; // Không decrement duration, dùng time-based
+    }
+
+    @Override
+    public void render(GraphicsContext gc) {
+
     }
 }
