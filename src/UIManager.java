@@ -438,7 +438,7 @@ public class UIManager {
 
         createPauseOverlay();
         gamePane = new StackPane(canvasPane, topUIPanel, pauseOverlay);
-        gamePane.setStyle("-fx-background-color: #28313B;");
+        gamePane.setStyle("-fx-background-color: #000000;");
         StackPane.setAlignment(topUIPanel, Pos.TOP_CENTER);
         gameScene = new Scene(gamePane);
     }

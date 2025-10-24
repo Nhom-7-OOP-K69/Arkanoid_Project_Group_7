@@ -15,39 +15,34 @@ public class ExtraBallPowerUp extends PowerUp {
     public void applyEffect(Paddle paddle, BallLayer ballLayer){
         System.out.println("Thêm 2 bóng mới");
 
-        List<Ball> ballToAdd = new ArrayList<>();
+        // tạo 2 bóng mới
+        double x = paddle.getX() + paddle.getWidth() / 2.0 - GameConstants.BALL_WIDTH / 2.0;
+        double y = paddle.getY() - GameConstants.BALL_HEIGHT;
 
-        for (Ball ball : ballLayer.getBallList()) {
-            // tạo 2 bóng mới
-            double x = ball.getX();
-            double y = ball.getY();
+        // tốc độ bóng
+        double speed = 300;
 
-            // tốc độ bóng
-            double speed = 300;
+        // góc bay ra của 2 quả bóng (45 độ)
+        double angle = Math.toRadians(45);
 
-            // góc bay ra của 2 quả bóng (45 độ)
-            double angle = Math.toRadians(45);
-
-            // vận tốc của 2 quả bóng mới
-            double dx1 = speed * Math.cos(angle);     // bay sang phải
-            double dx2 = -speed * Math.cos(angle);    // bay sang trái
-            double dy = -speed * Math.sin(angle);    // bay lên trên
+        // vận tốc của 2 quả bóng mới
+        double dx1 = speed * Math.cos(angle);     // bay sang phải
+        double dx2 = -speed * Math.cos(angle);    // bay sang trái
+        double dy = -speed * Math.sin(angle);    // bay lên trên
 
 
-            // tạo 2 bóng mới
-            Ball ballLeft = new Ball(x, y, GameConstants.BALL_WIDTH, GameConstants.BALL_HEIGHT);
-            ballLeft.setDx(dx1);
-            ballLeft.setDy(dy);
-            Ball ballRight = new Ball(x, y, GameConstants.BALL_WIDTH, GameConstants.BALL_HEIGHT);
-            ballRight.setDx(dx2);
-            ballRight.setDy(dy);
+        // tạo 2 bóng mới
+        Ball ballLeft = new Ball(x, y, GameConstants.BALL_WIDTH, GameConstants.BALL_HEIGHT);
+        ballLeft.setDx(dx1);
+        ballLeft.setDy(dy);
+        Ball ballRight = new Ball(x, y, GameConstants.BALL_WIDTH, GameConstants.BALL_HEIGHT);
+        ballRight.setDx(dx2);
+        ballRight.setDy(dy);
 
-            // thêm vào danh sách bóng của game
-            ballToAdd.add(ballLeft);
-            ballToAdd.add((ballRight));
-        }
+        // thêm vào danh sách bóng của game
+        gameBalls.add(ballLeft);
+        gameBalls.add(ballRight);
 
-        gameBalls.addAll(ballToAdd);
 
         System.out.println("Thêm 2 bóng mới");
     }
