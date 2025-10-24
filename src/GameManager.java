@@ -183,6 +183,7 @@ public class GameManager {
                             case GameConstants.EXPLOSION_TYPE:
                                 brickScore = 10;
                                 brickLayer.addExplosionBrick(brick);
+                                explosionLayer.addExplosionFromBrick(brick);
                                 break;
                             default:
                                 brickScore = 0;

@@ -10,6 +10,8 @@ public class BrickLayer {
     private List<PendingExplosion> pendingExplosions = new ArrayList<>();
     private List<Brick> explosionList = new ArrayList<>();
 
+    private int wallCnt;
+
     public List<Brick> getBrickList() {
         return brickList;
     }
@@ -19,6 +21,7 @@ public class BrickLayer {
     }
 
     public void loadBrick(String fileName) {
+        wallCnt = 0;
         File file = new File(fileName);
 
         try (Scanner scanner = new Scanner(file)) {
@@ -40,6 +43,10 @@ public class BrickLayer {
                             break;
                         case '4':
                             brick = new ExplosionBrick(GameConstants.BRICK_WIDTH * i, GameConstants.BRICK_HEIGHT * j + 50 + GameConstants.UI_TOP_BAR_HEIGHT);
+                            break;
+                        case '5':
+                            brick = new Wall(GameConstants.BRICK_WIDTH * i, GameConstants.BRICK_HEIGHT * j + 50 + GameConstants.UI_TOP_BAR_HEIGHT);
+                            wallCnt++;
                             break;
                         default:
                             break;
@@ -100,7 +107,7 @@ public class BrickLayer {
                         (brickX == expX) ||
                         (brickX == expX + GameConstants.BRICK_WIDTH);
 
-                if (yMatch && xMatch) {
+                if (yMatch && xMatch && !(brick instanceof Wall)) {
                     bricksToRemove.add(brick);
                     explosionList.add(brick);
                     int brickScore;
@@ -168,7 +175,7 @@ public class BrickLayer {
     }
 
     public boolean isEmpty() {
-        return brickList.isEmpty();
+        return (brickList.size() == wallCnt);
     }
 
     public void render(GraphicsContext gc) {

@@ -15,6 +15,7 @@ public final class GameConstants {
     public static final int STRONG_TYPE = 2;
     public static final int SUPER_TYPE = 3;
     public static final int EXPLOSION_TYPE = 4;
+    public static final int WALL_TYPE = 5;
     public static final double EXTRA_SPEED = 3;
     public static final int BALL_WIDTH = 20;
     public static final int BALL_HEIGHT = 20;

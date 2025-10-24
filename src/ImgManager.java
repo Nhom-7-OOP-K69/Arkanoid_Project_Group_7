@@ -13,6 +13,7 @@ public class ImgManager {
     }
 
     private void loadTextures() {
+        textures.put("SILVER_BRICK", new Image("file:images/17-Breakout-Tiles.png", GameConstants.BRICK_WIDTH, 0, true, false));
         textures.put("RED_BRICK", new Image("file:images/07-Breakout-Tiles.png", GameConstants.BRICK_WIDTH, 0, true, false));
         textures.put("RED_BRICK_", new Image("file:images/08-Breakout-Tiles.png", GameConstants.BRICK_WIDTH, 0, true, false));
         textures.put("BLUE_BRICK", new Image("file:images/01-Breakout-Tiles.png", GameConstants.BRICK_WIDTH, 0, true, false));
@@ -38,8 +39,8 @@ public class ImgManager {
             textures.put("EXPLOSION" + i, explosionimg);
         }
         for (int i = 0; i < 3; i++) {
-            int j = 69 + i;
-            Image explosionbrickimg = new Image("file:images/" + j + "-Breakout-Tiles.png", GameConstants.PADDLE_WIDTH, 0, true, false);
+            int j = 1 + i;
+            Image explosionbrickimg = new Image("file:images/" + j + ".png", GameConstants.PADDLE_WIDTH, 0, true, false);
             textures.put("EXPLOSIONBRICK" + i, explosionbrickimg);
         }
         textures.put("BALL", new Image("file:images/58-Breakout-Tiles.png", GameConstants.BALL_WIDTH, 0, true, false));

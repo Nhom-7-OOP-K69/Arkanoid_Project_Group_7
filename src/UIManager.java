@@ -104,7 +104,7 @@ public class UIManager {
         topUIPanel.setStyle("-fx-background-color: #2D3748; -fx-border-color: #4A5568; -fx-border-width: 0 0 2px 0;");
         createPauseOverlay();
         gamePane = new StackPane(canvasPane, topUIPanel, pauseOverlay);
-        gamePane.setStyle("-fx-background-color: #28313B;");
+        gamePane.setStyle("-fx-background-color: #000000;");
         StackPane.setAlignment(topUIPanel, Pos.TOP_CENTER);
         gameScene = new Scene(gamePane);
     }
