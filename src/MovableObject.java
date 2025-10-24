@@ -1,6 +1,11 @@
-public class MovableObject extends GameObject{
+import javafx.scene.canvas.GraphicsContext;
+
+import javafx.scene.image.Image;
+
+public class MovableObject extends GameObject {
     protected double dx;
     protected double dy;
+    private Image image;
 
     public MovableObject(){
 
@@ -26,5 +31,10 @@ public class MovableObject extends GameObject{
         return dy;
     }
 
-    public void move(double deltaTime) {}
+    public void move(double deltaTime) {
+    }
+    @Override
+    public void render(GraphicsContext gc) {
+        gc.drawImage(image, 0, 0);
+    }
 }

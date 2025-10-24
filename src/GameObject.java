@@ -1,6 +1,6 @@
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
-public class GameObject {
+public abstract class GameObject {
     private double x;
     private double y;
     private double height;
@@ -51,7 +51,5 @@ public class GameObject {
 
     }
 
-    public void render(Image image,GraphicsContext gc) {
-
-    }
+    public abstract void  render(GraphicsContext gc) ;
 }

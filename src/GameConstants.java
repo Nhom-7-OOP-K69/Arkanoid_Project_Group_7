@@ -16,6 +16,7 @@ public final class GameConstants {
     public static final double EXTRA_SPEED = 3;
     public static final int BALL_WIDTH = 20;
     public static final int BALL_HEIGHT = 20;
+    public static final int BALL_SPEED = 600;
     public static final int PADDLE_WIDTH = 120;
     public static final int PADDLE_HEIGHT = 32;
     public static final int PADDLE_FRAMES = 3;
@@ -31,4 +32,6 @@ public final class GameConstants {
     public static final int SPAWN_POWER_UP_SPEED = 200;
     public static final int SCORE_PLUS = 10;
     public static final int LEVEL = 5;
+    public static final int MAX_RANKING = 5;
+    public static final int ICON_WIDTH = 10;
 }
