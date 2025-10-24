@@ -15,7 +15,7 @@ public class PowerUpManager {
 
     // gọi khi brick bị phá
     public void spawnPowerUp(double x, double y) {
-        if (Math.random() < 0.3) { // 30% tỉ lệ rơi
+        if (Math.random() < 0.1) { // 20% tỉ lệ rơi
             PowerUp powerUp = new ExtraBallPowerUp(
                     x, y,
                     GameConstants.POWERUP_WIDTH,

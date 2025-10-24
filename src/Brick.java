@@ -3,7 +3,6 @@ import javafx.scene.image.Image;
 public class Brick extends GameObject {
     private int hitPoints;
     private int type;
-    private Image img ;
 
     public Brick(double x, double y, int hitPoints, int type) {
         super(x, y, GameConstants.BRICK_WIDTH, GameConstants.BRICK_HEIGHT);
@@ -39,9 +38,10 @@ public class Brick extends GameObject {
         return hitPoints <= 0;
     }
 
+    @Override
     public void render(GraphicsContext gc) {
         if (!this.isDestroyed()) {
-            gc.drawImage(this.img, this.getX(), this.getY());
+            gc.drawImage(this.getImg(), this.getX(), this.getY());
         }
     }
 }

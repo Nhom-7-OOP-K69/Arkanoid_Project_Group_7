@@ -4,7 +4,6 @@ import javafx.scene.image.Image;
 
 public class Ball extends MovableObject {
     private double speed = 400;
-    private Image img;
 
     public void setSpeed(double speed) {
         this.speed = speed;
@@ -20,7 +19,7 @@ public class Ball extends MovableObject {
 
     public Ball(double x, double y, double width, double height) {
         super(x, y, width, height);
-        this.img = ImgManager.getInstance().getImage("BALL");
+        this.setImg(ImgManager.getInstance().getImage("BALL"));
     }
 
     public boolean collisionWall(Canvas canvas) {
@@ -143,14 +142,5 @@ public class Ball extends MovableObject {
                 }
             }
         }
-    }
-
-    public void move(double deltaTime) {
-        this.setX(this.getX() + this.dx * deltaTime);
-        this.setY(this.getY() + this.dy * deltaTime);
-    }
-
-    public void render( GraphicsContext gc) {
-        gc.drawImage(img, this.getX(), this.getY());
     }
 }

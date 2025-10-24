@@ -5,6 +5,11 @@ public class Bullet extends MovableObject {
         super(x, y, width, height);
     }
 
+    @Override
+    public void move(double deltaTime) {
+
+    }
+
     public void update() {
         setY(getY() - bullet_speed);
     }

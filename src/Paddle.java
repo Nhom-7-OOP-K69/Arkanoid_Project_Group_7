@@ -62,6 +62,7 @@ public class Paddle extends MovableObject {
         }
     }
 
+    @Override
     public void render(GraphicsContext ctx) {
         frame++;
         if (frame >= GameConstants.PADDLE_FRAMES) {

@@ -16,6 +16,7 @@ public class SuperBrick extends Brick {
         current_img = img.get(0);
     }
 
+    @Override
     public void render(GraphicsContext gc) {
         if (!this.isDestroyed()) {
             if (this.getHitPoints() >= GameConstants.STRONG_BRICK_HP) {
