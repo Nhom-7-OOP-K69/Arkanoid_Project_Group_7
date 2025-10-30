@@ -35,7 +35,7 @@ public class GameManager {
     private String playerName;
     private final Score score = new Score();
     private int currentLevel = 0;
-    private int HP = 3;
+    private Lives lives = new Lives();
 
     private AnimationTimer gameLoop;
 
@@ -84,7 +84,7 @@ public class GameManager {
     private void resetGame() {
         // 1. Tải lại các viên gạch từ file
         currentLevel = 0;
-        HP = 3;
+        lives.reset();
         brickLayer = new BrickLayer(); // Tạo lại để đảm bảo không còn gạch cũ
         brickLayer.loadBrick(fileName[currentLevel]);
         System.out.println(fileName[currentLevel]);
@@ -206,6 +206,8 @@ public class GameManager {
     }
 
     private void update(double deltaTime) {
+        uiManager.updateScoreLabel(score.getScore());
+
         paddle.move(deltaTime);
         paddle.checkCollisionWall(canvas);
 
@@ -231,14 +233,13 @@ public class GameManager {
 
             scorePlus += checkCollisionBricks();
             scorePlus += brickLayer.processPendingExplosions();
-            score.updateScore(scorePlus);
 
             ballLayer.checkCollisionPaddle(paddle);
             ballLayer.collisionWall(canvas);
 
             if (ballLayer.isEmpty()) {
-                HP--;
-                if (HP == 0) {
+                lives.decreaseLife();
+                if (lives.isGameOver()) {
                     try {
                         Ranking.saveScore(playerName, score.getScore());
                     } catch (IOException e) {
@@ -258,14 +259,18 @@ public class GameManager {
 
             System.out.println(score.getScore());
         }
+
+        score.updateScore(scorePlus);
     }
 
     private void render() {
         ctx.clearRect(0, 0, GameConstants.SCREEN_WIDTH, GameConstants.SCREEN_HEIGHT);
+        lives.render(ctx);
         paddle.render(ctx);
         ballLayer.render(ctx);
         brickLayer.render(ctx);
         powerUpManager.render(ctx);
+        explosionLayer.render(ctx);
     }
 
     public void startGame() {

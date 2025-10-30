@@ -59,7 +59,10 @@ public class UIManager {
 
     public Text pauseText, countdownText;
 
-    // Biến cho danh sách xếp hạng để có thể cập nhật
+    private Label scoreLabel;
+    private Label highScoreLabel;
+
+    // THÊM: Biến cho danh sách xếp hạng để có thể cập nhật
     public VBox rankingListContainer;
 
     private Image playerIcon;
@@ -569,6 +572,21 @@ public class UIManager {
         pauseOverlay.setVisible(false);
     }
 
+    public void updateScoreLabel(int newScore) {
+        Platform.runLater(() -> {
+            if (scoreLabel != null) {
+                scoreLabel.setText("Score: " + newScore);
+            }
+        });
+    }
+
+    public void updateHighScoreLabel(int newHighScore) {
+        Platform.runLater(() -> {
+            if (highScoreLabel != null) {
+                highScoreLabel.setText("High Score: " + newHighScore);
+            }
+        });
+    }
     // Hàm hỗ trợ tạo hiệu ứng (Bạn nên thêm hàm này vào lớp của mình)
     private void addHoverZoom(ImageView imageView) {
         imageView.setOnMouseEntered(e -> {

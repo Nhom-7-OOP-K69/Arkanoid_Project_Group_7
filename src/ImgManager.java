@@ -15,8 +15,10 @@ public class ImgManager {
     }
 
     private void loadTextures() {
-        textures.put("RED_BRICK", Load.loadImage("09-Breakout-Tiles.png", GameConstants.BRICK_WIDTH, 0, true, false));
-        textures.put("RED_BRICK_", Load.loadImage("10-Breakout-Tiles.png", GameConstants.BRICK_WIDTH, 0, true, false));
+        textures.put("LIFE", Load.loadImage("57-Breakout-Tiles.png", GameConstants.BRICK_WIDTH, 0, true, false));
+        textures.put("SILVER_BRICK", Load.loadImage("17-Breakout-Tiles.png", GameConstants.BRICK_WIDTH, 0, true, false));
+        textures.put("RED_BRICK", Load.loadImage("07-Breakout-Tiles.png", GameConstants.BRICK_WIDTH, 0, true, false));
+        textures.put("RED_BRICK_", Load.loadImage("08-Breakout-Tiles.png", GameConstants.BRICK_WIDTH, 0, true, false));
         textures.put("BLUE_BRICK", Load.loadImage("01-Breakout-Tiles.png", GameConstants.BRICK_WIDTH, 0, true, false));
         textures.put("BLUE_BRICK_", Load.loadImage("02-Breakout-Tiles.png", GameConstants.BRICK_WIDTH, 0, true, false));
         textures.put("GREEN_BRICK", Load.loadImage("07-Breakout-Tiles.png", GameConstants.BRICK_WIDTH, 0, true, false));

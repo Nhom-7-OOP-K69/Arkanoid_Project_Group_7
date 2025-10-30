@@ -1,3 +1,4 @@
+k:850
 kha:140
 khang:70
 thuong:10
