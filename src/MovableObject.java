@@ -7,6 +7,11 @@ public class MovableObject extends GameObject {
     protected double dy;
     private Image image;
 
+    public MovableObject(){
+        dx = 0;
+        dy = 0;
+    }
+
     public MovableObject(double x, double y, double width, double height) {
         super(x, y, width, height);
     }
@@ -28,9 +33,7 @@ public class MovableObject extends GameObject {
     }
 
     public void move(double deltaTime) {
-    }
-    @Override
-    public void render(GraphicsContext gc) {
-        gc.drawImage(image, 0, 0);
+        this.setX(this.getX() + this.dx * deltaTime);
+        this.setY(this.getY() + this.dy * deltaTime);
     }
 }

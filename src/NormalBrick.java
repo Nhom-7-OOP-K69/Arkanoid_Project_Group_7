@@ -3,17 +3,16 @@ import javafx.scene.paint.Color;
 import javafx.scene.image.Image;
 
 public class NormalBrick extends Brick {
-    private Image img;
 
     public NormalBrick(double x, double y) {
         super(x, y, GameConstants.NORMAL_BRICK_HP, GameConstants.NORMAL_TYPE);
-        this.img = ImgManager.getInstance().getImage("GREEN_BRICK");
+        this.setImg(ImgManager.getInstance().getImage("GREEN_BRICK"));
     }
 
-
+    @Override
     public void render(GraphicsContext gc) {
         if (!this.isDestroyed()) {
-            gc.drawImage(this.img, this.getX(), this.getY());
+            gc.drawImage(this.getImg(), this.getX(), this.getY());
         }
     }
 

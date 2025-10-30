@@ -15,9 +15,13 @@ public class Ball extends MovableObject {
         return speed;
     }
 
+    public Ball() {
+        super();
+    }
+
     public Ball(double x, double y, double width, double height) {
         super(x, y, width, height);
-        this.img = ImgManager.getInstance().getImage("BALL");
+        this.setImg(ImgManager.getInstance().getImage("BALL"));
     }
 
     public boolean collisionWall(Canvas canvas) {
@@ -141,14 +145,5 @@ public class Ball extends MovableObject {
                 }
             }
         }
-    }
-
-    public void move(double deltaTime) {
-        this.setX(this.getX() + this.dx * deltaTime);
-        this.setY(this.getY() + this.dy * deltaTime);
-    }
-
-    public void render( GraphicsContext gc) {
-        gc.drawImage(img, this.getX(), this.getY());
     }
 }

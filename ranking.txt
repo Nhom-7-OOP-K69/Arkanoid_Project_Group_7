@@ -1,5 +1,5 @@
-Thuong:985
-Ngu:300
-huy:125
-THUONG:100
-dsagasg:60
+hai:1234
+sdsadas:1200
+sds:1180
+bbbb:1170
+mmm:1170

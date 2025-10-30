@@ -14,6 +14,7 @@ public class SuperBrick extends Brick {
         img.add(ImgManager.getInstance().getImage("PURPLE_BRICK_"));
     }
 
+    @Override
     public void render(GraphicsContext gc) {
         if (!this.isDestroyed()) {
             if (this.getHitPoints() >= GameConstants.STRONG_BRICK_HP) {
