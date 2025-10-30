@@ -24,7 +24,7 @@ public final class GameConstants {
     public static final int PADDLE_HEIGHT = 32;
     public static final int PADDLE_FRAMES = 3;
     public static final int PADDLE_SPEED = 300;
-    public static final double UI_TOP_BAR_HEIGHT = 0;
+    public static final double UI_TOP_BAR_HEIGHT = 50;
     public static final int POWERUP_WIDTH = 40;
     public static final int POWERUP_HEIGHT = 11;
     public static final int BULLET_WIDTH = 20;

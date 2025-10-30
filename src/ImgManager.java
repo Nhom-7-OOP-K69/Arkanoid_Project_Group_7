@@ -58,10 +58,10 @@ public class ImgManager {
             Image paddleimg = Load.loadImage(j + "-Breakout-Tiles.png", GameConstants.PADDLE_WIDTH, 0, true, false);
             textures.put("PADDLE" + i, paddleimg);
         }
-        for (int i = 0; i < 6; i++) {
-            int j = 62 + i;
-            Image explosionimg = new Image("file:images/" + j + "-Breakout-Tiles.png", GameConstants.PADDLE_WIDTH, 0, true, false);
-            textures.put("EXPLOSION" + i, explosionimg);
+        for (int i = 0; i < 8; i++) {
+            int j = 1 + i;
+            Image explosionimg = Load.loadImage("HYPER_" + j + ".png", GameConstants.PADDLE_WIDTH, 0, true, false);
+            textures.put("EXPLOSIONBRICK" + i, explosionimg);
         }
     }
 
