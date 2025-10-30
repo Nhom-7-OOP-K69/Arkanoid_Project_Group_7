@@ -89,6 +89,8 @@ public class GameManager {
         // 2. Reset vị trí của paddle
         paddle.setX((double) (GameConstants.SCREEN_WIDTH - GameConstants.PADDLE_WIDTH) / 2);
         paddle.setY(GameConstants.SCREEN_HEIGHT - 100);
+        paddle.shrinkPaddle(); // Đảm bảo thu nhỏ về kích thước gốc
+        paddle.activePowerUps = 0; // Xóa toàn bộ bitmask power-up (an toàn nhất)
 
         // 3. Đặt trạng thái về sẵn sàng
         gameStateManager.setCurrentState(GameStateManager.GameState.READY);
@@ -107,6 +109,8 @@ public class GameManager {
     public void resetLaunch() {
         paddle.setX((double) (GameConstants.SCREEN_WIDTH - GameConstants.PADDLE_WIDTH) / 2);
         paddle.setY(GameConstants.SCREEN_HEIGHT - 100);
+        paddle.shrinkPaddle(); // Thu nhỏ paddle về gốc
+        paddle.activePowerUps = 0; // Xóa bitmask power-up
 
         gameStateManager.setCurrentState(GameStateManager.GameState.READY);
 
@@ -235,7 +239,8 @@ public class GameManager {
                 nextLevel();
             }
 
-            powerUpManager.update(deltaTime, paddle, ballLayer, brickLayer);
+            int bulletScore = powerUpManager.update(deltaTime, paddle, ballLayer, brickLayer);
+            score.updateScore(bulletScore);
 
             System.out.println(score.getScore());
         }
