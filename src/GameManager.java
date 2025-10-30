@@ -7,6 +7,7 @@ import javafx.animation.AnimationTimer;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
+import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
@@ -38,6 +39,9 @@ public class GameManager {
     private Lives lives = new Lives();
 
     private AnimationTimer gameLoop;
+
+    private Scene gameOverScene;
+    private GameOverScreen gameOverScreen;
 
 
     // Phương thức được gọi bởi Main.java để khởi chạy toàn bộ game
@@ -147,7 +151,9 @@ public class GameManager {
             private long lastUpdate = 0;
             @Override
             public void handle(long now) {
-                if (gameStateManager.getCurrentState() == GameStateManager.GameState.MENU || gameStateManager.getCurrentState() == GameStateManager.GameState.PAUSED) {
+                if (gameStateManager.getCurrentState() == GameStateManager.GameState.MENU ||
+                        gameStateManager.getCurrentState() == GameStateManager.GameState.PAUSED ||
+                        gameStateManager.getCurrentState() == GameStateManager.GameState.GAME_OVER) { // <-- THÊM ĐIỀU KIỆN NÀY
                     lastUpdate = 0;
                     return;
                 }
