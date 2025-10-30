@@ -17,6 +17,11 @@ public class ExplosionBrick extends Brick {
         img.add(ImgManager.getInstance().getImage("EXPLOSIONBRICK0"));
         img.add(ImgManager.getInstance().getImage("EXPLOSIONBRICK1"));
         img.add(ImgManager.getInstance().getImage("EXPLOSIONBRICK2"));
+        img.add(ImgManager.getInstance().getImage("EXPLOSIONBRICK3"));
+        img.add(ImgManager.getInstance().getImage("EXPLOSIONBRICK4"));
+        img.add(ImgManager.getInstance().getImage("EXPLOSIONBRICK5"));
+        img.add(ImgManager.getInstance().getImage("EXPLOSIONBRICK6"));
+        img.add(ImgManager.getInstance().getImage("EXPLOSIONBRICK7"));
 
         if (!img.isEmpty()) {
             current_img = img.getFirst();

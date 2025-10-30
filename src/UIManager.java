@@ -1,6 +1,7 @@
 // File: UIManager.java (Phiên bản đã sửa đổi và tích hợp GridPane)
 
 import javafx.animation.FadeTransition;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
