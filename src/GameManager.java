@@ -7,11 +7,13 @@ import javafx.animation.AnimationTimer;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
+import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import javafx.scene.layout.StackPane;
 
 public class GameManager {
 
@@ -29,11 +31,16 @@ public class GameManager {
     private BrickLayer brickLayer = new BrickLayer();
     private BallLayer ballLayer = new BallLayer();
     private PowerUpManager powerUpManager = new PowerUpManager(ballLayer);
+    private ExplosionLayer explosionLayer = new ExplosionLayer();
 
     private String playerName;
     private final Score score = new Score();
     private int currentLevel = 0;
-    private int HP = 3;
+
+    private Scene gameOverScene;
+    private GameOverScreen gameOverScreen;
+
+    private Lives lives = new Lives();
 
     private AnimationTimer gameLoop;
 
@@ -80,7 +87,7 @@ public class GameManager {
     private void resetGame() {
         // 1. Tải lại các viên gạch từ file
         currentLevel = 0;
-        HP = 3;
+        lives.reset();
         brickLayer = new BrickLayer(); // Tạo lại để đảm bảo không còn gạch cũ
         brickLayer.loadBrick(fileName[currentLevel]);
         System.out.println(fileName[currentLevel]);
@@ -143,7 +150,9 @@ public class GameManager {
             private long lastUpdate = 0;
             @Override
             public void handle(long now) {
-                if (gameStateManager.getCurrentState() == GameStateManager.GameState.MENU || gameStateManager.getCurrentState() == GameStateManager.GameState.PAUSED) {
+                if (gameStateManager.getCurrentState() == GameStateManager.GameState.MENU ||
+                        gameStateManager.getCurrentState() == GameStateManager.GameState.PAUSED ||
+                        gameStateManager.getCurrentState() == GameStateManager.GameState.GAME_OVER) { // <-- THÊM ĐIỀU KIỆN NÀY
                     lastUpdate = 0;
                     return;
                 }
@@ -205,27 +214,48 @@ public class GameManager {
         paddle.move(deltaTime);
         paddle.checkCollisionWall(canvas);
 
+        int scorePlus = 0;
+
         if (gameStateManager.getCurrentState() == GameStateManager.GameState.READY) {
             ball.setX(paddle.getX() + (paddle.getWidth() / 2) - (ball.getWidth() / 2));
             ball.setY(paddle.getY() - ball.getHeight());
+            brickLayer.update(deltaTime);
+            explosionLayer.addExplosionList(brickLayer.getExplosionList());
+            explosionLayer.update(deltaTime);
+            brickLayer.explosionClear();
+            scorePlus += brickLayer.processPendingExplosions();
         } else if (gameStateManager.getCurrentState() == GameStateManager.GameState.PLAYING) {
+            brickLayer.update(deltaTime);
+
+            explosionLayer.addExplosionList(brickLayer.getExplosionList());
+            explosionLayer.update(deltaTime);
+
+            brickLayer.explosionClear();
+
             ballLayer.move(deltaTime);
 
-            int scorePlus = checkCollisionBricks();
-            score.updateScore(scorePlus);
+            scorePlus += checkCollisionBricks();
+            scorePlus += brickLayer.processPendingExplosions();
 
             ballLayer.checkCollisionPaddle(paddle);
             ballLayer.collisionWall(canvas);
 
             if (ballLayer.isEmpty()) {
-                HP--;
-                if (HP == 0) {
+                lives.decreaseLife();
+                if (lives.isGameOver()) {
                     try {
                         Ranking.saveScore(playerName, score.getScore());
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }
-                    resetGame();
+                    // 2. Đặt trạng thái
+                    gameStateManager.setCurrentState(GameStateManager.GameState.GAME_OVER);
+
+                    // 3. Gọi màn hình Game Over
+                    showGameOverScreen(score.getScore());
+
+                    // 4. Dừng game loop
+                    gameLoop.stop();
                 } else {
                     resetLaunch();
                 }
@@ -239,14 +269,18 @@ public class GameManager {
 
             System.out.println(score.getScore());
         }
+
+        score.updateScore(scorePlus);
     }
 
     private void render() {
         ctx.clearRect(0, 0, GameConstants.SCREEN_WIDTH, GameConstants.SCREEN_HEIGHT);
+        lives.render(ctx);
         paddle.render(ctx);
         ballLayer.render(ctx);
         brickLayer.render(ctx);
         powerUpManager.render(ctx);
+        explosionLayer.render(ctx);
     }
 
     public void startGame() {
@@ -332,5 +366,15 @@ public class GameManager {
 
     public void setPlayerName(String playerName) {
         this.playerName = playerName;
+    }
+
+    public void showGameOverScreen(int finalScore) {
+        // Tạo màn hình, truyền "this" (GameManager) vào
+        gameOverScreen = new GameOverScreen(this, finalScore);
+
+        StackPane root = new StackPane(gameOverScreen);
+        gameOverScene = new Scene(root, GameConstants.SCREEN_WIDTH, GameConstants.SCREEN_HEIGHT);
+
+        primaryStage.setScene(gameOverScene);
     }
 }
