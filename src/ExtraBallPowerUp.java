@@ -1,14 +1,17 @@
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ExtraBallPowerUp extends PowerUp {
     private List<Ball> gameBalls;
+    private Image img;
 
     public ExtraBallPowerUp(double x, double y, double width, double height, int duration, List<Ball> gameBalls){
         super(x, y, width, height, 2, duration);
         this.gameBalls = gameBalls;
+        this.img = ImgManager.getInstance().getImage("EXTRA_BALL");
     }
 
     @Override
@@ -54,6 +57,6 @@ public class ExtraBallPowerUp extends PowerUp {
 
     @Override
     public void render(GraphicsContext gc) {
-
+        gc.drawImage(img, this.getX(), this.getY(), this.getWidth(), this.getHeight());
     }
 }
