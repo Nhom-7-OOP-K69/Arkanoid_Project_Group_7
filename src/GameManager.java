@@ -14,6 +14,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import javafx.scene.layout.StackPane;
 
 public class GameManager {
 
@@ -36,6 +37,10 @@ public class GameManager {
     private String playerName;
     private final Score score = new Score();
     private int currentLevel = 0;
+
+    private Scene gameOverScene;
+    private GameOverScreen gameOverScreen;
+
     private Lives lives = new Lives();
 
     private AnimationTimer gameLoop;
@@ -251,7 +256,14 @@ public class GameManager {
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }
-                    resetGame();
+                    // 2. Đặt trạng thái
+                    gameStateManager.setCurrentState(GameStateManager.GameState.GAME_OVER);
+
+                    // 3. Gọi màn hình Game Over
+                    showGameOverScreen(score.getScore());
+
+                    // 4. Dừng game loop
+                    gameLoop.stop();
                 } else {
                     resetLaunch();
                 }
@@ -388,5 +400,15 @@ public class GameManager {
 
     public void setPlayerName(String playerName) {
         this.playerName = playerName;
+    }
+
+    public void showGameOverScreen(int finalScore) {
+        // Tạo màn hình, truyền "this" (GameManager) vào
+        gameOverScreen = new GameOverScreen(this, finalScore);
+
+        StackPane root = new StackPane(gameOverScreen);
+        gameOverScene = new Scene(root, GameConstants.SCREEN_WIDTH, GameConstants.SCREEN_HEIGHT);
+
+        primaryStage.setScene(gameOverScene);
     }
 }
