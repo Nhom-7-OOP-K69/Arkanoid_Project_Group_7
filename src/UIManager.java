@@ -1,6 +1,7 @@
 // File: UIManager.java (Phiên bản đã sửa đổi và tích hợp GridPane)
 
 import javafx.animation.FadeTransition;
+import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 // THÊM CÁC IMPORT CẦN THIẾT CHO GRIDPANE VÀ CĂN CHỈNH
@@ -58,6 +59,9 @@ public class UIManager {
     public VBox pauseOverlay, settingsOverlay, rankingOverlay; // Thêm rankingOverlay
     public Button startButton, soundEffectsButton, musicButton, pauseButton, resumeButtonPause, menuButtonPause, rankingButton; // Thêm rankingButton
     public Text pauseText, countdownText;
+
+    private Label scoreLabel;
+    private Label highScoreLabel;
 
     // THÊM: Biến cho danh sách xếp hạng để có thể cập nhật
     public VBox rankingListContainer;
@@ -414,32 +418,49 @@ public class UIManager {
 
 
     public void createGameScene(Canvas canvasPane) {
-        pauseButton = new Button("Tạm Dừng");
+        // 1. TẠO LABEL ĐIỂM SỐ
+        scoreLabel = new Label("Score: 0");
+        scoreLabel.setStyle("-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: white;");
+        highScoreLabel = new Label("High Score: 0");
+        highScoreLabel.setStyle("-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #A0AEC0;"); // Màu khác để phân biệt
+        VBox scoreBox = new VBox(5, highScoreLabel, scoreLabel);
+        scoreBox.setAlignment(Pos.CENTER_LEFT);
+
+        // 2. TẠO CÁC NÚT ĐIỀU KHIỂN
+        pauseButton = new Button("Pause");
         pauseButton.setOnAction(e -> gameManager.pauseGame());
-        Button menuButton = new Button("Về Menu");
+        Button menuButton = new Button("Back to Menu");
         menuButton.setOnAction(e -> gameManager.returnToMenu());
-
         List<Button> gameControlButtons = Arrays.asList(pauseButton, menuButton);
-        String gameButtonBaseStyle = FONT_CSS + BUTTON_BASE_STYLE;
-        String gameButtonHoverStyle = FONT_CSS + BUTTON_HOVER_STYLE;
-
         for (Button btn : gameControlButtons) {
-            btn.setStyle(gameButtonBaseStyle);
-            btn.setOnMouseEntered(e -> btn.setStyle(gameButtonHoverStyle));
-            btn.setOnMouseExited(e -> btn.setStyle(gameButtonBaseStyle));
+            btn.setStyle(BUTTON_BASE_STYLE);
+            btn.setOnMouseEntered(e -> btn.setStyle(BUTTON_HOVER_STYLE));
+            btn.setOnMouseExited(e -> btn.setStyle(BUTTON_BASE_STYLE));
         }
+        HBox buttonBox = new HBox(10, pauseButton, menuButton);
+        buttonBox.setAlignment(Pos.CENTER_RIGHT);
 
-        HBox topUIPanel = new HBox(10, pauseButton, menuButton);
-        topUIPanel.setPadding(new Insets(5));
-        topUIPanel.setAlignment(Pos.CENTER_RIGHT);
-        topUIPanel.setPrefHeight(GameConstants.UI_TOP_BAR_HEIGHT);
-        topUIPanel.setMaxHeight(GameConstants.UI_TOP_BAR_HEIGHT + 5);
-        topUIPanel.setStyle("-fx-background-color: #2D3748; -fx-border-color: #4A5568; -fx-border-width: 0 0 2px 0;");
+        // 3. TẠO THANH UI TRÊN CÙNG
+        BorderPane topUIPanel = new BorderPane();
+        topUIPanel.setPadding(new Insets(10, 20, 10, 20));
+        topUIPanel.setStyle("-fx-background-color: rgba(45, 55, 72, 0.7);"); // Nền mờ để nổi bật
+        topUIPanel.setLeft(scoreBox);
+        topUIPanel.setRight(buttonBox);
+
+        // 4. SẮP XẾP BỐ CỤC GAME
+        // Sử dụng BorderPane làm layout chính để đảm bảo topUIPanel luôn ở trên cùng
+        BorderPane gameLayout = new BorderPane();
+        gameLayout.setCenter(canvasPane); // Đặt canvas vào trung tâm
+        gameLayout.setTop(topUIPanel);    // Đặt thanh UI lên trên cùng
 
         createPauseOverlay();
-        gamePane = new StackPane(canvasPane, topUIPanel, pauseOverlay);
-        gamePane.setStyle("-fx-background-color: #000000;");
-        StackPane.setAlignment(topUIPanel, Pos.TOP_CENTER);
+        // StackPane giờ chỉ dùng để xếp chồng lớp overlay lên trên màn hình game
+        gamePane = new StackPane(gameLayout, pauseOverlay);
+        gamePane.setStyle("-fx-background-color: #28313B;");
+
+        // Dòng setAlignment không còn cần thiết nữa vì BorderPane đã xử lý việc này
+        // StackPane.setAlignment(topUIPanel, Pos.TOP_CENTER);
+
         gameScene = new Scene(gamePane);
     }
 
@@ -466,5 +487,21 @@ public class UIManager {
         pauseOverlay.setAlignment(Pos.CENTER);
         pauseOverlay.setBackground(new Background(new BackgroundFill(Color.rgb(0, 0, 0, 0.7), CornerRadii.EMPTY, Insets.EMPTY)));
         pauseOverlay.setVisible(false);
+    }
+
+    public void updateScoreLabel(int newScore) {
+        Platform.runLater(() -> {
+            if (scoreLabel != null) {
+                scoreLabel.setText("Score: " + newScore);
+            }
+        });
+    }
+
+    public void updateHighScoreLabel(int newHighScore) {
+        Platform.runLater(() -> {
+            if (highScoreLabel != null) {
+                highScoreLabel.setText("High Score: " + newHighScore);
+            }
+        });
     }
 }

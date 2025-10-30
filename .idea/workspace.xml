@@ -5,38 +5,43 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0c2c2745-22e6-49e3-8791-87cb328c1f44" name="Changes" comment="thêm ExplosionBrick và Explosion">
+      <change afterPath="$PROJECT_DIR$/src/GameOverScreen.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Arkanoid_Project_Group_7.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Arkanoid_Project_Group_7.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/5.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/6.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/62-Breakout-Tiles.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/63-Breakout-Tiles.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/64-Breakout-Tiles.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/65-Breakout-Tiles.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/66-Breakout-Tiles.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/67-Breakout-Tiles.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/68-Breakout-Tiles.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/69-Breakout-Tiles.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/7.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/70-Breakout-Tiles.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/71-Breakout-Tiles.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/8.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/BrickLayer.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/GameConstants.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/GameManager.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/ImgManager.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/UIManager.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/Wall.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/ranking.txt" beforeDir="false" afterPath="$PROJECT_DIR$/ranking.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ExtraBallPowerUp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ExtraBallPowerUp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GameConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameConstants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GameManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ImgManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ImgManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/PowerUpManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/PowerUpManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AudioManager.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Ball.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/BallLayer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Brick.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/BrickLayer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Bullet.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/BulletPowerUp.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ExpandPaddlePowerUp.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Explosion.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ExplosionBrick.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ExplosionLayer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ExtraBallPowerUp.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/FontManager.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GameConstants.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GameManager.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GameObject.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GameStateManager.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ImgManager.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/InputHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MovableObject.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/NormalBrick.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Paddle.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PendingExplosion.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PlayerScore.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PowerUp.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PowerUpManager.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Ranking.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Score.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SpawnPowerUp.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/StrongBrick.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SuperBrick.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/UIManager.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Wall.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,7 +72,7 @@
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/Nhom-7-OOP-K69/Arkanoid_Project_Group_7.git&quot;,
-    &quot;accountId&quot;: &quot;f3d38698-a25b-4f56-996e-ddaa8ebeb632&quot;
+    &quot;accountId&quot;: &quot;048ae3cb-35e4-48c8-a1ab-0879c5a14516&quot;
   }
 }</component>
   <component name="ProblemsViewState">
@@ -81,31 +86,52 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.Main.executor": "Run",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "Khang9",
-    "ignore.virus.scanning.warn.message": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "E:/Java/Arkanoid_Project_Group_7 - Copy",
-    "project.structure.last.edited": "Libraries",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "preferences.pluginManager"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/doanm/IdeaProjects/Arkanoid_Project_Group_7_&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\doanm\IdeaProjects\Arkanoid_Project_Group_7_" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="Main" />
-      <module name="Arkanoid_Project_Group_7" />
-      <option name="VM_PARAMETERS" value="--module-path &quot;E:\javafx-sdk-25\lib&quot; --add-modules javafx.controls,javafx.fxml,javafx.media --enable-native-access=javafx.graphics,javafx.media --add-opens=javafx.base/com.sun.javafx=ALL-UNNAMED --add-opens=javafx.graphics/com.sun.javafx.tk=ALL-UNNAMED" />
+      <module name="Arkanoid_Project_Group_7_" />
+      <option name="VM_PARAMETERS" value="--module-path &quot;C:\Users\doanm\Downloads\openjfx-25_windows-x64_bin-sdk\javafx-sdk-25\lib&quot;  --add-modules javafx.controls,javafx.fxml,javafx.media  --enable-native-access=javafx.graphics,javafx.media  --add-opens=javafx.base/com.sun.javafx=ALL-UNNAMED  --add-opens=javafx.graphics/com.sun.javafx.tk=ALL-UNNAMED" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-bf35d07a577b-intellij.indexing.shared.core-IU-252.26199.169" />
+        <option value="bundled-js-predefined-d6986cc7102b-9c94529fcfe0-JavaScript-IU-252.26199.169" />
+      </set>
+    </attachedChunks>
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -117,6 +143,11 @@
       <workItem from="1760715415175" duration="4470000" />
       <workItem from="1760775340416" duration="108000" />
       <workItem from="1760798179801" duration="3241000" />
+      <workItem from="1761322015841" duration="6191000" />
+      <workItem from="1761534945226" duration="648000" />
+      <workItem from="1761607340531" duration="3682000" />
+      <workItem from="1761720814858" duration="2694000" />
+      <workItem from="1761817311750" duration="5724000" />
     </task>
     <task id="LOCAL-00001" summary="ok">
       <option name="closed" value="true" />

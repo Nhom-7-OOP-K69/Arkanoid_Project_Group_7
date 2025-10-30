@@ -33,19 +33,19 @@ public class BrickLayer {
                     Brick brick = null;
                     switch (line.charAt(i)) {
                         case '1':
-                            brick = new NormalBrick(GameConstants.BRICK_WIDTH * i, GameConstants.BRICK_HEIGHT * j + 50 + GameConstants.UI_TOP_BAR_HEIGHT);
+                            brick = new NormalBrick(GameConstants.BRICK_WIDTH * i, GameConstants.BRICK_HEIGHT * j + GameConstants.UI_TOP_BAR_HEIGHT);
                             break;
                         case '2':
-                            brick = new StrongBrick(GameConstants.BRICK_WIDTH * i, GameConstants.BRICK_HEIGHT * j + 50 + GameConstants.UI_TOP_BAR_HEIGHT);
+                            brick = new StrongBrick(GameConstants.BRICK_WIDTH * i, GameConstants.BRICK_HEIGHT * j + GameConstants.UI_TOP_BAR_HEIGHT);
                             break;
                         case '3':
-                            brick = new SuperBrick(GameConstants.BRICK_WIDTH * i, GameConstants.BRICK_HEIGHT * j + 50 + GameConstants.UI_TOP_BAR_HEIGHT);
+                            brick = new SuperBrick(GameConstants.BRICK_WIDTH * i, GameConstants.BRICK_HEIGHT * j + GameConstants.UI_TOP_BAR_HEIGHT);
                             break;
                         case '4':
-                            brick = new ExplosionBrick(GameConstants.BRICK_WIDTH * i, GameConstants.BRICK_HEIGHT * j + 50 + GameConstants.UI_TOP_BAR_HEIGHT);
+                            brick = new ExplosionBrick(GameConstants.BRICK_WIDTH * i, GameConstants.BRICK_HEIGHT * j + GameConstants.UI_TOP_BAR_HEIGHT);
                             break;
                         case '5':
-                            brick = new Wall(GameConstants.BRICK_WIDTH * i, GameConstants.BRICK_HEIGHT * j + 50 + GameConstants.UI_TOP_BAR_HEIGHT);
+                            brick = new Wall(GameConstants.BRICK_WIDTH * i, GameConstants.BRICK_HEIGHT * j + GameConstants.UI_TOP_BAR_HEIGHT);
                             wallCnt++;
                             break;
                         default:
