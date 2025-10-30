@@ -1,4 +1,5 @@
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,12 +8,14 @@ public class BulletPowerUp extends PowerUp {
     private long lastShotTime = 0;   // thời điểm bắn lần trước
     private long shotInterval = 1000; // 0.25 giây mỗi phát
     protected long startTime;          // thời điểm bắt đầu hiệu lực
-    private int durationMs;          // thời gian hiệu lực (ms)
+    private int durationMs;  // thời gian hiệu lực (ms)
+    private Image img;
 
     public BulletPowerUp(double x, double y, double width, double height, int duration) {
         super(x, y, width, height, 3, duration); // type = 2
         this.durationMs = duration * 1000; // Sửa thành *1000 để duration là giây -> ms (3*1000=3000ms=3s)
         this.shotInterval = 500;
+        this.img = ImgManager.getInstance().getImage("LASER");
     }
 
     @Override
@@ -79,6 +82,6 @@ public class BulletPowerUp extends PowerUp {
 
     @Override
     public void render(GraphicsContext gc) {
-
+        gc.drawImage(img, this.getX(), this.getY(), this.getWidth(), this.getHeight());
     }
 }

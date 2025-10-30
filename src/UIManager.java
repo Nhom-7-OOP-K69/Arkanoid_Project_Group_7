@@ -6,6 +6,8 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 // THÊM CÁC IMPORT CẦN THIẾT CHO GRIDPANE VÀ CĂN CHỈNH
 import javafx.geometry.HPos;
+import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.layout.ColumnConstraints;
@@ -22,13 +24,9 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 
-import java.util.Optional;
-
-import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.TextInputDialog;
-import javafx.scene.text.Font; // Import này nếu bạn muốn nhúng font
 import javafx.util.Duration;
 
+import java.util.Collections;
 import java.util.Optional;
 
 import java.io.IOException;
@@ -56,8 +54,9 @@ public class UIManager {
     public StackPane gamePane;
 
     // Các Overlay và các nút liên quan
-    public VBox pauseOverlay, settingsOverlay, rankingOverlay; // Thêm rankingOverlay
-    public Button startButton, soundEffectsButton, musicButton, pauseButton, resumeButtonPause, menuButtonPause, rankingButton; // Thêm rankingButton
+    public StackPane settingsOverlay;
+    public VBox pauseOverlay, rankingOverlay;
+
     public Text pauseText, countdownText;
 
     private Label scoreLabel;
@@ -68,120 +67,166 @@ public class UIManager {
 
     private Image playerIcon;
 
+    // Khởi ảnh tạo các nút
+    private Image startImg = ImgManager.getInstance().getImage("START_BUTTON");
+    //private Image startImg_Exit = ImgManager.getInstance().getImage("START_EXIT");
+    private Image rankingImg = ImgManager.getInstance().getImage("RANKING_BUTTON");
+    //private Image rankingImg_Exit = ImgManager.getInstance().getImage("RANKING_EXIT");
+    private Image settingImg = ImgManager.getInstance().getImage("SETTING_BUTTON");
+    //private Image settingImg_Exit = ImgManager.getInstance().getImage("SETTING_EXIT");
+    private Image exitImg = ImgManager.getInstance().getImage("EXIT_BUTTON");
+    //private Image exitImg_Exit = ImgManager.getInstance().getImage("EXIT_EXIT");
+    private Image skinImg = ImgManager.getInstance().getImage("STORE");
+    private Image pauseImg = ImgManager.getInstance().getImage("PAUSE");
+    private Image resumeImg = ImgManager.getInstance().getImage("RESUME");
+    private Image menuImg = ImgManager.getInstance().getImage("MENU");
+
+    // Khởi tạo các nút
+    public ImageView startButton = new ImageView(startImg);
+    public ImageView rankingButton = new ImageView(startImg);
+    public ImageView settingButton = new ImageView(settingImg);
+    public ImageView exitButton = new ImageView(exitImg);
+    public ImageView skinButton = new ImageView(skinImg);
+    public ImageView pauseButton = new ImageView(pauseImg);
+    public ImageView resumeButton = new ImageView(resumeImg);
+    public ImageView menuButton = new ImageView(menuImg);
+
+    public ImageView setting_bg = new ImageView(ImgManager.getInstance().getImage("SETTING_BG"));
+    public ImageView ranking_bg = new ImageView(ImgManager.getInstance().getImage("RANKING_BG"));
+    public ImageView menu_bg = new ImageView(ImgManager.getInstance().getImage("MENU_BG"));
+    public ImageView game_bg = new ImageView(ImgManager.getInstance().getImage("GAME_BG"));
+
+    public final Font medievalFont = Font.loadFont(getClass().getResourceAsStream("/fonts/MedievalSharp-Book.ttf"), 24);
+    public final Color Text_Color = Color.web("#b08b58");
+
     public UIManager(GameManager gameManager, GameStateManager gameStateManager) {
         this.gameManager = gameManager;
         this.gameStateManager = gameStateManager;
-        // Tải hình ảnh khi khởi tạo UIManager
-        try {
-            playerIcon = ImgManager.getInstance().getImage("GAMER");
-        } catch (Exception e) {
-            System.err.println("Lỗi khi tải biểu tượng xếp hạng: " + e.getMessage());
-            // Có thể dùng một biểu tượng mặc định hoặc xử lý lỗi khác
-        }
     }
 
     public void createMenuScene() {
         StackPane menuPane = new StackPane();
         VBox menuLayout = new VBox(25);
         menuLayout.setAlignment(Pos.CENTER);
+        StackPane.setMargin(menuLayout, new Insets(150, 0, 0, 0));
 
-        Stop[] stops = new Stop[]{new Stop(0, Color.web("#28313B")), new Stop(1, Color.web("#485461"))};
-        LinearGradient lg = new LinearGradient(0, 0, 0, 1, true, javafx.scene.paint.CycleMethod.NO_CYCLE, stops);
-        menuLayout.setBackground(new Background(new BackgroundFill(lg, CornerRadii.EMPTY, Insets.EMPTY)));
+        // ⚡ Thiết lập hình nền
+        menu_bg.setFitWidth(GameConstants.SCREEN_WIDTH);
+        menu_bg.setFitHeight(GameConstants.SCREEN_HEIGHT);
+        menu_bg.setPreserveRatio(false);
+        menu_bg.setOpacity(1.0);
 
-        Text title = new Text("ARKANOID");
-        title.setFont(Font.font(CUSTOM_FONT_FAMILY, FontWeight.BOLD, 80));
-        title.setFill(Color.WHITE);
-        title.setEffect(new javafx.scene.effect.DropShadow(10, Color.BLACK));
-
-        String menuButtonBaseStyle = FONT_CSS + "-fx-font-size: 24px; -fx-min-width: 280px; -fx-padding: 12px; " +
-                BUTTON_BASE_STYLE.substring(BUTTON_BASE_STYLE.indexOf("-fx-background-color:"));
-        String menuButtonHoverStyle = FONT_CSS + "-fx-font-size: 24px; -fx-min-width: 280px; -fx-padding: 12px; " +
-                BUTTON_HOVER_STYLE.substring(BUTTON_HOVER_STYLE.indexOf("-fx-background-color:"));
-
-        startButton = new Button("PLAY");
-        rankingButton = new Button("RANK");
-        Button settingsButton = new Button("SETTING");
-        Button exitButton = new Button("EXIT");
-
-        List<Button> buttons = Arrays.asList(startButton, rankingButton, settingsButton, exitButton);
-        for (Button btn : buttons) {
-            btn.setStyle(menuButtonBaseStyle);
-            btn.setOnMouseEntered(e -> btn.setStyle(menuButtonHoverStyle));
-            btn.setOnMouseExited(e -> btn.setStyle(menuButtonBaseStyle));
-        }
-
-        //  tạo overlay TRƯỚC khi set hành động cho nút
+        // Tạo overlays
         createSettingsOverlay();
         createRankingOverlay();
         createNameInputOverlay();
+        createPauseOverlay();
 
-        // Khi nhấn PLAY → hiển thị overlay nhập tên
-        startButton.setOnAction(e -> showNameInputOverlay());
+        // Set hiệu ứng hover cho các nút
+        addHoverEffect(startButton);
+        addHoverEffect(rankingButton);
+        addHoverEffect(settingButton);
+        addHoverEffect(exitButton);
+        addHoverEffect(skinButton);
 
-        rankingButton.setOnAction(e -> {
-            try {
-                showRanking();
-            } catch (IOException ex) {
-                throw new RuntimeException(ex);
-            }
-        });
+        // Điều chỉnh kích thước
+        scaleImageView(startButton, 0.7);
+        scaleImageView(rankingButton, 0.7);
+        scaleImageView(settingButton, 0.7);
+        scaleImageView(exitButton, 0.7);
 
-        settingsButton.setOnAction(e -> showSettings());
-        exitButton.setOnAction(e -> gameManager.exitGame());
+        // Đặt vị trí skinButton góc phải trên
+        StackPane.setAlignment(skinButton, Pos.TOP_RIGHT);
+        StackPane.setMargin(skinButton, new Insets(20));
 
-        menuLayout.getChildren().addAll(title, startButton, rankingButton, settingsButton, exitButton);
-        menuPane.getChildren().addAll(menuLayout, settingsOverlay, rankingOverlay, nameInputOverlay);
+        // Gán sự kiện chuột
+        MouseEvent();
+
+        // Thêm các phần tử vào layout
+        menuLayout.getChildren().addAll(
+                startButton,
+                rankingButton,
+                settingButton,
+                exitButton
+        );
+        menuPane.getChildren().addAll(
+                menu_bg,
+                menuLayout,
+                skinButton,
+                settingsOverlay,
+                rankingOverlay,
+                nameInputOverlay,
+                pauseOverlay
+        );
 
         menuScene = new Scene(menuPane, GameConstants.SCREEN_WIDTH, GameConstants.SCREEN_HEIGHT);
     }
 
-    public void createNameInputOverlay() {
-        Text title = new Text("ID");
-        title.setFont(Font.font(CUSTOM_FONT_FAMILY, FontWeight.BOLD, 40));
-        title.setFill(Color.web("#ff0033"));
-        title.setEffect(new DropShadow(20, Color.web("#ff1a1a")));
 
+
+    public void createNameInputOverlay() {
+        Text title = new Text("NAME");
+        title.setFont(Font.font(CUSTOM_FONT_FAMILY, FontWeight.EXTRA_BOLD, 42));
+        title.setFill(Color.web("#ff4d4d")); // đỏ neon sáng
+        title.setEffect(new DropShadow(30, Color.web("#ff0000"))); // ánh sáng đỏ tỏa ra
+
+// --- TextField ---
         nameField = new TextField();
         nameField.setPromptText("");
         nameField.setMaxWidth(300);
         nameField.setStyle(
-                "-fx-background-color: #1a1a1a;" +              // Nền tối
-                        "-fx-text-fill: #ff0033;" +                     // Chữ đỏ neon
-                        "-fx-prompt-text-fill: #ff6666;" +              // Màu placeholder
-                        "-fx-border-color: #ff0033;" +                  // Viền đỏ
+                "-fx-background-color: linear-gradient(to bottom, #3b0000, #1a0000);" + // nền đỏ sẫm
+                        "-fx-text-fill: #ffeaea;" + // chữ trắng hơi hồng
+                        "-fx-border-color: #ff2e00;" + // viền đỏ sáng
                         "-fx-border-width: 2;" +
                         "-fx-font-size: 20px;" +
                         "-fx-background-radius: 8;" +
-                        "-fx-border-radius: 8;"
+                        "-fx-border-radius: 8;" +
+                        "-fx-prompt-text-fill: #aa6666;" // màu placeholder mờ đỏ
         );
 
+// --- Nút START ---
         Button confirmBtn = new Button("START");
         confirmBtn.setStyle(
-                "-fx-background-color: linear-gradient(to bottom, #ff3333, #cc0000);" +
-                        "-fx-text-fill: #fff;" +
+                "-fx-background-color: linear-gradient(to bottom, #660000, #330000);" + // đỏ sẫm
+                        "-fx-text-fill: #ffeaea;" +
                         "-fx-font-weight: bold;" +
                         "-fx-font-size: 18px;" +
-                        "-fx-background-radius: 10;"
+                        "-fx-border-color: #ff2e00;" + // viền đỏ neon
+                        "-fx-border-width: 2;" +
+                        "-fx-background-radius: 10;" +
+                        "-fx-border-radius: 10;" +
+                        "-fx-effect: dropshadow(gaussian, #ff0000, 15, 0.5, 0, 0);" // hiệu ứng phát sáng
         );
 
-        // Hiệu ứng hover
+// --- Hover: sáng neon hơn ---
         confirmBtn.setOnMouseEntered(e ->
                 confirmBtn.setStyle(
-                        "-fx-background-color: linear-gradient(to bottom, #ff6666, #ff0000);" +
+                        "-fx-background-color: linear-gradient(to bottom, #ff0000, #660000);" +
                                 "-fx-text-fill: #fff;" +
                                 "-fx-font-weight: bold;" +
                                 "-fx-font-size: 18px;" +
-                                "-fx-background-radius: 10;"
+                                "-fx-border-color: #ff4d4d;" +
+                                "-fx-border-width: 2;" +
+                                "-fx-background-radius: 10;" +
+                                "-fx-border-radius: 10;" +
+                                "-fx-effect: dropshadow(gaussian, #ff4d4d, 25, 0.8, 0, 0);"
                 ));
+
         confirmBtn.setOnMouseExited(e ->
                 confirmBtn.setStyle(
-                        "-fx-background-color: linear-gradient(to bottom, #ff3333, #cc0000);" +
-                                "-fx-text-fill: #fff;" +
+                        "-fx-background-color: linear-gradient(to bottom, #660000, #330000);" +
+                                "-fx-text-fill: #ffeaea;" +
                                 "-fx-font-weight: bold;" +
                                 "-fx-font-size: 18px;" +
-                                "-fx-background-radius: 10;"
+                                "-fx-border-color: #ff2e00;" +
+                                "-fx-border-width: 2;" +
+                                "-fx-background-radius: 10;" +
+                                "-fx-border-radius: 10;" +
+                                "-fx-effect: dropshadow(gaussian, #ff0000, 15, 0.5, 0, 0);"
                 ));
+
+
 
         confirmBtn.setOnAction(e -> {
             String playerName = nameField.getText().trim();
@@ -225,246 +270,268 @@ public class UIManager {
         rankingOverlay.setVisible(true);
     }
 
-    public void hideRanking() {
-        rankingOverlay.setVisible(false);
-    }
-
-    public void showSettings() {
-        settingsOverlay.setVisible(true);
-    }
-
-    public void hideSettings() {
+    public void createSettingsOverlay() {
+        settingsOverlay = new StackPane();
+        settingsOverlay.setPrefSize(800, 600);
         settingsOverlay.setVisible(false);
+
+        // Ảnh nền khung gỗ
+        setting_bg.setFitWidth(500);
+        setting_bg.setFitHeight(700);
+
+        // Tạo Slider + Style + Giới hạn chiều rộng
+        Slider soundSlider = new Slider(0, 100, 50);
+        Slider graphicsSlider = new Slider(0, 100, 70);
+        Slider sfxSlider = new Slider(0, 100, 40);
+
+        styleSlider(soundSlider);
+        styleSlider(graphicsSlider);
+        styleSlider(sfxSlider);
+
+        soundSlider.prefWidthProperty().bind(setting_bg.fitWidthProperty().multiply(0.6));
+        graphicsSlider.prefWidthProperty().bind(setting_bg.fitWidthProperty().multiply(0.6));
+        sfxSlider.prefWidthProperty().bind(setting_bg.fitWidthProperty().multiply(0.6));
+        soundSlider.maxWidthProperty().bind(setting_bg.fitWidthProperty().multiply(0.6));
+        graphicsSlider.maxWidthProperty().bind(setting_bg.fitWidthProperty().multiply(0.6));
+        sfxSlider.maxWidthProperty().bind(setting_bg.fitWidthProperty().multiply(0.6));
+
+        //Liên kết âm lượng với AudioManager
+        soundSlider.valueProperty().addListener((obs, oldV, newV) ->
+                AudioManager.getInstance().setMusicVolume(newV.doubleValue() / 100.0)
+        );
+        sfxSlider.valueProperty().addListener((obs, oldV, newV) ->
+                AudioManager.getInstance().setSfxVolume(newV.doubleValue() / 100.0)
+        );
+
+        // Nhãn cho từng slider
+        Text musicLabel = new Text("MUSIC");
+        Text graphicsLabel = new Text("GRAPHICS");
+        Text sfxLabel = new Text("SFX");
+
+        // Style chữ (font, màu, bóng nhẹ)
+        for (Text label : new Text[]{musicLabel, graphicsLabel, sfxLabel}) {
+            label.setFont(medievalFont);
+            label.setFill(Text_Color); // màu nâu phù hợp khung gỗ
+            label.setEffect(new DropShadow(3, Color.rgb(255, 255, 200, 0.6)));
+        }
+
+        // Gom nhãn + slider theo cặp
+        VBox musicBox = new VBox(8, musicLabel, soundSlider);
+        VBox graphicsBox = new VBox(8, graphicsLabel, graphicsSlider);
+        VBox sfxBox = new VBox(8, sfxLabel, sfxSlider);
+
+        musicBox.setAlignment(Pos.CENTER);
+        graphicsBox.setAlignment(Pos.CENTER);
+        sfxBox.setAlignment(Pos.CENTER);
+
+        // Nút OK
+        ImageView okButton = new ImageView(ImgManager.getInstance().getImage("OK_BUTTON"));
+        okButton.setFitWidth(120);
+        okButton.setFitHeight(60);
+        okButton.setOnMouseClicked(e -> settingsOverlay.setVisible(false));
+
+        // Nút BACK
+        ImageView backButton = new ImageView(ImgManager.getInstance().getImage("BACK_BUTTON"));
+        backButton.setFitWidth(120);
+        backButton.setFitHeight(60);
+        backButton.setOnMouseClicked(e -> settingsOverlay.setVisible(false));
+
+        // HBox chứa 2 nút
+        HBox buttonBox = new HBox(40, okButton, backButton);
+        buttonBox.setAlignment(Pos.CENTER);
+
+        // VBox tổng chứa mọi thứ
+        VBox contentBox = new VBox(50, musicBox, graphicsBox, sfxBox, buttonBox);
+        contentBox.setAlignment(Pos.CENTER);
+
+        // Căn giữa
+        StackPane.setAlignment(setting_bg, Pos.CENTER);
+        StackPane.setAlignment(contentBox, Pos.CENTER);
+
+        settingsOverlay.getChildren().addAll(setting_bg, contentBox);
     }
 
-    private void createSettingsOverlay() {
-        Text settingsTitle = new Text("SETTING");
-        settingsTitle.setFont(Font.font(CUSTOM_FONT_FAMILY, FontWeight.BOLD, 60));
-        settingsTitle.setFill(Color.WHITE);
 
-        soundEffectsButton = new Button("SOUND: " + (gameStateManager.isSoundEffectsOn() ? "Bật" : "Tắt"));
-        soundEffectsButton.setOnAction(e -> gameManager.toggleSoundEffects());
-        musicButton = new Button("MUSIC: " + (gameStateManager.isMusicOn() ? "Bật" : "Tắt"));
-        musicButton.setOnAction(e -> gameManager.toggleMusic());
-        Button backButton = new Button("Quay Lại");
-        backButton.setOnAction(e -> hideSettings());
-
-        String buttonStyle = FONT_CSS + "-fx-font-size: 22px; -fx-min-width: 250px; -fx-padding: 10px;";
-        soundEffectsButton.setStyle(buttonStyle);
-        musicButton.setStyle(buttonStyle);
-        backButton.setStyle(buttonStyle);
-
-        settingsOverlay = new VBox(25, settingsTitle, soundEffectsButton, musicButton, backButton);
-        settingsOverlay.setAlignment(Pos.CENTER);
-        settingsOverlay.setBackground(new Background(new BackgroundFill(Color.rgb(0, 0, 0, 0.85), CornerRadii.EMPTY, Insets.EMPTY)));
-        settingsOverlay.setVisible(false);
+    //  Trang trí slider cho đồng bộ giao diện game
+    private void styleSlider(Slider slider) {
+        slider.setStyle(
+                "-fx-control-inner-background: #b67d3d;" +
+                        "-fx-base: #ffcc66;" +
+                        "-fx-background-color: transparent;"
+        );
     }
+
 
     private void createRankingOverlay() {
+        // 1. Định nghĩa kích thước và hằng số
 
-        final double RANKING_DIALOG_WIDTH = GameConstants.SCREEN_WIDTH;
-        final double RANKING_DIALOG_HEIGHT = GameConstants.SCREEN_HEIGHT;
-
+        // Kích thước vùng giấy (vùng chứa nội dung) trên ảnh nền
         final double CONTENT_WIDTH = 450;
-        final double SCROLL_PANE_HEIGHT = RANKING_DIALOG_HEIGHT - 100;
+        final double CONTENT_HEIGHT = GameConstants.SCREEN_HEIGHT * 0.8;
 
-        // VBox chính cho Ranking Overlay
+        //  Tải và thiết lập ImageView làm nền
+        ranking_bg.setFitWidth(CONTENT_WIDTH);
+        ranking_bg.setFitHeight(CONTENT_HEIGHT);
+
+        //  VBox chính cho Ranking Overlay
         rankingOverlay = new VBox(20);
-        rankingOverlay.setMaxWidth(RANKING_DIALOG_WIDTH);
-        rankingOverlay.setMaxHeight(RANKING_DIALOG_HEIGHT);
+        rankingOverlay.setMaxWidth(GameConstants.SCREEN_WIDTH);
+        rankingOverlay.setMaxHeight(GameConstants.SCREEN_HEIGHT);
         rankingOverlay.setAlignment(Pos.CENTER);
-        rankingOverlay.setBackground(new Background(new BackgroundFill(Color.rgb(0, 0, 0, 0.85), CornerRadii.EMPTY, Insets.EMPTY)));
+        rankingOverlay.setBackground(new Background(new BackgroundFill(
+                Color.rgb(0, 0, 0, 0.85), CornerRadii.EMPTY, Insets.EMPTY)));
         rankingOverlay.setVisible(false);
 
         rankingOverlay.setOnMouseClicked(event -> {
+            Node targetNode = ranking_bg;
+            double x = event.getX();
+            double y = event.getY();
+            double nodeX = targetNode.getLayoutX();
+            double nodeY = targetNode.getLayoutY();
+            double nodeWidth = targetNode.getBoundsInParent().getWidth();
+            double nodeHeight = targetNode.getBoundsInParent().getHeight();
 
-            if (event.getTarget() == rankingOverlay) {
-                // Giả định rằng hideRanking() là phương thức đóng overlay
-                hideRanking();
+            if (x < nodeX || x > nodeX + nodeWidth || y < nodeY || y > nodeY + nodeHeight) {
+                rankingOverlay.setVisible(false);
                 event.consume();
             }
         });
-        // *******************************************************************
 
-        // Header "LEADERBOARD"
-        HBox headerBox = new HBox(10);
-
-
-        headerBox.setPrefWidth(CONTENT_WIDTH);
-        headerBox.setMaxWidth(CONTENT_WIDTH);
-
-        headerBox.setAlignment(Pos.CENTER);
-        headerBox.setPadding(new Insets(10, 20, 10, 20));
-        headerBox.setStyle("-fx-background-color: #3f1a66; -fx-background-radius: 15px; -fx-border-color: #925ceb; -fx-border-width: 2px; -fx-border-radius: 15px;");
-
-        Text leaderboardTitle = new Text("RANKING");
-        leaderboardTitle.setFont(Font.font(CUSTOM_FONT_FAMILY, FontWeight.BOLD, 30));
-        leaderboardTitle.setFill(Color.WHITE);
-        headerBox.getChildren().add(leaderboardTitle);
-
-
+        // Container cho danh sách xếp hạng
         rankingListContainer = new VBox(15);
-        rankingListContainer.setPadding(new Insets(20));
-        rankingListContainer.setStyle("-fx-background-color: #3f1a66;");
+        rankingListContainer.setPadding(new Insets(30, 40, 30, 40));
 
-        // Ban đầu thêm một placeholder
         Text loadingPlaceholder = new Text("Đang tải dữ liệu xếp hạng...");
         loadingPlaceholder.setFont(Font.font(CUSTOM_FONT_FAMILY, 20));
         loadingPlaceholder.setFill(Color.web("#AAAAAA"));
         rankingListContainer.getChildren().add(loadingPlaceholder);
 
-
+        // 5. ScrollPane chứa danh sách
         ScrollPane scrollPane = new ScrollPane(rankingListContainer);
-
-
         scrollPane.setMaxWidth(CONTENT_WIDTH);
-        scrollPane.setMaxHeight(SCROLL_PANE_HEIGHT);
+        scrollPane.setMaxHeight(CONTENT_HEIGHT * 0.8);
         scrollPane.setFitToWidth(true);
-
-        scrollPane.setStyle("-fx-background-color: #3f1a66; -fx-background-radius: 10px; " +
-                "-fx-border-color: #925ceb; -fx-border-width: 3px; -fx-border-radius: 10px; " +
-                "-fx-effect: dropshadow(gaussian, rgba(146, 92, 235, 0.7), 15, 0.5, 0, 0);");
-
+        scrollPane.setStyle("-fx-background-color: transparent; -fx-background: transparent;");
         scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
 
-        rankingOverlay.getChildren().addAll(headerBox, scrollPane);
-        VBox.setMargin(scrollPane, new Insets(0, 0, 20, 0));
+        //  StackPane để chồng ảnh nền và nội dung
+        StackPane contentStack = new StackPane();
+        contentStack.setAlignment(Pos.TOP_CENTER);
+
+        // Đặt ảnh nền và danh sách cuộn
+        contentStack.getChildren().addAll(ranking_bg, scrollPane);
+        StackPane.setMargin(scrollPane, new Insets(90, 0, 0, 0));
+        rankingOverlay.getChildren().add(contentStack);
     }
+
 
     // PHƯƠNG THỨC MỚI: Cập nhật danh sách xếp hạng theo hình ảnh
     public void updateRankingList() throws IOException {
-        rankingListContainer.getChildren().clear(); // Xóa các mục cũ và placeholder
+        rankingListContainer.getChildren().clear(); // Xóa các mục cũ
 
-        // Lớp Ranking cần được import (Giả định đã có)
-        List<PlayerScore> scores = Ranking.getRankScores(); // Lấy PlayerScore từ lớp Ranking
+        List<PlayerScore> scores = Ranking.getRankScores(); // Lấy dữ liệu
 
         if (scores.isEmpty()) {
             Text noScoreText = new Text("Chưa có điểm xếp hạng nào.");
-            noScoreText.setFont(Font.font(CUSTOM_FONT_FAMILY, 20));
-            noScoreText.setFill(Color.web("#CCCCCC"));
+            noScoreText.setFont(medievalFont);
+            noScoreText.setFill(Text_Color);
+            VBox.setMargin(noScoreText, new Insets(20, 0, 0, 0)); // Tạo khoảng trống
             rankingListContainer.getChildren().add(noScoreText);
             return;
         }
 
         int rank = 1;
+        Collections.sort(scores);
         for (PlayerScore ps : scores) {
-
             GridPane rankEntry = createRankingEntry(rank, ps.getName(), ps.getScore());
             rankingListContainer.getChildren().add(rankEntry);
             rank++;
         }
     }
 
-
-    private GridPane createRankingEntry(int rank, String playerName, int score) {
-
+    /**
+     * Tạo một GridPane cho một mục xếp hạng (Hạng | Tên | Điểm)
+     */
+    private GridPane createRankingEntry(int rank, String name, int score) {
         GridPane entry = new GridPane();
-        entry.setHgap(10);
-        entry.setPadding(new Insets(10, 15, 10, 15));
+        entry.setHgap(10); // Khoảng cách giữa các cột
+        entry.setPadding(new Insets(5, 0, 5, 0));
+        entry.setStyle("-fx-border-color: rgba(0,0,0,0.1); -fx-border-width: 0 0 1 0; -fx-border-style: dashed;"); // Đường gạch ngang
 
-        // Nền cho mỗi mục (viền tím sáng)
-        entry.setStyle("-fx-background-color: #2a0f4a; -fx-background-radius: 8px; " +
-                "-fx-border-color: #925ceb; -fx-border-width: 1px; -fx-border-radius: 8px; " +
-                "-fx-effect: dropshadow(gaussian, rgba(146, 92, 235, 0.5), 5, 0.3, 0, 0);");
+        // Định nghĩa tỷ lệ cột
+        ColumnConstraints col1 = new ColumnConstraints(); // Hạng
+        col1.setPercentWidth(15);
 
+        ColumnConstraints col2 = new ColumnConstraints(); // Tên
+        col2.setPercentWidth(50); // Giảm lại một chút
 
-        ColumnConstraints col0 = new ColumnConstraints();
-        col0.setMinWidth(30);
-        col0.setMaxWidth(30);
-        col0.setHalignment(HPos.LEFT);
+        ColumnConstraints col3 = new ColumnConstraints(); // Điểm
+        col3.setPercentWidth(25);
 
-
-        ColumnConstraints col1 = new ColumnConstraints();
-        col1.setHgrow(Priority.ALWAYS);
-        col1.setHalignment(HPos.LEFT);
-
-        ColumnConstraints col2 = new ColumnConstraints();
-        col2.setMinWidth(80);
-        col2.setHalignment(HPos.RIGHT);
-
-        entry.getColumnConstraints().addAll(col0, col1, col2);
-        // ---------------------------------------------------
-
-        // Cột 0: Biểu tượng người chơi
-        if (playerIcon != null) {
-            ImageView playerImageView = new ImageView(playerIcon);
-            playerImageView.setFitWidth(40);
-            playerImageView.setFitHeight(40);
-
-            entry.add(playerImageView, 0, 0);
-        }
+        entry.getColumnConstraints().addAll(col1, col2, col3);
 
 
-        HBox nameAndMedalBox = new HBox(5);
-        nameAndMedalBox.setAlignment(Pos.CENTER_LEFT);
+        // 1. Hạng
+        Text rankText = new Text(String.valueOf(rank));
+        rankText.setFont(medievalFont);
+        rankText.setFill(Text_Color);
+        GridPane.setHalignment(rankText, javafx.geometry.HPos.CENTER);
+        entry.add(rankText, 0, 0);
 
-        // Tên người chơi
-        Text nameText = new Text(playerName.toUpperCase());
-        nameText.setFont(Font.font(CUSTOM_FONT_FAMILY, FontWeight.BOLD, 20));
-        nameText.setFill(Color.WHITE);
-        nameAndMedalBox.getChildren().add(nameText);
+        // 2. Tên người chơi
+        Text nameText = new Text(name);
+        nameText.setFont(medievalFont);
+        nameText.setFill(Text_Color);
+        GridPane.setHalignment(nameText, javafx.geometry.HPos.LEFT);
+        entry.add(nameText, 1, 0);
 
-        entry.add(nameAndMedalBox, 1, 0);
-
-        // Cột 2: Điểm số
-        Text scoreText = new Text(String.valueOf(score));
-        scoreText.setFont(Font.font(CUSTOM_FONT_FAMILY, FontWeight.BOLD, 22));
-        scoreText.setFill(Color.WHITE);
-
+        // 3. Điểm
+        Text scoreText = new Text(String.valueOf(score).replaceFirst("(\\d{1,3})(?=(?:\\d{3})+(?!\\d))", "$1,")); // Định dạng điểm
+        scoreText.setFont(medievalFont);
+        scoreText.setFill(Text_Color);
+        GridPane.setHalignment(scoreText, javafx.geometry.HPos.RIGHT);
         entry.add(scoreText, 2, 0);
 
+        // * Phong cách đặc biệt cho Top 3
+        if (rank == 1) {
+            rankText.setFont(Font.font(CUSTOM_FONT_FAMILY, FontWeight.BLACK, 30));
+            rankText.setFill(Color.GOLD);
+        } else if (rank == 2) {
+            rankText.setFont(Font.font(CUSTOM_FONT_FAMILY, FontWeight.BLACK, 30));
+            rankText.setFill(Color.SILVER);
+        } else if (rank == 3) {
+            rankText.setFont(Font.font(CUSTOM_FONT_FAMILY, FontWeight.BLACK, 30));
+            rankText.setFill(Color.web("#CD7F32")); // Bronze
+        } else  {
+            rankText.setFont(Font.font(CUSTOM_FONT_FAMILY, FontWeight.BLACK, 19));
+            rankText.setFill(Color.web("#CD7F32"));
+        }
         return entry;
     }
 
 
     public void createGameScene(Canvas canvasPane) {
-        // 1. TẠO LABEL ĐIỂM SỐ
-        scoreLabel = new Label("Score: 0");
-        scoreLabel.setStyle("-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: white;");
-        highScoreLabel = new Label("High Score: 0");
-        highScoreLabel.setStyle("-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #A0AEC0;"); // Màu khác để phân biệt
-        VBox scoreBox = new VBox(5, highScoreLabel, scoreLabel);
-        scoreBox.setAlignment(Pos.CENTER_LEFT);
+        pauseButton.setOnMouseClicked(e -> gameManager.pauseGame());
+        menuButton.setOnMouseClicked(e -> gameManager.returnToMenu());
+        addHoverEffect(pauseButton);
+        addHoverEffect(menuButton);
 
-        // 2. TẠO CÁC NÚT ĐIỀU KHIỂN
-        pauseButton = new Button("Pause");
-        pauseButton.setOnAction(e -> gameManager.pauseGame());
-        Button menuButton = new Button("Back to Menu");
-        menuButton.setOnAction(e -> gameManager.returnToMenu());
-        List<Button> gameControlButtons = Arrays.asList(pauseButton, menuButton);
-        for (Button btn : gameControlButtons) {
-            btn.setStyle(BUTTON_BASE_STYLE);
-            btn.setOnMouseEntered(e -> btn.setStyle(BUTTON_HOVER_STYLE));
-            btn.setOnMouseExited(e -> btn.setStyle(BUTTON_BASE_STYLE));
-        }
-        HBox buttonBox = new HBox(10, pauseButton, menuButton);
-        buttonBox.setAlignment(Pos.CENTER_RIGHT);
-
-        // 3. TẠO THANH UI TRÊN CÙNG
-        BorderPane topUIPanel = new BorderPane();
-        topUIPanel.setPadding(new Insets(10, 20, 10, 20));
-        topUIPanel.setStyle("-fx-background-color: rgba(45, 55, 72, 0.7);"); // Nền mờ để nổi bật
-        topUIPanel.setLeft(scoreBox);
-        topUIPanel.setRight(buttonBox);
-
-        // 4. SẮP XẾP BỐ CỤC GAME
-        // Sử dụng BorderPane làm layout chính để đảm bảo topUIPanel luôn ở trên cùng
-        BorderPane gameLayout = new BorderPane();
-        gameLayout.setCenter(canvasPane); // Đặt canvas vào trung tâm
-        gameLayout.setTop(topUIPanel);    // Đặt thanh UI lên trên cùng
+        HBox topUIPanel = new HBox(10, pauseButton, menuButton);
+        topUIPanel.setPadding(new Insets(5));
+        topUIPanel.setAlignment(Pos.CENTER_RIGHT);
+        topUIPanel.setPrefHeight(GameConstants.UI_TOP_BAR_HEIGHT);
+        topUIPanel.setMaxHeight(GameConstants.UI_TOP_BAR_HEIGHT + 5);
+        topUIPanel.setStyle("-fx-background-color: #2D3748; -fx-border-color: #4A5568; -fx-border-width: 0 0 2px 0;");
 
         createPauseOverlay();
-        // StackPane giờ chỉ dùng để xếp chồng lớp overlay lên trên màn hình game
-        gamePane = new StackPane(gameLayout, pauseOverlay);
-        gamePane.setStyle("-fx-background-color: #28313B;");
-
-        // Dòng setAlignment không còn cần thiết nữa vì BorderPane đã xử lý việc này
-        // StackPane.setAlignment(topUIPanel, Pos.TOP_CENTER);
-
+        gamePane = new StackPane(game_bg,canvasPane, topUIPanel, pauseOverlay);
+        gamePane.setStyle("-fx-background-color: #000000;");
+        StackPane.setAlignment(topUIPanel, Pos.TOP_CENTER);
         gameScene = new Scene(gamePane);
     }
 
     private void createPauseOverlay() {
+
         pauseText = new Text("TẠM DỪNG");
         pauseText.setFont(Font.font(CUSTOM_FONT_FAMILY, FontWeight.BOLD, 60));
         pauseText.setFill(Color.WHITE);
@@ -474,16 +541,32 @@ public class UIManager {
         countdownText.setFill(Color.WHITE);
         countdownText.setVisible(false);
 
-        resumeButtonPause = new Button("Tiếp Tục");
-        resumeButtonPause.setOnAction(e -> gameManager.startResumeCountdown());
-        menuButtonPause = new Button("Về Menu Chính");
-        menuButtonPause.setOnAction(e -> gameManager.returnToMenu());
+        // --- Khởi tạo ImageView và thiết lập sự kiện ---
 
-        String buttonStyle = FONT_CSS + "-fx-font-size: 22px; -fx-min-width: 200px; -fx-padding: 8px;";
-        resumeButtonPause.setStyle(buttonStyle);
-        menuButtonPause.setStyle(buttonStyle);
+        // 2. Khởi tạo ImageView cho nút Tiếp Tục (Resume)
+        // Giả định bạn có một hàm loadImage(String path) hoặc bạn dùng new Image(path)
+        Image resumeImage = ImgManager.getInstance().getImage("RESUME_BUTTON");
+        resumeButton = new ImageView(resumeImage);
+        resumeButton.setFitWidth(200); // Đặt kích thước phù hợp
+        resumeButton.setPreserveRatio(true);
 
-        pauseOverlay = new VBox(20, pauseText, countdownText, resumeButtonPause, menuButtonPause);
+        resumeButton.setOnMouseClicked(e -> gameManager.startResumeCountdown());
+
+        // 3. Khởi tạo ImageView cho nút Về Menu Chính
+        Image menuImage = ImgManager.getInstance().getImage("MENU_BUTTON");
+        menuButton = new ImageView(menuImage);
+        menuButton.setFitWidth(200);
+        menuButton.setPreserveRatio(true);
+
+        menuButton.setOnMouseClicked(e -> gameManager.returnToMenu());
+
+        addHoverEffect(resumeButton);
+        addHoverEffect(menuButton);
+
+
+        // --- Khởi tạo Layout chính (Overlay) ---
+
+        pauseOverlay = new VBox(20, pauseText, countdownText, resumeButton, menuButton);
         pauseOverlay.setAlignment(Pos.CENTER);
         pauseOverlay.setBackground(new Background(new BackgroundFill(Color.rgb(0, 0, 0, 0.7), CornerRadii.EMPTY, Insets.EMPTY)));
         pauseOverlay.setVisible(false);
@@ -503,5 +586,68 @@ public class UIManager {
                 highScoreLabel.setText("High Score: " + newHighScore);
             }
         });
+    }
+    // Hàm hỗ trợ tạo hiệu ứng (Bạn nên thêm hàm này vào lớp của mình)
+    private void addHoverZoom(ImageView imageView) {
+        imageView.setOnMouseEntered(e -> {
+            scaleImageView(imageView, 1.0);
+            imageView.setOpacity(1.3);
+        });
+
+        imageView.setOnMouseExited(e -> {
+            scaleImageView(imageView, 0.7);
+            imageView.setOpacity(1.0);
+        });
+    }
+
+    private void addHoverEffect(ImageView imageView) {
+        imageView.setOnMouseEntered(e -> imageView.setOpacity(0.7));
+        imageView.setOnMouseExited(e -> imageView.setOpacity(1.0));
+    }
+
+    private void MouseEvent() {
+        startButton.setOnMouseClicked(e -> showNameInputOverlay());
+        settingButton.setOnMouseClicked(e -> showSettings());
+        exitButton.setOnMouseClicked(e -> gameManager.exitGame());
+        pauseButton.setOnMouseClicked(e -> gameManager.pauseGame());
+        rankingButton.setOnMouseClicked(e -> {
+            try {
+                showRanking();
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
+    }
+
+    public void hideRanking() {
+        rankingOverlay.setVisible(false);
+    }
+
+    public void showSettings() {
+        settingsOverlay.setVisible(true);
+    }
+
+    public void hideSettings() {
+        settingsOverlay.setVisible(false);
+    }
+
+    public void scaleImageView(ImageView imageView, double rate) {
+        if (imageView == null || imageView.getImage() == null) return;
+
+        // Lấy kích thước gốc của ảnh
+        double originalWidth = imageView.getImage().getWidth();
+        double originalHeight = imageView.getImage().getHeight();
+
+        // Tính lại kích thước mới theo tỉ lệ
+        double newWidth = originalWidth * rate;
+        double newHeight = originalHeight * rate;
+
+        // Cập nhật lại cho ImageView
+        imageView.setFitWidth(newWidth);
+        imageView.setFitHeight(newHeight);
+    }
+
+    private void openSkinManager() {
+
     }
 }

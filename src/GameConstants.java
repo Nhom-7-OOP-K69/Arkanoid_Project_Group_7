@@ -24,11 +24,11 @@ public final class GameConstants {
     public static final int PADDLE_HEIGHT = 32;
     public static final int PADDLE_FRAMES = 3;
     public static final int PADDLE_SPEED = 300;
-    public static final double UI_TOP_BAR_HEIGHT = 0;
+    public static final double UI_TOP_BAR_HEIGHT = 50;
     public static final int POWERUP_WIDTH = 40;
     public static final int POWERUP_HEIGHT = 11;
-    public static final int BULLET_WIDTH = 5;
-    public static final int BULLET_HEIGHT = 10;
+    public static final int BULLET_WIDTH = 20;
+    public static final int BULLET_HEIGHT = 40;
     public static final int HEART_WIDTH = 30;
     public static final int HEART_HEIGHT = 30;
     public static final int EXTRAPADDLE_WIDTH = 173;
@@ -36,5 +36,8 @@ public final class GameConstants {
     public static final int SCORE_PLUS = 10;
     public static final int LEVEL = 5;
     public static final int MAX_RANKING = 5;
-    public static final int ICON_WIDTH = 10;
+    public static final int ICON_WIDTH = 30;
+    public static final int OKBUTTON_WIDTH = 100;
+    public static final int  SETTINGBG_WIDTH = 600;
+    public static final int START_BUTTON_WIDTH = 200;
 }
