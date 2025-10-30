@@ -5,38 +5,29 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0c2c2745-22e6-49e3-8791-87cb328c1f44" name="Changes" comment="thêm ExplosionBrick và Explosion">
+      <change afterPath="$PROJECT_DIR$/resources/SkinManager.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/SkinManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/SkinManagerController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Arkanoid_Project_Group_7.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Arkanoid_Project_Group_7.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/5.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/6.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/62-Breakout-Tiles.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/63-Breakout-Tiles.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/64-Breakout-Tiles.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/65-Breakout-Tiles.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/66-Breakout-Tiles.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/67-Breakout-Tiles.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/68-Breakout-Tiles.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/69-Breakout-Tiles.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/7.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/70-Breakout-Tiles.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/71-Breakout-Tiles.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/8.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/BrickLayer.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/GameConstants.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/GameManager.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/ImgManager.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/UIManager.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/Wall.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/ranking.txt" beforeDir="false" afterPath="$PROJECT_DIR$/ranking.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/font1.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/5.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/6.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/7.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/8.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AudioManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AudioManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Bullet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Bullet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/BulletPowerUp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BulletPowerUp.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ExtraBallPowerUp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ExtraBallPowerUp.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GameConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameConstants.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GameManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ImgManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ImgManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/PowerUpManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/PowerUpManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/UIManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UIManager.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,6 +37,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="FxmlFile" />
         <option value="Class" />
       </list>
     </option>
@@ -67,7 +59,7 @@
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/Nhom-7-OOP-K69/Arkanoid_Project_Group_7.git&quot;,
-    &quot;accountId&quot;: &quot;f3d38698-a25b-4f56-996e-ddaa8ebeb632&quot;
+    &quot;accountId&quot;: &quot;7e5b048e-f993-421c-8130-049e43adca43&quot;
   }
 }</component>
   <component name="ProblemsViewState">
@@ -81,31 +73,44 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.Main.executor": "Run",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "Khang9",
-    "ignore.virus.scanning.warn.message": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "E:/Java/Arkanoid_Project_Group_7 - Copy",
-    "project.structure.last.edited": "Libraries",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "preferences.pluginManager"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;thuong5&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;E:/Java/Arkanoid_Project_Group_7 - Copy&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Problems&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.completion&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="Main" />
-      <module name="Arkanoid_Project_Group_7" />
-      <option name="VM_PARAMETERS" value="--module-path &quot;E:\javafx-sdk-25\lib&quot; --add-modules javafx.controls,javafx.fxml,javafx.media --enable-native-access=javafx.graphics,javafx.media --add-opens=javafx.base/com.sun.javafx=ALL-UNNAMED --add-opens=javafx.graphics/com.sun.javafx.tk=ALL-UNNAMED" />
+      <module name="demo5" />
+      <option name="VM_PARAMETERS" value="--module-path &quot;C:\Program Files\javafx-sdk-25\lib&quot; --add-modules javafx.controls,javafx.fxml,javafx.media,javafx.graphics --enable-native-access=javafx.graphics,javafx.media --add-opens=javafx.base/com.sun.javafx=ALL-UNNAMED --add-opens=javafx.graphics/com.sun.javafx.tk=ALL-UNNAMED" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-bf35d07a577b-intellij.indexing.shared.core-IU-252.26199.169" />
+        <option value="bundled-js-predefined-d6986cc7102b-9c94529fcfe0-JavaScript-IU-252.26199.169" />
+      </set>
+    </attachedChunks>
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -117,6 +122,15 @@
       <workItem from="1760715415175" duration="4470000" />
       <workItem from="1760775340416" duration="108000" />
       <workItem from="1760798179801" duration="3241000" />
+      <workItem from="1761402499913" duration="152000" />
+      <workItem from="1761412652896" duration="4784000" />
+      <workItem from="1761461102669" duration="8000" />
+      <workItem from="1761534265592" duration="21236000" />
+      <workItem from="1761575513540" duration="7000" />
+      <workItem from="1761647262350" duration="12143000" />
+      <workItem from="1761697668008" duration="645000" />
+      <workItem from="1761726255361" duration="2130000" />
+      <workItem from="1761743155809" duration="5192000" />
     </task>
     <task id="LOCAL-00001" summary="ok">
       <option name="closed" value="true" />

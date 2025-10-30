@@ -8,7 +8,7 @@ public class Bullet extends MovableObject {
     public Bullet(double x, double y, double width, double height) {
         super(x, y, width, height);
         // load ảnh đạn (LASER)
-        this.bulletImg = ImgManager.getInstance().getImage("LASER");
+        this.bulletImg = ImgManager.getInstance().getImage("BULLET");
     }
 
     public boolean intersects(Brick brick) {
