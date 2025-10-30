@@ -159,17 +159,11 @@ public class PowerUpManager {
     }
 
     public void render(GraphicsContext gc) {
-        for (PowerUp powerUp : fallingPowerUps) { // Chỉ render power-up đang rơi
-            String imageKey = (powerUp.getType() == 3) ? "LASER" : "EXTRA_BALL";
-            gc.drawImage(ImgManager.getInstance().getImage(imageKey),
-                    powerUp.getX(), powerUp.getY(),
-                    powerUp.getWidth(), powerUp.getHeight());
+        for (PowerUp powerUp : fallingPowerUps) {// Chỉ render power-up đang rơi
+            powerUp.render(gc);
         }
-
         for (Bullet b : bullets) {
-            gc.drawImage(ImgManager.getInstance().getImage("LASER"),
-                    b.getX(), b.getY(),
-                    b.getWidth(), b.getHeight());
+            b.render(gc);
         }
     }
 }
