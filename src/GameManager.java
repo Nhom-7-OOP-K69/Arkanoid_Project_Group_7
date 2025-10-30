@@ -45,9 +45,6 @@ public class GameManager {
 
     private AnimationTimer gameLoop;
 
-    private Scene gameOverScene;
-    private GameOverScreen gameOverScreen;
-
 
     // Phương thức được gọi bởi Main.java để khởi chạy toàn bộ game
     public void initializeAndRun(Stage stage) {
