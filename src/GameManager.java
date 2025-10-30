@@ -7,12 +7,14 @@ import javafx.animation.AnimationTimer;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
+import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import javafx.scene.layout.StackPane;
 
 public class GameManager {
 
@@ -35,6 +37,10 @@ public class GameManager {
     private String playerName;
     private final Score score = new Score();
     private int currentLevel = 0;
+
+    private Scene gameOverScene;
+    private GameOverScreen gameOverScreen;
+
     private Lives lives = new Lives();
 
     private AnimationTimer gameLoop;
@@ -147,7 +153,9 @@ public class GameManager {
             private long lastUpdate = 0;
             @Override
             public void handle(long now) {
-                if (gameStateManager.getCurrentState() == GameStateManager.GameState.MENU || gameStateManager.getCurrentState() == GameStateManager.GameState.PAUSED) {
+                if (gameStateManager.getCurrentState() == GameStateManager.GameState.MENU ||
+                        gameStateManager.getCurrentState() == GameStateManager.GameState.PAUSED ||
+                        gameStateManager.getCurrentState() == GameStateManager.GameState.GAME_OVER) { // <-- THÊM ĐIỀU KIỆN NÀY
                     lastUpdate = 0;
                     return;
                 }
@@ -245,7 +253,14 @@ public class GameManager {
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }
-                    resetGame();
+                    // 2. Đặt trạng thái
+                    gameStateManager.setCurrentState(GameStateManager.GameState.GAME_OVER);
+
+                    // 3. Gọi màn hình Game Over
+                    showGameOverScreen(score.getScore());
+
+                    // 4. Dừng game loop
+                    gameLoop.stop();
                 } else {
                     resetLaunch();
                 }
@@ -382,5 +397,15 @@ public class GameManager {
 
     public void setPlayerName(String playerName) {
         this.playerName = playerName;
+    }
+
+    public void showGameOverScreen(int finalScore) {
+        // Tạo màn hình, truyền "this" (GameManager) vào
+        gameOverScreen = new GameOverScreen(this, finalScore);
+
+        StackPane root = new StackPane(gameOverScreen);
+        gameOverScene = new Scene(root, GameConstants.SCREEN_WIDTH, GameConstants.SCREEN_HEIGHT);
+
+        primaryStage.setScene(gameOverScene);
     }
 }
