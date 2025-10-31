@@ -3,3 +3,8 @@ f:480
 kha:140
 khang:70
 dza:0
+hai:1234
+sdsadas:1200
+sds:1180
+bbbb:1170
+mmm:1170

@@ -218,7 +218,6 @@ public class PowerUpManager {
                     powerUp.getX(), powerUp.getY(),
                     powerUp.getWidth(), powerUp.getHeight());
         }
-
         for (Bullet b : bullets) {
             gc.drawImage(ImgManager.getInstance().getImage("BULLET"),
                     b.getX(), b.getY(),
