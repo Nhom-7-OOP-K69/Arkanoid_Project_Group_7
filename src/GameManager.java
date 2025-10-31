@@ -99,12 +99,17 @@ public class GameManager {
         // 2. Reset vị trí của paddle
         paddle.setX((double) (GameConstants.SCREEN_WIDTH - GameConstants.PADDLE_WIDTH) / 2);
         paddle.setY(GameConstants.SCREEN_HEIGHT - 100);
+        paddle.setWidth(GameConstants.PADDLE_WIDTH); // Reset width qua setWidth() (cập nhật current/target)
+        paddle.activePowerUps = 0;
+        paddle.isAnimating = false; // Dừng animation nếu có
+        paddle.animationProgress = 0;
 
         // 3. Đặt trạng thái về sẵn sàng
         gameStateManager.setCurrentState(GameStateManager.GameState.READY);
 
         // 4. Xóa hết ball trong list và chừa lại 1 ball
         ballLayer.clearBall();
+        ball = new Ball(442, 570, GameConstants.BALL_WIDTH, GameConstants.BALL_HEIGHT); // Tạo ball mới để reset dx/dy nếu cần
         ballLayer.addBall(ball);
 
         powerUpManager.clearPowerUp();
@@ -117,10 +122,15 @@ public class GameManager {
     public void resetLaunch() {
         paddle.setX((double) (GameConstants.SCREEN_WIDTH - GameConstants.PADDLE_WIDTH) / 2);
         paddle.setY(GameConstants.SCREEN_HEIGHT - 100);
+        paddle.setWidth(GameConstants.PADDLE_WIDTH); // Reset width
+        paddle.activePowerUps = 0;
+        paddle.isAnimating = false;
+        paddle.animationProgress = 0;
 
         gameStateManager.setCurrentState(GameStateManager.GameState.READY);
 
         ballLayer.clearBall();
+        ball = new Ball(442, 570, GameConstants.BALL_WIDTH, GameConstants.BALL_HEIGHT); // Reset ball
         ballLayer.addBall(ball);
 
         powerUpManager.clearPowerUp();
@@ -242,6 +252,8 @@ public class GameManager {
             scorePlus += checkCollisionBricks();
             scorePlus += brickLayer.processPendingExplosions();
 
+            paddle.updateAnimation(deltaTime);
+
             ballLayer.checkCollisionPaddle(paddle);
             ballLayer.collisionWall(canvas);
 
@@ -270,7 +282,8 @@ public class GameManager {
                 nextLevel();
             }
 
-            powerUpManager.update(deltaTime, paddle, ballLayer, brickLayer);
+            int bulletScore = powerUpManager.update(deltaTime, paddle, ballLayer, brickLayer);
+            score.updateScore(bulletScore);
 
             System.out.println(score.getScore());
         }
