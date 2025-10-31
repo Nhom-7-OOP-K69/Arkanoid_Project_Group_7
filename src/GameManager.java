@@ -89,14 +89,17 @@ public class GameManager {
         // 2. Reset vị trí của paddle
         paddle.setX((double) (GameConstants.SCREEN_WIDTH - GameConstants.PADDLE_WIDTH) / 2);
         paddle.setY(GameConstants.SCREEN_HEIGHT - 100);
-        paddle.shrinkPaddle(); // Đảm bảo thu nhỏ về kích thước gốc
-        paddle.activePowerUps = 0; // Xóa toàn bộ bitmask power-up (an toàn nhất)
+        paddle.setWidth(GameConstants.PADDLE_WIDTH); // Reset width qua setWidth() (cập nhật current/target)
+        paddle.activePowerUps = 0;
+        paddle.isAnimating = false; // Dừng animation nếu có
+        paddle.animationProgress = 0;
 
         // 3. Đặt trạng thái về sẵn sàng
         gameStateManager.setCurrentState(GameStateManager.GameState.READY);
 
         // 4. Xóa hết ball trong list và chừa lại 1 ball
         ballLayer.clearBall();
+        ball = new Ball(442, 570, GameConstants.BALL_WIDTH, GameConstants.BALL_HEIGHT); // Tạo ball mới để reset dx/dy nếu cần
         ballLayer.addBall(ball);
 
         powerUpManager.clearPowerUp();
@@ -109,12 +112,15 @@ public class GameManager {
     public void resetLaunch() {
         paddle.setX((double) (GameConstants.SCREEN_WIDTH - GameConstants.PADDLE_WIDTH) / 2);
         paddle.setY(GameConstants.SCREEN_HEIGHT - 100);
-        paddle.shrinkPaddle(); // Thu nhỏ paddle về gốc
-        paddle.activePowerUps = 0; // Xóa bitmask power-up
+        paddle.setWidth(GameConstants.PADDLE_WIDTH); // Reset width
+        paddle.activePowerUps = 0;
+        paddle.isAnimating = false;
+        paddle.animationProgress = 0;
 
         gameStateManager.setCurrentState(GameStateManager.GameState.READY);
 
         ballLayer.clearBall();
+        ball = new Ball(442, 570, GameConstants.BALL_WIDTH, GameConstants.BALL_HEIGHT); // Reset ball
         ballLayer.addBall(ball);
 
         powerUpManager.clearPowerUp();
@@ -217,6 +223,8 @@ public class GameManager {
 
             int scorePlus = checkCollisionBricks();
             score.updateScore(scorePlus);
+
+            paddle.updateAnimation(deltaTime);
 
             ballLayer.checkCollisionPaddle(paddle);
             ballLayer.collisionWall(canvas);

@@ -14,11 +14,11 @@ public class ExpandPaddlePowerUp extends PowerUp {
     @Override
     public void applyEffect(Paddle paddle, BallLayer ballLayer) {
         if (!active) {
-            paddle.expandPaddle(expandSize); // Gọi method mới ở Paddle
-            paddle.activatePowerUp(this.type); // Thêm vào bitmask
+            paddle.expandPaddle(expandSize); // Animation tự động bắt đầu
+            paddle.activatePowerUp(this.type);
             startTime = System.currentTimeMillis();
-            start(); // set active=true
-            System.out.println("[ExpandPaddlePowerUp] Paddle đã mở rộng!");
+            start();
+            System.out.println("[ExpandPaddlePowerUp] Paddle đã kích hoạt mở rộng!");
         }
         // Reset sẽ handle ở PowerUpManager
     }
@@ -32,10 +32,10 @@ public class ExpandPaddlePowerUp extends PowerUp {
     @Override
     public void removeEffect(Paddle paddle, Ball ball) {
         if (active) {
-            paddle.shrinkPaddle(); // Gọi method mới ở Paddle
-            paddle.deactivatePowerUp(this.type); // Xóa khỏi bitmask
+            paddle.shrinkPaddle(); // Animation tự động thu nhỏ
+            paddle.deactivatePowerUp(this.type);
             active = false;
-            System.out.println("[ExpandPaddlePowerUp] Paddle trở lại bình thường.");
+            System.out.println("[ExpandPaddlePowerUp] Paddle bắt đầu thu nhỏ.");
         }
     }
 
