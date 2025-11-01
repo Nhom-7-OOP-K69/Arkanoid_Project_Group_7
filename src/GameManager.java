@@ -10,6 +10,8 @@ import javafx.application.Platform;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -34,6 +36,7 @@ public class GameManager {
     private final Score score = new Score();
     private int currentLevel = 0;
     private int HP = 3;
+
 
     private AnimationTimer gameLoop;
 
@@ -202,44 +205,63 @@ public class GameManager {
     }
 
     private void update(double deltaTime) {
-        paddle.move(deltaTime);
-        paddle.checkCollisionWall(canvas);
+        uiManager.update(deltaTime);
+        if(!uiManager.isShowingIntro()) {
+            paddle.move(deltaTime);
+            paddle.checkCollisionWall(canvas);
 
-        if (gameStateManager.getCurrentState() == GameStateManager.GameState.READY) {
-            ball.setX(paddle.getX() + (paddle.getWidth() / 2) - (ball.getWidth() / 2));
-            ball.setY(paddle.getY() - ball.getHeight());
-        } else if (gameStateManager.getCurrentState() == GameStateManager.GameState.PLAYING) {
-            ballLayer.move(deltaTime);
 
-            int scorePlus = checkCollisionBricks();
-            score.updateScore(scorePlus);
+            if (gameStateManager.getCurrentState() == GameStateManager.GameState.READY) {
+                ball.setX(paddle.getX() + (paddle.getWidth() / 2) - (ball.getWidth() / 2));
+                ball.setY(paddle.getY() - ball.getHeight());
+            } else if (gameStateManager.getCurrentState() == GameStateManager.GameState.PLAYING) {
+                ballLayer.move(deltaTime);
 
-            ballLayer.checkCollisionPaddle(paddle);
-            ballLayer.collisionWall(canvas);
+                int scorePlus = checkCollisionBricks();
+                score.updateScore(scorePlus);
 
-            if (ballLayer.isEmpty()) {
-                HP--;
-                if (HP == 0) {
-                    try {
-                        Ranking.saveScore(playerName, score.getScore());
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
+                ballLayer.checkCollisionPaddle(paddle);
+                ballLayer.collisionWall(canvas);
+
+                if (ballLayer.isEmpty()) {
+                    HP--;
+                    if (HP == 0) {
+                        try {
+                            Ranking.saveScore(playerName, score.getScore());
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
+                        resetGame();
+                    } else {
+                        resetLaunch();
                     }
-                    resetGame();
-                } else {
-                    resetLaunch();
                 }
+
+                if (brickLayer.isEmpty()) {
+                    nextLevel();
+                }
+
+                powerUpManager.update(deltaTime, paddle, ballLayer, brickLayer);
+
+                System.out.println(score.getScore());
             }
-
-            if (brickLayer.isEmpty()) {
-                nextLevel();
-            }
-
-            powerUpManager.update(deltaTime, paddle, ballLayer, brickLayer);
-
-            System.out.println(score.getScore());
         }
+
     }
+
+    //=============== render intro =======================
+    public void renderIntro(GraphicsContext gc, int level) {
+        level = 1;
+        gc.setFill(Color.BLACK);
+        gc.fillRect(0, 0, GameConstants.SCREEN_WIDTH, GameConstants.SCREEN_HEIGHT);
+
+        gc.setFill(Color.WHITE);
+        gc.setFont(new Font("Arial", 60));
+        gc.fillText("LEVEL " + level, 340, 350);
+        gc.setFont(new Font("Arial", 35));
+        gc.fillText("GET READY!", 350, 400);
+    }
+    //=======================================================
 
     private void render() {
         ctx.clearRect(0, 0, GameConstants.SCREEN_WIDTH, GameConstants.SCREEN_HEIGHT);
@@ -247,7 +269,13 @@ public class GameManager {
         ballLayer.render(ctx);
         brickLayer.render(ctx);
         powerUpManager.render(ctx);
+
+        if (uiManager.isShowingIntro()) {
+            renderIntro(ctx, currentLevel);
+        }
     }
+
+
 
     public void startGame() {
         gameStateManager.setCurrentState(GameStateManager.GameState.READY);
@@ -257,6 +285,8 @@ public class GameManager {
         uiManager.pauseButton.setDisable(false);
         uiManager.startButton.setText("Chơi Lại");
         resetGame();
+
+        uiManager.showLevelIntro(currentLevel);
         System.out.println("Game bắt đầu! Nhấn Space để phóng bóng.");
     }
 
