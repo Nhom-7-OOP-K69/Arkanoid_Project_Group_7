@@ -17,10 +17,8 @@ public class PowerUpManager {
 
     // gọi khi brick bị phá
     public void spawnPowerUp(double x, double y) {
-        if (Math.random() < 0.4) { // 30% tỉ lệ rơi
-            double typeRand = Math.random();
-            if (typeRand < 0.33) {
-                // Bullet
+        if (Math.random() < 0.2) { // 30% tỉ lệ rơi
+            if(Math.random() < 0.5){
                 PowerUp powerUp = new BulletPowerUp(
                         x, y,
                         GameConstants.POWERUP_WIDTH,
