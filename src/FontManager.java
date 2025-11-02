@@ -1,7 +1,5 @@
-// Bỏ qua tất cả các import java.awt.* và FontFormatException, sử dụng
-// javafx.scene.text.Font và các class I/O tiêu chuẩn
 import java.io.InputStream;
-import javafx.scene.text.Font; // Dùng Font của JavaFX
+import javafx.scene.text.Font;
 
 public class FontManager {
 
