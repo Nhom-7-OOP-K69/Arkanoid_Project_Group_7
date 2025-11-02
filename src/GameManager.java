@@ -279,6 +279,7 @@ public class GameManager {
                 } else {
                     resetLaunch();
                 }
+            }
 
                 if (brickLayer.isEmpty()) {
                     nextLevel();
@@ -289,7 +290,6 @@ public class GameManager {
             score.updateScore(bulletScore);
 
                 System.out.println(score.getScore());
-            }
         }
 
         score.updateScore(scorePlus);
