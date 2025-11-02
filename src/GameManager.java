@@ -11,6 +11,8 @@ import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -42,6 +44,7 @@ public class GameManager {
     private GameOverScreen gameOverScreen;
 
     private Lives lives = new Lives();
+
 
     private AnimationTimer gameLoop;
 
@@ -282,6 +285,7 @@ public class GameManager {
                 nextLevel();
             }
 
+            powerUpManager.update(deltaTime, paddle, ballLayer, brickLayer);
             int bulletScore = powerUpManager.update(deltaTime, paddle, ballLayer, brickLayer);
             score.updateScore(bulletScore);
 
@@ -291,6 +295,20 @@ public class GameManager {
         score.updateScore(scorePlus);
     }
 
+    //=============== render intro =======================
+    public void renderIntro(GraphicsContext gc, int level) {
+        level = 1;
+        gc.setFill(Color.BLACK);
+        gc.fillRect(0, 0, GameConstants.SCREEN_WIDTH, GameConstants.SCREEN_HEIGHT);
+
+        gc.setFill(Color.WHITE);
+        gc.setFont(new Font("Arial", 60));
+        gc.fillText("LEVEL " + level, 340, 350);
+        gc.setFont(new Font("Arial", 35));
+        gc.fillText("GET READY!", 350, 400);
+    }
+    //=======================================================
+
     private void render() {
         ctx.clearRect(0, 0, GameConstants.SCREEN_WIDTH, GameConstants.SCREEN_HEIGHT);
         lives.render(ctx);
@@ -298,8 +316,14 @@ public class GameManager {
         ballLayer.render(ctx);
         brickLayer.render(ctx);
         powerUpManager.render(ctx);
+
+        if (uiManager.isShowingIntro()) {
+            renderIntro(ctx, currentLevel);
+        }
         explosionLayer.render(ctx);
     }
+
+
 
     public void startGame() {
         gameStateManager.setCurrentState(GameStateManager.GameState.READY);
@@ -311,6 +335,9 @@ public class GameManager {
         uiManager.pauseButton.setVisible(true);
 
         resetGame();
+
+        uiManager.showLevelIntro(currentLevel);
+        System.out.println("Game bắt đầu! Nhấn Space để phóng bóng.");
     }
 
     public void pauseGame() {

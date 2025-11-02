@@ -53,6 +53,31 @@ public class UIManager {
     public Scene menuScene, gameScene;
     public StackPane gamePane;
 
+    //=================== Intro Scene ==================================
+    private LevelIntro currentIntro;
+    public void showLevelIntro(int level) {
+        currentIntro = new LevelIntro(level);
+    }
+
+    public void update(double deltaTime) {
+        if(currentIntro != null) {
+            currentIntro.update(deltaTime);
+            if(!currentIntro.isActive()) {
+                currentIntro = null;
+            }
+        }
+    }
+
+    public boolean isShowingIntro() {
+        return currentIntro != null && currentIntro.isActive();
+    }
+
+    public LevelIntro getCurrentIntro() {
+        return currentIntro;
+    }
+
+    //=================================================================
+
     // Các Overlay và các nút liên quan
     public StackPane settingsOverlay;
     public VBox pauseOverlay, rankingOverlay;
@@ -102,6 +127,7 @@ public class UIManager {
         this.gameManager = gameManager;
         this.gameStateManager = gameStateManager;
     }
+
 
     public void createMenuScene() {
         StackPane menuPane = new StackPane();
