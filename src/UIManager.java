@@ -60,7 +60,6 @@ public class UIManager {
     public Text pauseText, countdownText;
 
     private Label scoreLabel;
-    private Label highScoreLabel;
 
     // THÊM: Biến cho danh sách xếp hạng để có thể cập nhật
     public VBox rankingListContainer;
@@ -511,22 +510,56 @@ public class UIManager {
 
 
     public void createGameScene(Canvas canvasPane) {
+        // 1. TẠO LABEL ĐIỂM SỐ
+        scoreLabel = new Label("Score: 0");
+        scoreLabel.setStyle("-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: white;");
+
+        // Gom điểm vào một VBox
+        VBox scoreBox = new VBox(5, scoreLabel);
+        scoreBox.setAlignment(Pos.CENTER_LEFT);
+        scoreBox.setPadding(new Insets(0, 0, 0, 15)); // Căn lề trái 15px
+
+        // 2. TẠO CÁC NÚT (Pause, Menu)
         pauseButton.setOnMouseClicked(e -> gameManager.pauseGame());
         menuButton.setOnMouseClicked(e -> gameManager.returnToMenu());
         addHoverEffect(pauseButton);
         addHoverEffect(menuButton);
 
-        HBox topUIPanel = new HBox(10, pauseButton, menuButton);
+        // Gom các nút vào một HBox
+        HBox buttonBox = new HBox(10, pauseButton, menuButton);
+        buttonBox.setAlignment(Pos.CENTER_RIGHT);
+        buttonBox.setPadding(new Insets(0, 10, 0, 0)); // Căn lề phải 10px
+
+        // 3. TẠO SPACER (vùng đệm)
+        // Đây là một "vùng trống vô hình" sẽ co dãn để đẩy score và buttons ra 2 bên
+        Region spacer = new Region();
+        HBox.setHgrow(spacer, Priority.ALWAYS); // Đây là mấu chốt
+
+        // 4. TẠO THANH UI TRÊN CÙNG (GỘP TẤT CẢ LẠI)
+        // Cấu trúc: [ScoreBox] ---- [Spacer (co dãn)] ---- [ButtonBox]
+        HBox topUIPanel = new HBox(scoreBox, spacer, buttonBox);
         topUIPanel.setPadding(new Insets(5));
-        topUIPanel.setAlignment(Pos.CENTER_RIGHT);
+        topUIPanel.setAlignment(Pos.CENTER); // Căn giữa các con theo chiều dọc
         topUIPanel.setPrefHeight(GameConstants.UI_TOP_BAR_HEIGHT);
         topUIPanel.setMaxHeight(GameConstants.UI_TOP_BAR_HEIGHT + 5);
         topUIPanel.setStyle("-fx-background-color: #2D3748; -fx-border-color: #4A5568; -fx-border-width: 0 0 2px 0;");
 
+
+        // 5. TẠO GAMEPANE VÀ SCENE
         createPauseOverlay();
-        gamePane = new StackPane(game_bg,canvasPane, topUIPanel, pauseOverlay);
+
+        // Giờ chúng ta chỉ cần thêm 'topUIPanel' (đã chứa cả score và nút)
+        gamePane = new StackPane(game_bg, canvasPane, topUIPanel, pauseOverlay);
         gamePane.setStyle("-fx-background-color: #000000;");
+
+        // Căn thanh UI lên trên cùng (nó sẽ tự động dãn hết chiều ngang)
         StackPane.setAlignment(topUIPanel, Pos.TOP_CENTER);
+
+        // Căn canvasPane (khung game) nằm NGAY DƯỚI thanh UI
+        StackPane.setAlignment(canvasPane, Pos.TOP_CENTER);
+        // Dùng margin để đẩy canvasPane xuống 1 khoảng bằng đúng chiều cao của thanh UI
+        //StackPane.setMargin(canvasPane, new Insets(GameConstants.UI_TOP_BAR_HEIGHT, 0, 0, 0));
+
         gameScene = new Scene(gamePane);
     }
 
@@ -580,13 +613,13 @@ public class UIManager {
         });
     }
 
-    public void updateHighScoreLabel(int newHighScore) {
+    /*public void updateHighScoreLabel(int newHighScore) {
         Platform.runLater(() -> {
             if (highScoreLabel != null) {
                 highScoreLabel.setText("High Score: " + newHighScore);
             }
         });
-    }
+    }*/
     // Hàm hỗ trợ tạo hiệu ứng (Bạn nên thêm hàm này vào lớp của mình)
     private void addHoverZoom(ImageView imageView) {
         imageView.setOnMouseEntered(e -> {
