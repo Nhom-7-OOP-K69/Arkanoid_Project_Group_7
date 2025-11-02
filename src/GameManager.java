@@ -281,15 +281,15 @@ public class GameManager {
                 }
             }
 
-                if (brickLayer.isEmpty()) {
-                    nextLevel();
-                }
+            if (brickLayer.isEmpty()) {
+                nextLevel();
+            }
 
-                powerUpManager.update(deltaTime, paddle, ballLayer, brickLayer);
+            powerUpManager.update(deltaTime, paddle, ballLayer, brickLayer);
             int bulletScore = powerUpManager.update(deltaTime, paddle, ballLayer, brickLayer);
             score.updateScore(bulletScore);
 
-                System.out.println(score.getScore());
+            System.out.println(score.getScore());
         }
 
         score.updateScore(scorePlus);
