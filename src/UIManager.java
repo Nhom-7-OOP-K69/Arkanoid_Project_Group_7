@@ -12,6 +12,7 @@ import javafx.geometry.Pos;
 import javafx.geometry.HPos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.*;
 import javafx.scene.effect.ColorAdjust;
 import javafx.scene.effect.DropShadow;
@@ -57,6 +58,7 @@ public class UIManager {
     // Các Scene và Panes chính
     public Scene menuScene, gameScene;
     public StackPane gamePane;
+
 
     // Các Overlay và các nút liên quan
     public StackPane settingsOverlay;
@@ -107,12 +109,50 @@ public class UIManager {
     private ImageView game_bg = new ImageView(ImgManager.getInstance().getImage("GAME_BG"));
 
     public final Font medievalFont = Font.loadFont(getClass().getResourceAsStream("/fonts/MedievalSharp-Book.ttf"), 24);
+    public final Font titleFont = Font.loadFont(getClass().getResourceAsStream("/fonts/MedievalSharp-Book.ttf"), 50);
+
     public final Color Text_Color = Color.web("#b08b58");
 
     public UIManager(GameManager gameManager, GameStateManager gameStateManager) {
         this.gameManager = gameManager;
         this.gameStateManager = gameStateManager;
     }
+
+    //=================== Intro Scene ==================================
+    private boolean isShowingIntro = true;
+    private int level;
+    private LevelIntro levelIntro;
+
+    private LevelIntro currentIntro = new LevelIntro(level, () -> {
+        isShowingIntro = false;
+    }, titleFont);
+
+    public void showLevelIntro(int level, Runnable onFinish, Font titleFont) {
+        levelIntro = new LevelIntro(level, onFinish, titleFont);
+        currentIntro = levelIntro;
+        isShowingIntro = true;
+    }
+
+    public boolean isIntroActive() {
+        return levelIntro != null && levelIntro.isActive();
+    }
+
+    public void renderIntro(GraphicsContext gc) {
+        if (levelIntro != null && levelIntro.isActive()) {
+            levelIntro.render(gc);
+        }
+    }
+
+    public boolean isShowingIntro() {
+        return currentIntro != null && currentIntro.isActive();
+    }
+
+    public LevelIntro getCurrentIntro() {
+        return currentIntro;
+    }
+
+    //=================================================================
+
 
     public void createMenuScene() {
         StackPane menuPane = new StackPane();

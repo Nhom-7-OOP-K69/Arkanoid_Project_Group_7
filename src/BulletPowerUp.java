@@ -21,9 +21,9 @@ public class BulletPowerUp extends PowerUp {
     @Override
     public void applyEffect(Paddle paddle, BallLayer ballLayer) {
         if (!active) {
-            paddle.setCurrentPowerUp(this.type);
+            paddle.activatePowerUp(this.type); // Thêm vào bitmask
             startTime = System.currentTimeMillis();
-            lastShotTime = System.currentTimeMillis(); //reset để bắt đầu bắn liên tục
+            lastShotTime = startTime - shotInterval; //reset để bắt đầu bắn liên tục
             start();
             System.out.println("[BulletPowerUp] Paddle đã kích hoạt chế độ bắn đạn!");
         }
@@ -40,7 +40,7 @@ public class BulletPowerUp extends PowerUp {
     public void removeEffect(Paddle paddle, Ball ball) {
         if (active) {
             System.out.println("[BulletPowerUp] Hết thời gian, Paddle ngừng bắn.");
-            paddle.setCurrentPowerUp(0);
+            paddle.deactivatePowerUp(this.type); // Xóa khỏi bitmask
             active = false;
         }
     }
@@ -53,8 +53,11 @@ public class BulletPowerUp extends PowerUp {
         long currentTime = System.currentTimeMillis();
         if (currentTime - lastShotTime >= shotInterval) {
             lastShotTime = currentTime;
-            double leftX = paddle.getX();
-            double rightX = paddle.getX() + paddle.getWidth() - 10;
+            double centerX = paddle.getX() + paddle.getWidth() / 2;
+            double offset = 10; // khoảng nhỏ giữa 2 viên
+            double bulletHalfW = GameConstants.BULLET_WIDTH / 2;
+            double leftX = centerX - offset - bulletHalfW;
+            double rightX = centerX + offset - bulletHalfW;
             double y = paddle.getY() - 10;
 
             // tạo 2 viên đạn
