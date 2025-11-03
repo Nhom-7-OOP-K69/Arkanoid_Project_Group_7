@@ -70,6 +70,7 @@ public class UIManager {
     public Text pauseText, countdownText;
 
     private Label scoreLabel;
+    private Label highScoreLabel;
 
     // THÊM: Biến cho danh sách xếp hạng để có thể cập nhật
     public VBox rankingListContainer;
@@ -561,7 +562,7 @@ public class UIManager {
 
         HBox topUIPanel = new HBox(20, pauseButton_ic, resumeButton_ic, menuButton_ic);
         topUIPanel.setPadding(new Insets(5));
-        topUIPanel.setAlignment(Pos.CENTER); // Căn giữa các con theo chiều dọc
+        topUIPanel.setAlignment(Pos.CENTER_RIGHT);
         topUIPanel.setPrefHeight(GameConstants.UI_TOP_BAR_HEIGHT);
         topUIPanel.setMaxHeight(GameConstants.UI_TOP_BAR_HEIGHT + 5);
         topUIPanel.setStyle("-fx-background-color: transparent; -fx-border-width: 0;");
@@ -570,15 +571,7 @@ public class UIManager {
 
         gamePane = new StackPane(game_bg, canvasPane, topUIPanel, pauseOverlay, settingsOverlay);
         gamePane.setStyle("-fx-background-color: #000000;");
-
-        // Căn thanh UI lên trên cùng (nó sẽ tự động dãn hết chiều ngang)
         StackPane.setAlignment(topUIPanel, Pos.TOP_CENTER);
-
-        // Căn canvasPane (khung game) nằm NGAY DƯỚI thanh UI
-        StackPane.setAlignment(canvasPane, Pos.TOP_CENTER);
-        // Dùng margin để đẩy canvasPane xuống 1 khoảng bằng đúng chiều cao của thanh UI
-        //StackPane.setMargin(canvasPane, new Insets(GameConstants.UI_TOP_BAR_HEIGHT, 0, 0, 0));
-
         gameScene = new Scene(gamePane);
     }
 
@@ -612,13 +605,14 @@ public class UIManager {
         });
     }
 
-    /*public void updateHighScoreLabel(int newHighScore) {
+    public void updateHighScoreLabel(int newHighScore) {
         Platform.runLater(() -> {
             if (highScoreLabel != null) {
                 highScoreLabel.setText("High Score: " + newHighScore);
             }
         });
-    }*/
+    }
+
     // Hàm hỗ trợ tạo hiệu ứng (Bạn nên thêm hàm này vào lớp của mình)
     private void addHoverZoom(ImageView imageView) {
         imageView.setOnMouseEntered(e -> {
