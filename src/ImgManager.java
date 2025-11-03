@@ -41,6 +41,16 @@ public class ImgManager {
         textures.put("EXIT_NORMAL", Load.loadImage("exit.png", 0, 0, true, false));
         textures.put("EXIT_HOVER", Load.loadImage("exit_hover.png", 0, 0, true, false));
         textures.put("EXIT_PRESS", Load.loadImage("exit_press.png", 0, 0, true, false));
+        textures.put("REPLAY_NORMAl", Load.loadImage("replay.png", GameConstants.ICON_WIDTH, 0, true, false));
+        textures.put("REPLAY_HOVER", Load.loadImage("replay_hover.png", GameConstants.ICON_WIDTH, 0, true, false));
+        textures.put("REPLAY_PRESS", Load.loadImage("replay_press.png", GameConstants.ICON_WIDTH, 0, true, false));
+        textures.put("MENU_NORMAL", Load.loadImage("options.png", GameConstants.ICON_WIDTH, 0, true, false));
+        textures.put("MENU_HOVER", Load.loadImage("options_hover.png", GameConstants.ICON_WIDTH, 0, true, false));
+        textures.put("MENU_PRESS", Load.loadImage("options_press.png", GameConstants.ICON_WIDTH, 0, true, false));
+        textures.put("EXIT_NORMAL", Load.loadImage("exit.png", GameConstants.ICON_WIDTH, 0, true, false));
+        textures.put("EXIT_HOVER", Load.loadImage("exit_hover.png", GameConstants.ICON_WIDTH, 0, true, false));
+        textures.put("EXIT_PRESS", Load.loadImage("exit_press.png", GameConstants.ICON_WIDTH, 0, true, false));
+        textures.put("INTRO_BG", Load.loadImage("Intro.png", GameConstants.SCREEN_WIDTH, 0, true, false));
 
         textures.put("STORE", Load.loadImage("store.png", GameConstants.ICON_WIDTH, 0, true, false));
         textures.put("OK_BUTTON", Load.loadImage("ok_button.png", GameConstants.OKBUTTON_WIDTH, 0, true, false));
@@ -58,10 +68,10 @@ public class ImgManager {
             Image paddleimg = Load.loadImage(j + "-Breakout-Tiles.png", GameConstants.PADDLE_WIDTH, 0, true, false);
             textures.put("PADDLE" + i, paddleimg);
         }
-        for (int i = 0; i < 6; i++) {
-            int j = 62 + i;
-            Image explosionimg = new Image("file:images/" + j + "-Breakout-Tiles.png", GameConstants.PADDLE_WIDTH, 0, true, false);
-            textures.put("EXPLOSION" + i, explosionimg);
+        for (int i = 0; i < 8; i++) {
+            int j = 1 + i;
+            Image explosionimg = Load.loadImage("HYPER_" + j + ".png", GameConstants.PADDLE_WIDTH, 0, true, false);
+            textures.put("EXPLOSIONBRICK" + i, explosionimg);
         }
     }
 

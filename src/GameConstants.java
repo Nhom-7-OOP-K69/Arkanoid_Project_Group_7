@@ -4,7 +4,7 @@ public final class GameConstants {
     public static final int BRICK_WIDTH = 60;
     public static final int PADDLE_EXPAND_SIZE = 20;
     public static final int POWERUP_EXPAND_DURATION = 30;
-    public static final int BULLET_SPEED = 5;
+    public static final int BULLET_SPEED = 2;
     public static final int BULLET_SHOT_INTERVAL = 500;
     public static final int BRICK_HEIGHT = 20;
     public static final int NORMAL_BRICK_HP = 1;
@@ -24,7 +24,7 @@ public final class GameConstants {
     public static final int PADDLE_HEIGHT = 32;
     public static final int PADDLE_FRAMES = 3;
     public static final int PADDLE_SPEED = 300;
-    public static final double UI_TOP_BAR_HEIGHT = 0;
+    public static final double UI_TOP_BAR_HEIGHT = 50;
     public static final int POWERUP_WIDTH = 40;
     public static final int POWERUP_HEIGHT = 11;
     public static final int BULLET_WIDTH = 20;
@@ -32,7 +32,7 @@ public final class GameConstants {
     public static final int HEART_WIDTH = 30;
     public static final int HEART_HEIGHT = 30;
     public static final int EXTRAPADDLE_WIDTH = 173;
-    public static final int SPAWN_POWER_UP_SPEED = 200;
+    public static final int SPAWN_POWER_UP_SPEED = 100;
     public static final int SCORE_PLUS = 10;
     public static final int LEVEL = 5;
     public static final int MAX_RANKING = 5;
