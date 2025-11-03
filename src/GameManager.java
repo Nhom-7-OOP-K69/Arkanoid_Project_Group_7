@@ -7,6 +7,8 @@ import javafx.animation.AnimationTimer;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -14,6 +16,7 @@ import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.image.ImageView;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import javafx.scene.layout.StackPane;
@@ -392,8 +395,16 @@ public class GameManager {
     public void pauseGame() {
         if (gameStateManager.getCurrentState() == GameStateManager.GameState.PLAYING) {
             gameStateManager.setCurrentState(GameStateManager.GameState.PAUSED);
-            //uiManager.showPauseOverlay(true);
-            // System.out.println("Game đã tạm dừng!");
+
+            // Hiển thị overlay mờ và các nút tùy chọn
+            uiManager.pauseOverlay.setVisible(true);
+            //uiManager.resumeButton_ic.setVisible(true);
+            //uiManager.menuButton_ic.setVisible(true);
+
+            // Ẩn text đếm ngược (nếu có)
+            uiManager.countdownText.setVisible(false);
+
+            System.out.println("Game đã tạm dừng!");
         }
     }
 
@@ -412,6 +423,34 @@ public class GameManager {
             // Trạng thái sẽ được set bởi startResumeCountdown
         }
     }
+
+
+    public void startResumeCountdown(Text countdownText) {
+        // Đảm bảo text reset về trạng thái ban đầu
+        countdownText.textProperty().unbind();
+        countdownText.setVisible(true);
+
+        // Bắt đầu từ 3 mỗi lần
+        IntegerProperty counter = new SimpleIntegerProperty(3);
+        countdownText.textProperty().bind(counter.asString());
+
+        // Tạo timeline mới mỗi lần resume
+        Timeline timeline = new Timeline(
+                new KeyFrame(Duration.seconds(1), event -> {
+                    counter.set(counter.get() - 1);
+                    if (counter.get() <= 0) {
+                        // Kết thúc đếm ngược
+                        countdownText.textProperty().unbind();
+                        countdownText.setVisible(false);
+                        resumeGame();
+                    }
+                })
+        );
+
+        timeline.setCycleCount(3); // chạy 3 lần (3→2→1)
+        timeline.playFromStart();  // đảm bảo bắt đầu lại từ đầu
+    }
+
 
     public void returnToMenu() {
         gameStateManager.setCurrentState(GameStateManager.GameState.MENU);
