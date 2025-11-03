@@ -16,12 +16,7 @@ public class ImgManager {
 
     private void loadTextures() {
         textures.put("PADDLE0",Load.loadImage("paddle0.png",GameConstants.PADDLE_WIDTH,0,true,false));
-        textures.put("PADDLE1",Load.loadImage("paddle1.png",GameConstants.PADDLE_WIDTH,0,true,false));
-        //textures.put("PADDLE2",Load.loadImage("paddle2.png",GameConstants.PADDLE_WIDTH,0,true,false));
-        //textures.put("PADDLE3",Load.loadImage("paddle3.png",GameConstants.PADDLE_WIDTH,0,true,false));
         textures.put("BALL0", Load.loadImage("ball0.png", GameConstants.BALL_WIDTH, 0, true, false));
-        textures.put("BALL1", Load.loadImage("ball1.png", GameConstants.BALL_WIDTH, 0, true, false));
-        //textures.put("BALL2", Load.loadImage("ball2.png", GameConstants.BALL_WIDTH, 0, true, false));
         textures.put("LIFE", Load.loadImage("heart_1.png", GameConstants.BRICK_WIDTH, 0, true, false));
         textures.put("SILVER_BRICK", Load.loadImage("17-Breakout-Tiles.png", GameConstants.BRICK_WIDTH, 0, true, false));
         textures.put("RED_BRICK", Load.loadImage("07-Breakout-Tiles.png", GameConstants.BRICK_WIDTH, 0, true, false));
@@ -49,8 +44,6 @@ public class ImgManager {
         textures.put("EXIT_NORMAL", Load.loadImage("exit.png", GameConstants.ICON_WIDTH, 0, true, false));
         textures.put("EXIT_HOVER", Load.loadImage("exit_hover.png", GameConstants.ICON_WIDTH, 0, true, false));
         textures.put("EXIT_PRESS", Load.loadImage("exit_press.png", GameConstants.ICON_WIDTH, 0, true, false));
-        textures.put("INTRO_BG", Load.loadImage("Intro.png", GameConstants.SCREEN_WIDTH, 0, true, false));
-
         textures.put("STORE", Load.loadImage("store.png", GameConstants.ICON_WIDTH, 0, true, false));
         textures.put("OK_BUTTON", Load.loadImage("ok_button.png", GameConstants.OKBUTTON_WIDTH, 0, true, false));
         textures.put("BACK_BUTTON", Load.loadImage("back_button.png", GameConstants.OKBUTTON_WIDTH, 0, true, false));
