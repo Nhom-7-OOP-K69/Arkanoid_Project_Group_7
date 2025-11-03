@@ -32,15 +32,15 @@ public class ImgManager {
         textures.put("BULLET", Load.loadImage("bullet_1.png", GameConstants.BULLET_WIDTH, 0, true, false));
         textures.put("PLAYER_ICON", Load.loadImage("player_icon.png", GameConstants.ICON_WIDTH, 0, true, false));
         textures.put("GAMER", Load.loadImage("gamer.png", GameConstants.ICON_WIDTH, 0, true, false));
-        textures.put("REPLAY_NORMAl", Load.loadImage("replay.png", GameConstants.ICON_WIDTH, 0, true, false));
-        textures.put("REPLAY_HOVER", Load.loadImage("replay_hover.png", GameConstants.ICON_WIDTH, 0, true, false));
-        textures.put("REPLAY_PRESS", Load.loadImage("replay_press.png", GameConstants.ICON_WIDTH, 0, true, false));
-        textures.put("MENU_NORMAL", Load.loadImage("options.png", GameConstants.ICON_WIDTH, 0, true, false));
-        textures.put("MENU_HOVER", Load.loadImage("options_hover.png", GameConstants.ICON_WIDTH, 0, true, false));
-        textures.put("MENU_PRESS", Load.loadImage("options_press.png", GameConstants.ICON_WIDTH, 0, true, false));
-        textures.put("EXIT_NORMAL", Load.loadImage("exit.png", GameConstants.ICON_WIDTH, 0, true, false));
-        textures.put("EXIT_HOVER", Load.loadImage("exit_hover.png", GameConstants.ICON_WIDTH, 0, true, false));
-        textures.put("EXIT_PRESS", Load.loadImage("exit_press.png", GameConstants.ICON_WIDTH, 0, true, false));
+        textures.put("REPLAY_NORMAL", Load.loadImage("replay.png", 0, 0, true, false));
+        textures.put("REPLAY_HOVER", Load.loadImage("replay_hover.png", 0, 0, true, false));
+        textures.put("REPLAY_PRESS", Load.loadImage("replay_press.png", 0, 0, true, false));
+        textures.put("OPTIONS_NORMAL", Load.loadImage("options.png", 0, 0, true, false));
+        textures.put("OPTIONS_HOVER", Load.loadImage("options_hover.png", 0, 0, true, false));
+        textures.put("OPTIONS_PRESS", Load.loadImage("options_press.png", 0, 0, true, false));
+        textures.put("EXIT_NORMAL", Load.loadImage("exit.png", 0, 0, true, false));
+        textures.put("EXIT_HOVER", Load.loadImage("exit_hover.png", 0, 0, true, false));
+        textures.put("EXIT_PRESS", Load.loadImage("exit_press.png", 0, 0, true, false));
 
         textures.put("STORE", Load.loadImage("store.png", GameConstants.ICON_WIDTH, 0, true, false));
         textures.put("OK_BUTTON", Load.loadImage("ok_button.png", GameConstants.OKBUTTON_WIDTH, 0, true, false));
