@@ -158,6 +158,11 @@ public class GameManager {
         // 3. Đặt trạng thái về sẵn sàng
         gameStateManager.setCurrentState(GameStateManager.GameState.READY);
 
+        // intro màn mới
+        uiManager.showLevelIntro(currentLevel, () -> {
+            gameStateManager.setCurrentState(GameStateManager.GameState.READY);
+        }, uiManager.titleFont);
+
         System.out.println("Bóng đã reset. Nhấn Space để chơi tiếp.");
     }
 
@@ -227,6 +232,8 @@ public class GameManager {
     }
 
     private void update(double deltaTime) {
+        if (uiManager.isShowingIntro()) return;
+
         uiManager.updateScoreLabel(score.getScore());
 
         paddle.move(deltaTime);
@@ -295,31 +302,21 @@ public class GameManager {
         score.updateScore(scorePlus);
     }
 
-    //=============== render intro =======================
-    public void renderIntro(GraphicsContext gc, int level) {
-        level = 1;
-        gc.setFill(Color.BLACK);
-        gc.fillRect(0, 0, GameConstants.SCREEN_WIDTH, GameConstants.SCREEN_HEIGHT);
-
-        gc.setFill(Color.WHITE);
-        gc.setFont(new Font("Arial", 60));
-        gc.fillText("LEVEL " + level, 340, 350);
-        gc.setFont(new Font("Arial", 35));
-        gc.fillText("GET READY!", 350, 400);
-    }
-    //=======================================================
 
     private void render() {
         ctx.clearRect(0, 0, GameConstants.SCREEN_WIDTH, GameConstants.SCREEN_HEIGHT);
+
+        if (uiManager.isShowingIntro()) {
+            uiManager.getCurrentIntro().render(ctx);
+            return;
+        }
+
         lives.render(ctx);
         paddle.render(ctx);
         ballLayer.render(ctx);
         brickLayer.render(ctx);
         powerUpManager.render(ctx);
 
-        if (uiManager.isShowingIntro()) {
-            renderIntro(ctx, currentLevel);
-        }
         explosionLayer.render(ctx);
     }
 
@@ -336,7 +333,11 @@ public class GameManager {
 
         resetGame();
 
-        uiManager.showLevelIntro(currentLevel);
+        uiManager.showLevelIntro(currentLevel, () -> {
+            // Sau khi intro xong thì bắt đầu game thật
+            gameStateManager.setCurrentState(GameStateManager.GameState.READY);
+        }, uiManager.titleFont);
+
         System.out.println("Game bắt đầu! Nhấn Space để phóng bóng.");
     }
 
