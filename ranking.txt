@@ -1,5 +1,6 @@
-Guest_98:1760
 Guest_46:1600
-Guest_17:1300
 hai:1234
 sdsadas:1200
+à:1200
+sds:1180
+bbbb:1170
