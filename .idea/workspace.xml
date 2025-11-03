@@ -6,119 +6,44 @@
   <component name="ChangeListManager">
     <list default="true" id="0c2c2745-22e6-49e3-8791-87cb328c1f44" name="Changes" comment="sửa lỗi">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/Arka_solid.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/fonts/MedievalSharp-Book.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/fonts/font1.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/01-Breakout-Tiles.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/02-Breakout-Tiles.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/03-Breakout-Tiles.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/04-Breakout-Tiles.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/05-Breakout-Tiles.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/06-Breakout-Tiles.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/07-Breakout-Tiles.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/08-Breakout-Tiles.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/09-Breakout-Tiles.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/10-Breakout-Tiles.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/11-Breakout-Tiles.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/12-Breakout-Tiles.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/13-Breakout-Tiles.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/14-Breakout-Tiles.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/15-Breakout-Tiles.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/16-Breakout-Tiles.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/17-Breakout-Tiles.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/18-Breakout-Tiles.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/19-Breakout-Tiles.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/20-Breakout-Tiles.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/21-Breakout-Tiles.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/22-Breakout-Tiles.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/23-Breakout-Tiles.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/24-Breakout-Tiles.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/25-Breakout-Tiles.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/26-Breakout-Tiles.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/27-Breakout-Tiles.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/28-Breakout-Tiles.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/29-Breakout-Tiles.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/30-Breakout-Tiles.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/31-Breakout-Tiles.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/32-Breakout-Tiles.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/33-Breakout-Tiles.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/34-Breakout-Tiles.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/35-Breakout-Tiles.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/36-Breakout-Tiles.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/37-Breakout-Tiles.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/38-Breakout-Tiles.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/39-Breakout-Tiles.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/40-Breakout-Tiles.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/41-Breakout-Tiles.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/42-Breakout-Tiles.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/43-Breakout-Tiles.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/44-Breakout-Tiles.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/45-Breakout-Tiles.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/46-Breakout-Tiles.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/47-Breakout-Tiles.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/48-Breakout-Tiles.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/49-Breakout-Tiles.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/50-Breakout-Tiles.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/51-Breakout-Tiles.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/52-Breakout-Tiles.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/53-Breakout-Tiles.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/54-Breakout-Tiles.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/55-Breakout-Tiles.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/56-Breakout-Tiles.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/567271670_1528939791646805_8522147267932861329_n-removebg-preview.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/57-Breakout-Tiles.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/58-Breakout-Tiles.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/59-Breakout-Tiles.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/60-Breakout-Tiles.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/61-Breakout-Tiles.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/Breakout_Tile_Free.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/HYPER_1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/HYPER_2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/HYPER_3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/HYPER_4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/HYPER_5.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/HYPER_6.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/HYPER_7.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/HYPER_8.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/Intro.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/back_button.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/ball.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/ball1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/bullet_1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/exit.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/exit_button.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/exit_button1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/exit_hover.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/exit_press.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/game_bg1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/gamer.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/heart_1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/lava_brick.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/menu_bg1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/ok_button.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/options.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/options_button1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/options_hover.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/options_press.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/pause_button1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/play_button.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/play_button1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/player_icon.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/ranking_bg.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/replay.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/replay_hover.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/replay_press.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/resume_button1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/setting_bg.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/setting_button.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/setting_button1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/store.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/sound/break.wav" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/sound/collision.wav" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/sound/game_music.wav" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/sound/get_item.wav" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/sound/laser_shot.wav" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/sound/level_up.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AudioManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/manager/AudioManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Ball.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/object/ball/Ball.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/BallLayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/object/ball/BallLayer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Brick.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/object/brick/Brick.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/BrickLayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/object/brick/BrickLayer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Bullet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/object/bullet/Bullet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/BulletPowerUp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/powerUp/BulletPowerUp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ExpandPaddlePowerUp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/powerUp/ExpandPaddlePowerUp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Explosion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/object/explosion/Explosion.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ExplosionBrick.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/object/brick/ExplosionBrick.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ExplosionLayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/object/explosion/ExplosionLayer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ExtraBallPowerUp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/powerUp/ExtraBallPowerUp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/FontManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/manager/FontManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GameConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/GameConstants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GameManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/GameManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GameObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/object/gameObject/GameObject.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GameOverScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/GameOverScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GameStateManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/GameStateManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GameWinScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/GameWinScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ImgManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/manager/ImgManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/InputHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/manager/InputHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LevelIntro.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/LevelIntro.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Lives.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/Lives.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MovableObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/object/gameObject/MovableObject.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/NormalBrick.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/object/brick/NormalBrick.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Paddle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/object/paddle/Paddle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PendingExplosion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/object/explosion/PendingExplosion.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PlayerScore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/score/PlayerScore.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PowerUp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/powerUp/PowerUp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PowerUpManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/powerUp/PowerUpManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Ranking.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/score/Ranking.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Score.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/score/Score.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SpawnPowerUp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/powerUp/SpawnPowerUp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/StrongBrick.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/object/brick/StrongBrick.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SuperBrick.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/object/brick/SuperBrick.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/UIManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/manager/UIManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Wall.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/object/brick/Wall.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -170,21 +95,22 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
+    "create.test.in.the.same.root": "true",
     "git-widget-placeholder": "Khang15",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "E:/Java/Arkanoid_Project_Group_7 - Copy",
-    "project.structure.last.edited": "Modules",
+    "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "preferences.pluginManager"
+    "settings.editor.selected.configurable": "MavenSettings"
   }
 }]]></component>
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="Main" />
       <module name="Arkanoid_Project_Group_7" />
-      <option name="VM_PARAMETERS" value="--module-path &quot;E:\javafx-sdk-25\lib&quot; --add-modules javafx.controls,javafx.fxml,javafx.media --enable-native-access=javafx.graphics,javafx.media --add-opens=javafx.base/com.sun.javafx=ALL-UNNAMED --add-opens=javafx.graphics/com.sun.javafx.tk=ALL-UNNAMED" />
+      <option name="VM_PARAMETERS" value="--module-path &quot;E:\javafx-sdk-25\lib&quot;  --add-modules javafx.controls,javafx.fxml,javafx.media  --enable-native-access=javafx.graphics,javafx.media  --add-opens=javafx.base/com.sun.javafx=ALL-UNNAMED  --add-opens=javafx.graphics/com.sun.javafx.tk=ALL-UNNAMED" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -385,7 +311,15 @@
       <option name="project" value="LOCAL" />
       <updated>1762158567751</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="sửa lỗi">
+      <option name="closed" value="true" />
+      <created>1762159958316</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1762159958316</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

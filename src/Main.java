@@ -1,5 +1,6 @@
 import java.util.*;
 
+import game.GameManager;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -15,26 +16,6 @@ import javafx.stage.Stage;
 import javafx.scene.image.Image;
 
 public class Main extends Application {
-    //Entity
-    private Paddle paddle;
-    private Ball ball;
-    private List<NormalBrick> normal_bricks;
-    private List<StrongBrick> strong_bricks;
-    private List<SuperBrick> super_bricks;
-
-
-    //Img variables
-    private Image blueBrickImg;
-    private Image greenBrickImg;
-    private Image purpleBrickImg;
-    private Image redBrickImg;
-    private Image break_blueBrickImg;
-    private Image break_greenBrickImg;
-    private Image break_redBrickImg;
-    private Image break_purpleBrickImg;
-    private Image ballImg;
-    private List<Image> paddleImgs = new ArrayList<>();
-
     @Override
     public void start(Stage primaryStage) {
         // 1. Tạo một đối tượng quản lý game
