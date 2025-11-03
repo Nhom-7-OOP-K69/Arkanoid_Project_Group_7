@@ -288,7 +288,7 @@ public class GameManager {
                 }
             }
 
-            if (brickLayer.isEmpty()) {
+            if (brickLayer.isEmpty() && explosionLayer.isEmpty()) {
                 nextLevel();
             }
 
