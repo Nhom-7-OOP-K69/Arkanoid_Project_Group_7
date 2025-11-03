@@ -7,6 +7,8 @@ import javafx.animation.AnimationTimer;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -14,6 +16,7 @@ import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.image.ImageView;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import javafx.scene.layout.StackPane;
@@ -334,7 +337,7 @@ public class GameManager {
         gameLoop.start();
 
         // Nếu pauseButton là ImageView -> chỉ cần đảm bảo nó hiển thị
-        uiManager.pauseButton.setVisible(true);
+        //uiManager.pauseButton_ic.setVisible(true);
 
         resetGame();
 
@@ -350,13 +353,12 @@ public class GameManager {
         if (gameStateManager.getCurrentState() == GameStateManager.GameState.PLAYING) {
             gameStateManager.setCurrentState(GameStateManager.GameState.PAUSED);
 
-            // Hiển thị lớp overlay tạm dừng
+            // Hiển thị overlay mờ và các nút tùy chọn
             uiManager.pauseOverlay.setVisible(true);
-            uiManager.pauseText.setVisible(true);
+            //uiManager.resumeButton_ic.setVisible(true);
+            //uiManager.menuButton_ic.setVisible(true);
 
-            // Các nút pause là ImageView -> hiển thị để người chơi bấm
-            uiManager.resumeButton.setVisible(true);
-            uiManager.menuButton.setVisible(true);
+            // Ẩn text đếm ngược (nếu có)
             uiManager.countdownText.setVisible(false);
 
             System.out.println("Game đã tạm dừng!");
@@ -367,19 +369,44 @@ public class GameManager {
         if (gameStateManager.getCurrentState() == GameStateManager.GameState.PAUSED) {
             gameStateManager.setCurrentState(GameStateManager.GameState.PLAYING);
 
-            // Ẩn toàn bộ overlay tạm dừng
+            // Ẩn overlay và các nút
             uiManager.pauseOverlay.setVisible(false);
-            uiManager.pauseText.setVisible(false);
-            uiManager.resumeButton.setVisible(false);
-            uiManager.menuButton.setVisible(false);
             uiManager.countdownText.setVisible(false);
 
-            // Trả lại focus cho game pane để nhận phím điều khiển
+            // Focus lại vào game để nhận phím điều khiển
             uiManager.gamePane.requestFocus();
 
             System.out.println("Game tiếp tục!");
         }
     }
+
+
+    public void startResumeCountdown(Text countdownText) {
+        // Đảm bảo text reset về trạng thái ban đầu
+        countdownText.textProperty().unbind();
+        countdownText.setVisible(true);
+
+        // Bắt đầu từ 3 mỗi lần
+        IntegerProperty counter = new SimpleIntegerProperty(3);
+        countdownText.textProperty().bind(counter.asString());
+
+        // Tạo timeline mới mỗi lần resume
+        Timeline timeline = new Timeline(
+                new KeyFrame(Duration.seconds(1), event -> {
+                    counter.set(counter.get() - 1);
+                    if (counter.get() <= 0) {
+                        // Kết thúc đếm ngược
+                        countdownText.textProperty().unbind();
+                        countdownText.setVisible(false);
+                        resumeGame();
+                    }
+                })
+        );
+
+        timeline.setCycleCount(3); // chạy 3 lần (3→2→1)
+        timeline.playFromStart();  // đảm bảo bắt đầu lại từ đầu
+    }
+
 
     public void returnToMenu() {
         gameStateManager.setCurrentState(GameStateManager.GameState.MENU);
@@ -389,31 +416,12 @@ public class GameManager {
         // Ẩn tất cả overlay khi quay lại menu
         uiManager.pauseOverlay.setVisible(false);
         uiManager.pauseText.setVisible(false);
-        uiManager.resumeButton.setVisible(false);
-        uiManager.menuButton.setVisible(false);
+        //uiManager.resumeButton_ic.setVisible(false);
+        //uiManager.menuButton_ic.setVisible(false);
         uiManager.countdownText.setVisible(false);
 
         System.out.println("Quay về menu chính.");
     }
-
-    public void startResumeCountdown() {
-        uiManager.pauseText.setVisible(false);
-        uiManager.resumeButton.setVisible(false);
-        uiManager.menuButton.setVisible(false);
-        uiManager.countdownText.setText("3");
-        uiManager.countdownText.setVisible(true);
-
-        Timeline timeline = new Timeline(
-                new KeyFrame(Duration.seconds(1), e -> uiManager.countdownText.setText("2")),
-                new KeyFrame(Duration.seconds(2), e -> uiManager.countdownText.setText("1")),
-                new KeyFrame(Duration.seconds(3), e -> {
-                    uiManager.countdownText.setVisible(false);
-                    resumeGame();
-                })
-        );
-        timeline.play();
-    }
-
 
     /*public void toggleSoundEffects() {
         gameStateManager.setSoundEffectsOn(!gameStateManager.isSoundEffectsOn());
