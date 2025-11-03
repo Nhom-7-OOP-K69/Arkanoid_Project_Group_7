@@ -106,9 +106,6 @@ public class GameManager {
         paddle.setX((double) (GameConstants.SCREEN_WIDTH - GameConstants.PADDLE_WIDTH) / 2);
         paddle.setY(GameConstants.SCREEN_HEIGHT - 100);
         paddle.setWidth(GameConstants.PADDLE_WIDTH); // Reset width qua setWidth() (cập nhật current/target)
-        paddle.activePowerUps = 0;
-        paddle.isAnimating = false; // Dừng animation nếu có
-        paddle.animationProgress = 0;
 
         // 3. Đặt trạng thái về sẵn sàng
         gameStateManager.setCurrentState(GameStateManager.GameState.READY);
@@ -129,9 +126,6 @@ public class GameManager {
         paddle.setX((double) (GameConstants.SCREEN_WIDTH - GameConstants.PADDLE_WIDTH) / 2);
         paddle.setY(GameConstants.SCREEN_HEIGHT - 100);
         paddle.setWidth(GameConstants.PADDLE_WIDTH); // Reset width
-        paddle.activePowerUps = 0;
-        paddle.isAnimating = false;
-        paddle.animationProgress = 0;
 
         gameStateManager.setCurrentState(GameStateManager.GameState.READY);
 
@@ -157,9 +151,6 @@ public class GameManager {
         paddle.setX((double) (GameConstants.SCREEN_WIDTH - GameConstants.PADDLE_WIDTH) / 2);
         paddle.setY(GameConstants.SCREEN_HEIGHT - 100);
         paddle.setWidth(GameConstants.PADDLE_WIDTH); // Reset width qua setWidth() (cập nhật current/target)
-        paddle.activePowerUps = 0;
-        paddle.isAnimating = false; // Dừng animation nếu có
-        paddle.animationProgress = 0;
 
         powerUpManager.clearPowerUp();
 
@@ -269,8 +260,6 @@ public class GameManager {
 
             scorePlus += checkCollisionBricks();
             scorePlus += brickLayer.processPendingExplosions();
-
-            paddle.updateAnimation(deltaTime);
 
             ballLayer.checkCollisionPaddle(paddle);
             ballLayer.collisionWall(canvas);

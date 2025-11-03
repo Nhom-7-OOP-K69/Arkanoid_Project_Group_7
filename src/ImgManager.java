@@ -17,11 +17,11 @@ public class ImgManager {
     private void loadTextures() {
         textures.put("PADDLE0",Load.loadImage("paddle0.png",GameConstants.PADDLE_WIDTH,0,true,false));
         textures.put("PADDLE1",Load.loadImage("paddle1.png",GameConstants.PADDLE_WIDTH,0,true,false));
-        textures.put("PADDLE2",Load.loadImage("paddle2.png",GameConstants.PADDLE_WIDTH,0,true,false));
-        textures.put("PADDLE3",Load.loadImage("paddle3.png",GameConstants.PADDLE_WIDTH,0,true,false));
+        //textures.put("PADDLE2",Load.loadImage("paddle2.png",GameConstants.PADDLE_WIDTH,0,true,false));
+        //textures.put("PADDLE3",Load.loadImage("paddle3.png",GameConstants.PADDLE_WIDTH,0,true,false));
         textures.put("BALL0", Load.loadImage("ball0.png", GameConstants.BALL_WIDTH, 0, true, false));
         textures.put("BALL1", Load.loadImage("ball1.png", GameConstants.BALL_WIDTH, 0, true, false));
-        textures.put("BALL2", Load.loadImage("ball2.png", GameConstants.BALL_WIDTH, 0, true, false));
+        //textures.put("BALL2", Load.loadImage("ball2.png", GameConstants.BALL_WIDTH, 0, true, false));
         textures.put("LIFE", Load.loadImage("heart_1.png", GameConstants.BRICK_WIDTH, 0, true, false));
         textures.put("SILVER_BRICK", Load.loadImage("17-Breakout-Tiles.png", GameConstants.BRICK_WIDTH, 0, true, false));
         textures.put("RED_BRICK", Load.loadImage("07-Breakout-Tiles.png", GameConstants.BRICK_WIDTH, 0, true, false));

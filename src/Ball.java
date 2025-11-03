@@ -21,7 +21,7 @@ public class Ball extends MovableObject {
 
     public Ball(double x, double y, double width, double height) {
         super(x, y, width, height);
-        this.setImg(ImgManager.getInstance().getImage("BALL"));
+        this.setImg(ImgManager.getInstance().getImage("BALL0"));
     }
 
     public boolean collisionWall(Canvas canvas) {
