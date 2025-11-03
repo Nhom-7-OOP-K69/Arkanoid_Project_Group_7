@@ -40,10 +40,13 @@ public class GameManager {
 
     private String playerName;
     private final Score score = new Score();
-    private int currentLevel = 0;
+    private int currentLevel = 1;
 
     private Scene gameOverScene;
     private GameOverScreen gameOverScreen;
+
+    private Scene gameWinScene;
+    private GameWinScreen gameWinScreen;
 
     private Lives lives = new Lives();
 
@@ -151,7 +154,7 @@ public class GameManager {
 
     // TÁI CẤU TRÚC: Phương thức qua màn
     private void nextLevel() {
-        currentLevel++;
+        //currentLevel++;
 
         // Kiểm tra nếu hết màn
         if (currentLevel >= GameConstants.LEVEL) {
@@ -182,8 +185,9 @@ public class GameManager {
                 // TÁI CẤU TRÚC: Kiểm tra trạng thái game ngay từ đầu
                 if (gameStateManager.getCurrentState() == GameStateManager.GameState.MENU ||
                         gameStateManager.getCurrentState() == GameStateManager.GameState.PAUSED ||
-                        gameStateManager.getCurrentState() == GameStateManager.GameState.GAME_OVER) {
-                    lastUpdate = 0; // Reset lastUpdate khi game không chạy
+                        gameStateManager.getCurrentState() == GameStateManager.GameState.GAME_OVER ||
+                        gameStateManager.getCurrentState() == GameStateManager.GameState.GAME_WIN) {
+                    lastUpdate = 0;
                     return;
                 }
 
@@ -304,6 +308,20 @@ public class GameManager {
         // Xử lý va chạm
         scorePlus += handleCollisions();
 
+            if (brickLayer.isEmpty()) {
+                if (currentLevel == GameConstants.LEVEL - 1) {
+                    try {
+                        Ranking.saveScore(playerName, score.getScore());
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                    gameStateManager.setCurrentState(GameStateManager.GameState.GAME_WIN);
+                    showGameWinScreen(score.getScore());
+                    gameLoop.stop();
+                } else {
+                    nextLevel();
+                }
+            }
         // Cập nhật power-up
         paddle.updateAnimation(deltaTime);
         int powerUpScore = powerUpManager.update(deltaTime, paddle, ballLayer, brickLayer);
@@ -473,5 +491,11 @@ public class GameManager {
         StackPane root = new StackPane(gameOverScreen);
         gameOverScene = new Scene(root, GameConstants.SCREEN_WIDTH, GameConstants.SCREEN_HEIGHT);
         primaryStage.setScene(gameOverScene);
+    }
+    public void showGameWinScreen(int finalScore) {
+        gameWinScreen = new GameWinScreen(this, finalScore);
+        StackPane root = new StackPane(gameWinScreen);
+        gameWinScene = new Scene(root, GameConstants.SCREEN_WIDTH, GameConstants.SCREEN_HEIGHT);
+        primaryStage.setScene(gameWinScene);
     }
 }

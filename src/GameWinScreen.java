@@ -4,7 +4,7 @@ import javafx.scene.layout.BackgroundPosition;
 import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
 import javafx.geometry.Pos;
-import javafx.scene.Cursor; // Import Cursor
+import javafx.scene.Cursor;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -16,7 +16,11 @@ import javafx.scene.text.Text;
 import java.io.InputStream;
 import java.util.Objects;
 
-public class GameOverScreen extends VBox {
+/**
+ * Màn hình "YOU WIN"
+ * Được sao chép và chỉnh sửa từ GameOverScreen.
+ */
+public class GameWinScreen extends VBox {
 
     // --- Hằng số (Constants) ---
     private static final double BUTTON_WIDTH = 280;
@@ -25,9 +29,11 @@ public class GameOverScreen extends VBox {
 
     // --- Hằng số Tài nguyên ---
     private static final String FONT_PATH = "/Arka_solid.ttf";
-    private static final String BACKGROUND_IMAGE_PATH = "/images/GameOverScreenBg.png";
+    // QUAN TRỌNG: Bạn cần cung cấp file ảnh nền cho màn hình "Win"
+    private static final String GAME_WIN_BACKGROUND_IMAGE_PATH = "/images/GameOverScreenBg.png";
 
-    // Nút Replay
+    // --- Nút (Tải trực tiếp từ ImgManager) ---
+    // Chúng ta tái sử dụng các nút từ màn hình Game Over
     private final Image replay_normal = ImgManager.getInstance().getImage("REPLAY_NORMAL");
     private final Image replay_hover = ImgManager.getInstance().getImage("REPLAY_HOVER");
     private final Image replay_press = ImgManager.getInstance().getImage("REPLAY_PRESS");
@@ -38,116 +44,87 @@ public class GameOverScreen extends VBox {
     private final Image exit_hover = ImgManager.getInstance().getImage("EXIT_HOVER");
     private final Image exit_press = ImgManager.getInstance().getImage("EXIT_PRESS");
 
-    public ImageView replayNormalButton = new ImageView(replay_normal);
-    public ImageView replayHoverButton = new ImageView(replay_hover);
-    public ImageView replayPressButton = new ImageView(replay_press);
-    public ImageView optionsNormalButton = new ImageView(options_normal);
-    public ImageView optionsHoverButton = new ImageView(options_hover);
-    public ImageView optionsPressButton = new ImageView(options_press);
-    public ImageView exitNormalButton = new ImageView(exit_normal);
-    public ImageView exitHoverButton = new ImageView(exit_hover);
-    public ImageView exitPressButton = new ImageView(exit_press);
-
-
-
-
-
     // --- Biến lớp ---
     private GameManager gameManager; // <-- Biến để lưu GameManager
     private Font titleFont;
     private Font scoreFont;
-
-    private Image replayNormal, replayHover, replayPressed;
-    private Image menuNormal, menuHover, menuPressed;
-    private Image exitNormal, exitHover, exitPressed;
     private Image backgroundImage;
 
     // --- Định nghĩa Hiệu ứng ---
-    private final DropShadow TITLE_GLOW = new DropShadow(50, Color.rgb(255, 0, 0, 0.9));
-    private final DropShadow SCORE_GLOW = new DropShadow(20, Color.rgb(255, 215, 0, 0.7));
+    // Đổi hiệu ứng sang màu Vàng/Gold cho "YOU WIN"
+    private final DropShadow TITLE_GLOW = new DropShadow(50, Color.rgb(255, 215, 0, 0.9));
+    private final DropShadow SCORE_GLOW = new DropShadow(20, Color.rgb(255, 255, 100, 0.7));
 
-    public GameOverScreen(GameManager gameManager, int score) {
+    /**
+     * HÀM KHỞI TẠO:
+     * Nhận 'GameManager' và 'score'
+     */
+    public GameWinScreen(GameManager gameManager, int score) {
         super(VBOX_SPACING); // Dùng hằng số
         this.gameManager = gameManager; // <-- Gán GameManager
         setAlignment(Pos.CENTER);
 
         loadResources();
 
+        // --- Đặt ảnh nền ---
         BackgroundImage myBI = new BackgroundImage(
                 backgroundImage,
-                BackgroundRepeat.NO_REPEAT, // Không lặp lại
                 BackgroundRepeat.NO_REPEAT,
-                BackgroundPosition.CENTER,  // Căn giữa
-                // Kích thước: "cover" (phủ đầy, giữ tỷ lệ)
+                BackgroundRepeat.NO_REPEAT,
+                BackgroundPosition.CENTER,
                 new BackgroundSize(BackgroundSize.AUTO, BackgroundSize.AUTO, false, false, true, true)
         );
         this.setBackground(new Background(myBI));
-
         this.setPadding(new javafx.geometry.Insets(SCREEN_PADDING)); // Dùng hằng số
 
-        // --- Tiêu đề "GAME OVER" ---
-        Text gameOverTitle = new Text("GAME OVER");
-        gameOverTitle.setFont(titleFont);
-        gameOverTitle.setFill(Color.RED);
-        gameOverTitle.setStroke(Color.DARKRED);
-        gameOverTitle.setStrokeWidth(2);
-        gameOverTitle.setEffect(TITLE_GLOW);
+        // --- Tiêu đề "YOU WIN" ---
+        Text gameWinTitle = new Text("YOU WIN"); // <-- THAY ĐỔI
+        gameWinTitle.setFont(titleFont);
+        gameWinTitle.setFill(Color.GOLD); // <-- THAY ĐỔI
+        gameWinTitle.setStroke(Color.DARKGOLDENROD); // <-- THAY ĐỔI
+        gameWinTitle.setStrokeWidth(2);
+        gameWinTitle.setEffect(TITLE_GLOW);
 
         // --- Hiển thị điểm số ---
         Text scoreText = new Text("SCORE: " + score);
         scoreText.setFont(scoreFont);
-        scoreText.setFill(Color.GOLD);
+        scoreText.setFill(Color.WHITE); // Đổi thành màu trắng cho dễ đọc trên nền mới
         scoreText.setEffect(SCORE_GLOW);
 
-        // --- Các nút hành động (gọi lại GameManager) ---
-        ImageView restartButton = createStyledImageButton(replayNormal, replayHover, replayPressed);
-        restartButton.setOnMouseClicked(e -> gameManager.startGame()); // <-- Gọi GameManager
+        // --- Các nút hành động (Tái sử dụng từ Game Over) ---
+        ImageView restartButton = createStyledImageButton(replay_normal, replay_hover, replay_press);
+        restartButton.setOnMouseClicked(e -> gameManager.startGame());
 
-        ImageView mainMenuButton = createStyledImageButton(menuNormal, menuHover, menuPressed);
-        mainMenuButton.setOnMouseClicked(e -> gameManager.returnToMenu()); // <-- Gọi GameManager
+        ImageView mainMenuButton = createStyledImageButton(options_normal, options_hover, options_press);
+        mainMenuButton.setOnMouseClicked(e -> gameManager.returnToMenu());
 
-        ImageView exitButton = createStyledImageButton(exitNormal, exitHover, exitPressed);
-        exitButton.setOnMouseClicked(e -> gameManager.exitGame()); // <-- Gọi GameManager
+        ImageView exitButton = createStyledImageButton(exit_normal, exit_hover, exit_press);
+        exitButton.setOnMouseClicked(e -> gameManager.exitGame());
 
         // Thêm tất cả vào VBox
-        getChildren().addAll(gameOverTitle, scoreText, restartButton, mainMenuButton, exitButton);
+        getChildren().addAll(gameWinTitle, scoreText, restartButton, mainMenuButton, exitButton);
     }
 
+    /**
+     * Tải font và các tài nguyên ảnh.
+     */
     private void loadResources() {
         try {
             // --- Tải Font ---
             titleFont = loadFontFromFile(FONT_PATH, 100);
             scoreFont = Font.font("Impact", 48);
 
-            backgroundImage = loadImageFromFile(BACKGROUND_IMAGE_PATH);
+            // --- Tải ảnh nền (cho màn hình Win) ---
+            backgroundImage = loadImageFromFile(GAME_WIN_BACKGROUND_IMAGE_PATH);
 
-            // --- GÁN HÌNH ẢNH NÚT (Chúng đã được tải khi khai báo biến ở trên) ---
-
-            // Gán cho biến 'replay...' mà constructor sử dụng
-            replayNormal = this.replay_normal;
-            replayHover = this.replay_hover;
-            replayPressed = this.replay_press;
-
-            // Gán cho biến 'menu...' mà constructor sử dụng
-            // (Lấy từ biến 'options...' đã khai báo ở trên)
-            menuNormal = this.options_normal;
-            menuHover = this.options_hover;
-            menuPressed = this.options_press;
-
-            // Gán cho biến 'exit...' mà constructor sử dụng
-            exitNormal = this.exit_normal;
-            exitHover = this.exit_hover;
-            exitPressed = this.exit_press;
-
-            // Kiểm tra xem ImgManager có trả về null hay không
-            if (replayNormal == null || menuNormal == null || exitNormal == null) {
-                // Thêm thông báo lỗi rõ ràng về các key có thể bị sai (ví dụ "NORNAL")
-                throw new Exception("LỖI: ImgManager đã trả về null cho một hoặc nhiều ảnh. \n" +
+            // --- KIỂM TRA HÌNH ẢNH NÚT (đã được tải ở phần khai báo) ---
+            if (replay_normal == null || options_normal == null || exit_normal == null) {
+                throw new Exception("LỖI: ImgManager đã trả về null cho một hoặc nhiều ảnh nút. \n" +
                         "Hãy kiểm tra các key trong ImgManager.");
             }
 
         } catch (Exception e) {
-            System.err.println("--- LỖI NGHIÊM TRỌNG KHI TẢI TÀI NGUYÊN ---");
+            System.err.println("--- LỖI NGHIÊM TRỌNG KHI TẢI TÀI NGUYÊN (GameWinScreen) ---");
             System.err.println(e.getMessage());
             e.printStackTrace();
             System.err.println("--- SỬ DỤNG FONT DỰ PHÒNG ---");
@@ -155,15 +132,13 @@ public class GameOverScreen extends VBox {
             // Fallback (dùng font hệ thống nếu không tải được)
             titleFont = Font.font("Impact", 100);
             scoreFont = Font.font("Arial Black", 48);
-
-            System.err.println("--- CẢNH BÁO: Không thể gán hình ảnh nút. Ứng dụng có thể sẽ crash. ---");
         }
     }
 
     private Font loadFontFromFile(String path, double size) throws Exception {
         try (InputStream isFont = getClass().getResourceAsStream(path)) {
             if (isFont == null) {
-                throw new Exception("LỖI: Không tìm thấy font '" + path + "'.\nHãy đảm bảo nó ở trong 'resources'");
+                throw new Exception("LỖI: Không tìm thấy font '" + path + "'.");
             }
             Font baseFont = Font.loadFont(isFont, size);
             if (baseFont == null) {
@@ -181,6 +156,10 @@ public class GameOverScreen extends VBox {
         return new Image(stream);
     }
 
+    /**
+     * Tạo một nút DỰA TRÊN ẢNH (không có Text).
+     * (Giữ nguyên từ GameOverScreen)
+     */
     private ImageView createStyledImageButton(Image normalImg, Image hoverImg, Image pressedImg) {
 
         ImageView buttonImageView = new ImageView(normalImg);
