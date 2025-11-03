@@ -8,14 +8,11 @@ public class Paddle extends MovableObject {
     private double speed = 500;
     private int currentPowerUp;
     private int frame = 0;
-    private List<Image> images;
+    private Image images;
 
     public Paddle(double x, double y, double width, double height) {
         super(x, y, width, height);
-        images = new ArrayList<>();
-        images.add(ImgManager.getInstance().getImage("PADDLE0"));
-        images.add(ImgManager.getInstance().getImage("PADDLE1"));
-        images.add(ImgManager.getInstance().getImage("PADDLE2"));
+        images = ImgManager.getInstance().getImage("PADDLE0");
     }
 
     public void setSpeed(double speed) {
@@ -64,10 +61,6 @@ public class Paddle extends MovableObject {
 
     @Override
     public void render(GraphicsContext ctx) {
-        frame++;
-        if (frame >= GameConstants.PADDLE_FRAMES) {
-            frame = 0;
-        }
-        ctx.drawImage(images.get(frame), this.getX(), this.getY());
+        ctx.drawImage(images, this.getX(), this.getY(), this.getWidth(), this.getHeight());
     }
 }
