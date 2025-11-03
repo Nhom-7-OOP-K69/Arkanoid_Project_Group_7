@@ -43,8 +43,4 @@ public class ExplosionLayer {
             explosion.render(gc);
         }
     }
-
-    public boolean isEmpty() {
-        return explosionList.isEmpty();
-    }
 }
