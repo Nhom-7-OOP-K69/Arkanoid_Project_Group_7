@@ -1,19 +1,15 @@
 // File: UIManager.java (Phiên bản đã sửa đổi và tích hợp GridPane)
 
 import javafx.animation.FadeTransition;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
 import javafx.application.Platform;
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 // THÊM CÁC IMPORT CẦN THIẾT CHO GRIDPANE VÀ CĂN CHỈNH
 import javafx.geometry.HPos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.*;
-import javafx.scene.effect.ColorAdjust;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.layout.ColumnConstraints;
 // END CÁC IMPORT CẦN THIẾT
@@ -58,12 +54,10 @@ public class UIManager {
     public Scene menuScene, gameScene;
     public StackPane gamePane;
 
+
     // Các Overlay và các nút liên quan
     public StackPane settingsOverlay;
-    public VBox rankingOverlay;
-    public StackPane pauseOverlay;
-    public StackPane changeskinoverplay;
-
+    public VBox pauseOverlay, rankingOverlay;
 
     public Text pauseText, countdownText;
 
@@ -80,39 +74,75 @@ public class UIManager {
     //private Image startImg_Exit = ImgManager.getInstance().getImage("START_EXIT");
     private Image rankingImg = ImgManager.getInstance().getImage("RANKING_BUTTON");
     //private Image rankingImg_Exit = ImgManager.getInstance().getImage("RANKING_EXIT");
-    private Image optionsImg = ImgManager.getInstance().getImage("OPTIONS_BUTTON");
+    private Image settingImg = ImgManager.getInstance().getImage("SETTING_BUTTON");
     //private Image settingImg_Exit = ImgManager.getInstance().getImage("SETTING_EXIT");
     private Image exitImg = ImgManager.getInstance().getImage("EXIT_BUTTON");
     //private Image exitImg_Exit = ImgManager.getInstance().getImage("EXIT_EXIT");
     private Image skinImg = ImgManager.getInstance().getImage("STORE");
-    private Image pauseImg = ImgManager.getInstance().getImage("PAUSE_BUTTON_IC");
-    private Image resumeImg = ImgManager.getInstance().getImage("RESUME_BUTTON_IC");
-    private Image menuImg = ImgManager.getInstance().getImage("MENU_BUTTON_IC");
-    private Image ob_buttonimg = ImgManager.getInstance().getImage("OB_BUTTON");
+    private Image pauseImg = ImgManager.getInstance().getImage("PAUSE");
+    private Image resumeImg = ImgManager.getInstance().getImage("RESUME");
+    private Image menuImg = ImgManager.getInstance().getImage("MENU");
 
     // Khởi tạo các nút
-    private ImageView startButton = new ImageView(startImg);
-    private ImageView rankingButton = new ImageView(rankingImg);
-    private ImageView optionsButton = new ImageView(optionsImg);
-    private ImageView exitButton = new ImageView(exitImg);
-    private ImageView skinButton = new ImageView(skinImg);
-    private ImageView pauseButton_ic = new ImageView(pauseImg);
-    private ImageView resumeButton_ic = new ImageView(resumeImg);
-    private ImageView menuButton_ic = new ImageView(menuImg);
-    private ImageView okButton = new ImageView(ob_buttonimg);
+    public ImageView startButton = new ImageView(startImg);
+    public ImageView rankingButton = new ImageView(startImg);
+    public ImageView settingButton = new ImageView(settingImg);
+    public ImageView exitButton = new ImageView(exitImg);
+    public ImageView skinButton = new ImageView(skinImg);
+    public ImageView pauseButton = new ImageView(pauseImg);
+    public ImageView resumeButton = new ImageView(resumeImg);
+    public ImageView menuButton = new ImageView(menuImg);
 
-    private ImageView setting_bg = new ImageView(ImgManager.getInstance().getImage("SETTING_BG"));
-    private ImageView ranking_bg = new ImageView(ImgManager.getInstance().getImage("RANKING_BG"));
-    private ImageView menu_bg = new ImageView(ImgManager.getInstance().getImage("MENU_BG"));
-    private ImageView game_bg = new ImageView(ImgManager.getInstance().getImage("GAME_BG"));
+    public ImageView setting_bg = new ImageView(ImgManager.getInstance().getImage("SETTING_BG"));
+    public ImageView ranking_bg = new ImageView(ImgManager.getInstance().getImage("RANKING_BG"));
+    public ImageView menu_bg = new ImageView(ImgManager.getInstance().getImage("MENU_BG"));
+    public ImageView game_bg = new ImageView(ImgManager.getInstance().getImage("GAME_BG"));
 
     public final Font medievalFont = Font.loadFont(getClass().getResourceAsStream("/fonts/MedievalSharp-Book.ttf"), 24);
+    public final Font titleFont = Font.loadFont(getClass().getResourceAsStream("/fonts/MedievalSharp-Book.ttf"), 50);
+
     public final Color Text_Color = Color.web("#b08b58");
 
     public UIManager(GameManager gameManager, GameStateManager gameStateManager) {
         this.gameManager = gameManager;
         this.gameStateManager = gameStateManager;
     }
+
+    //=================== Intro Scene ==================================
+    private boolean isShowingIntro = true;
+    private int level;
+    private LevelIntro levelIntro;
+
+    private LevelIntro currentIntro = new LevelIntro(level, () -> {
+        isShowingIntro = false;
+    }, titleFont);
+
+    public void showLevelIntro(int level, Runnable onFinish, Font titleFont) {
+        levelIntro = new LevelIntro(level, onFinish, titleFont);
+        currentIntro = levelIntro;
+        isShowingIntro = true;
+    }
+
+    public boolean isIntroActive() {
+        return levelIntro != null && levelIntro.isActive();
+    }
+
+    public void renderIntro(GraphicsContext gc) {
+        if (levelIntro != null && levelIntro.isActive()) {
+            levelIntro.render(gc);
+        }
+    }
+
+    public boolean isShowingIntro() {
+        return currentIntro != null && currentIntro.isActive();
+    }
+
+    public LevelIntro getCurrentIntro() {
+        return currentIntro;
+    }
+
+    //=================================================================
+
 
     public void createMenuScene() {
         StackPane menuPane = new StackPane();
@@ -135,14 +165,14 @@ public class UIManager {
         // Set hiệu ứng hover cho các nút
         addHoverEffect(startButton);
         addHoverEffect(rankingButton);
-        addHoverEffect(optionsButton);
+        addHoverEffect(settingButton);
         addHoverEffect(exitButton);
         addHoverEffect(skinButton);
 
         // Điều chỉnh kích thước
         scaleImageView(startButton, 0.7);
         scaleImageView(rankingButton, 0.7);
-        scaleImageView(optionsButton, 0.7);
+        scaleImageView(settingButton, 0.7);
         scaleImageView(exitButton, 0.7);
 
         // Đặt vị trí skinButton góc phải trên
@@ -156,7 +186,7 @@ public class UIManager {
         menuLayout.getChildren().addAll(
                 startButton,
                 rankingButton,
-                optionsButton,
+                settingButton,
                 exitButton
         );
         menuPane.getChildren().addAll(
@@ -166,12 +196,12 @@ public class UIManager {
                 settingsOverlay,
                 rankingOverlay,
                 nameInputOverlay,
-                pauseOverlay,
-                changeskinoverplay
+                pauseOverlay
         );
 
         menuScene = new Scene(menuPane, GameConstants.SCREEN_WIDTH, GameConstants.SCREEN_HEIGHT);
     }
+
 
 
     public void createNameInputOverlay() {
@@ -237,6 +267,7 @@ public class UIManager {
                 ));
 
 
+
         confirmBtn.setOnAction(e -> {
             String playerName = nameField.getText().trim();
             if (playerName.isEmpty()) playerName = "Guest_" + (int) (Math.random() * 99);
@@ -290,14 +321,18 @@ public class UIManager {
 
         // Tạo Slider + Style + Giới hạn chiều rộng
         Slider soundSlider = new Slider(0, 100, 50);
+        Slider graphicsSlider = new Slider(0, 100, 70);
         Slider sfxSlider = new Slider(0, 100, 40);
 
         styleSlider(soundSlider);
+        styleSlider(graphicsSlider);
         styleSlider(sfxSlider);
 
         soundSlider.prefWidthProperty().bind(setting_bg.fitWidthProperty().multiply(0.6));
+        graphicsSlider.prefWidthProperty().bind(setting_bg.fitWidthProperty().multiply(0.6));
         sfxSlider.prefWidthProperty().bind(setting_bg.fitWidthProperty().multiply(0.6));
         soundSlider.maxWidthProperty().bind(setting_bg.fitWidthProperty().multiply(0.6));
+        graphicsSlider.maxWidthProperty().bind(setting_bg.fitWidthProperty().multiply(0.6));
         sfxSlider.maxWidthProperty().bind(setting_bg.fitWidthProperty().multiply(0.6));
 
         //Liên kết âm lượng với AudioManager
@@ -322,12 +357,15 @@ public class UIManager {
 
         // Gom nhãn + slider theo cặp
         VBox musicBox = new VBox(8, musicLabel, soundSlider);
+        VBox graphicsBox = new VBox(8, graphicsLabel, graphicsSlider);
         VBox sfxBox = new VBox(8, sfxLabel, sfxSlider);
 
         musicBox.setAlignment(Pos.CENTER);
+        graphicsBox.setAlignment(Pos.CENTER);
         sfxBox.setAlignment(Pos.CENTER);
 
         // Nút OK
+        ImageView okButton = new ImageView(ImgManager.getInstance().getImage("OK_BUTTON"));
         okButton.setFitWidth(120);
         okButton.setFitHeight(60);
         okButton.setOnMouseClicked(e -> settingsOverlay.setVisible(false));
@@ -343,7 +381,7 @@ public class UIManager {
         buttonBox.setAlignment(Pos.CENTER);
 
         // VBox tổng chứa mọi thứ
-        VBox contentBox = new VBox(50, musicBox, sfxBox, buttonBox);
+        VBox contentBox = new VBox(50, musicBox, graphicsBox, sfxBox, buttonBox);
         contentBox.setAlignment(Pos.CENTER);
 
         // Căn giữa
@@ -504,7 +542,7 @@ public class UIManager {
         } else if (rank == 3) {
             rankText.setFont(Font.font(CUSTOM_FONT_FAMILY, FontWeight.BLACK, 30));
             rankText.setFill(Color.web("#CD7F32")); // Bronze
-        } else {
+        } else  {
             rankText.setFont(Font.font(CUSTOM_FONT_FAMILY, FontWeight.BLACK, 19));
             rankText.setFill(Color.web("#CD7F32"));
         }
@@ -513,46 +551,64 @@ public class UIManager {
 
 
     public void createGameScene(Canvas canvasPane) {
-        MouseEvent();
+        pauseButton.setOnMouseClicked(e -> gameManager.pauseGame());
+        menuButton.setOnMouseClicked(e -> gameManager.returnToMenu());
+        addHoverEffect(pauseButton);
+        addHoverEffect(menuButton);
 
-        addHoverEffect(pauseButton_ic);
-        addHoverEffect(menuButton_ic);
-        addHoverEffect(resumeButton_ic);
-
-        HBox topUIPanel = new HBox(20, pauseButton_ic, resumeButton_ic, menuButton_ic);
+        HBox topUIPanel = new HBox(10, pauseButton, menuButton);
         topUIPanel.setPadding(new Insets(5));
         topUIPanel.setAlignment(Pos.CENTER_RIGHT);
         topUIPanel.setPrefHeight(GameConstants.UI_TOP_BAR_HEIGHT);
         topUIPanel.setMaxHeight(GameConstants.UI_TOP_BAR_HEIGHT + 5);
-        topUIPanel.setStyle("-fx-background-color: transparent; -fx-border-width: 0;");
+        topUIPanel.setStyle("-fx-background-color: #2D3748; -fx-border-color: #4A5568; -fx-border-width: 0 0 2px 0;");
 
-        //createPauseOverlay();
-
-        gamePane = new StackPane(game_bg, canvasPane, topUIPanel, pauseOverlay, settingsOverlay);
+        createPauseOverlay();
+        gamePane = new StackPane(game_bg,canvasPane, topUIPanel, pauseOverlay);
         gamePane.setStyle("-fx-background-color: #000000;");
         StackPane.setAlignment(topUIPanel, Pos.TOP_CENTER);
         gameScene = new Scene(gamePane);
     }
 
     private void createPauseOverlay() {
-        // --- Tạo Text hiển thị countdown ---
+
+        pauseText = new Text("TẠM DỪNG");
+        pauseText.setFont(Font.font(CUSTOM_FONT_FAMILY, FontWeight.BOLD, 60));
+        pauseText.setFill(Color.WHITE);
+
         countdownText = new Text();
-        countdownText.setFont(Font.font("Arial", FontWeight.BOLD, 72));
+        countdownText.setFont(Font.font(CUSTOM_FONT_FAMILY, FontWeight.BOLD, 90));
         countdownText.setFill(Color.WHITE);
         countdownText.setVisible(false);
 
-        // --- Layout chính (Overlay) chỉ chứa countdown ---
-        pauseOverlay = new StackPane(countdownText);
+        // --- Khởi tạo ImageView và thiết lập sự kiện ---
+
+        // 2. Khởi tạo ImageView cho nút Tiếp Tục (Resume)
+        // Giả định bạn có một hàm loadImage(String path) hoặc bạn dùng new Image(path)
+        Image resumeImage = ImgManager.getInstance().getImage("RESUME_BUTTON");
+        resumeButton = new ImageView(resumeImage);
+        resumeButton.setFitWidth(200); // Đặt kích thước phù hợp
+        resumeButton.setPreserveRatio(true);
+
+        resumeButton.setOnMouseClicked(e -> gameManager.startResumeCountdown());
+
+        // 3. Khởi tạo ImageView cho nút Về Menu Chính
+        Image menuImage = ImgManager.getInstance().getImage("MENU_BUTTON");
+        menuButton = new ImageView(menuImage);
+        menuButton.setFitWidth(200);
+        menuButton.setPreserveRatio(true);
+
+        menuButton.setOnMouseClicked(e -> gameManager.returnToMenu());
+
+        addHoverEffect(resumeButton);
+        addHoverEffect(menuButton);
+
+
+        // --- Khởi tạo Layout chính (Overlay) ---
+
+        pauseOverlay = new VBox(20, pauseText, countdownText, resumeButton, menuButton);
         pauseOverlay.setAlignment(Pos.CENTER);
-
-        // Làm nền hoàn toàn trong suốt
-        pauseOverlay.setBackground(new Background(
-                new BackgroundFill(Color.TRANSPARENT, CornerRadii.EMPTY, Insets.EMPTY)
-        ));
-
-        // Quan trọng: không chặn sự kiện chuột
-        pauseOverlay.setMouseTransparent(true);
-
+        pauseOverlay.setBackground(new Background(new BackgroundFill(Color.rgb(0, 0, 0, 0.7), CornerRadii.EMPTY, Insets.EMPTY)));
         pauseOverlay.setVisible(false);
     }
 
@@ -571,7 +627,6 @@ public class UIManager {
             }
         });
     }
-
     // Hàm hỗ trợ tạo hiệu ứng (Bạn nên thêm hàm này vào lớp của mình)
     private void addHoverZoom(ImageView imageView) {
         imageView.setOnMouseEntered(e -> {
@@ -592,11 +647,9 @@ public class UIManager {
 
     private void MouseEvent() {
         startButton.setOnMouseClicked(e -> showNameInputOverlay());
-        
+        settingButton.setOnMouseClicked(e -> showSettings());
         exitButton.setOnMouseClicked(e -> gameManager.exitGame());
-        menuButton_ic.setOnMouseClicked(e -> showSettings());
-        pauseButton_ic.setOnMouseClicked(e -> gameManager.pauseGame());
-        resumeButton_ic.setOnMouseClicked(e -> gameManager.startResumeCountdown(countdownText));
+        pauseButton.setOnMouseClicked(e -> gameManager.pauseGame());
         rankingButton.setOnMouseClicked(e -> {
             try {
                 showRanking();
@@ -634,98 +687,7 @@ public class UIManager {
         imageView.setFitHeight(newHeight);
     }
 
-    /*public void createChangeSkinOverlay() {
-        // --- Overlay chính phủ toàn màn hình ---
-        changeskinoverplay = new StackPane();
-        changeskinoverplay.setVisible(false);
-        changeskinoverplay.setPrefSize(GameConstants.SCREEN_WIDTH, GameConstants.SCREEN_HEIGHT);
+    private void openSkinManager() {
 
-        // --- Background image ---
-        ImageView bg = new ImageView(ImgManager.getInstance().getImage("SETTING_BG"));
-        bg.setFitWidth(GameConstants.SCREEN_WIDTH);
-        bg.setFitHeight(GameConstants.SCREEN_HEIGHT);
-        bg.setPreserveRatio(false);
-
-        // Thêm hiệu ứng tối mờ nếu muốn (giúp nổi bật phần chọn skin)
-        ColorAdjust darken = new ColorAdjust();
-        darken.setBrightness(-0.4);
-        bg.setEffect(darken);
-
-        // --- Phần nội dung chính (VBox trung tâm) ---
-        VBox contentBox = new VBox(40);
-        contentBox.setAlignment(Pos.CENTER);
-
-        // ====== PADDLE SELECTION ======
-        ImageView paddlePreview = new ImageView(SkinManager.getInstance().getPaddleImage());
-        paddlePreview.setFitWidth(150);
-        paddlePreview.setPreserveRatio(true);
-
-        Button paddleLeft = new Button("◀");
-        Button paddleRight = new Button("▶");
-
-        String[] paddleSkins = SkinManager.getInstance().getAvailablePaddleSkins();
-        final int[] paddleIndex = {0};
-
-        paddleLeft.setOnAction(e -> {
-            paddleIndex[0] = (paddleIndex[0] - 1 + paddleSkins.length) % paddleSkins.length;
-            SkinManager.getInstance().setPaddleSkin(paddleSkins[paddleIndex[0]]);
-            paddlePreview.setImage(SkinManager.getInstance().getPaddleImage());
-        });
-
-        paddleRight.setOnAction(e -> {
-            paddleIndex[0] = (paddleIndex[0] + 1) % paddleSkins.length;
-            SkinManager.getInstance().setPaddleSkin(paddleSkins[paddleIndex[0]]);
-            paddlePreview.setImage(SkinManager.getInstance().getPaddleImage());
-        });
-
-        HBox paddleBox = new HBox(20, paddleLeft, paddlePreview, paddleRight);
-        paddleBox.setAlignment(Pos.CENTER);
-
-        // ====== BALL SELECTION ======
-        ImageView ballPreview = new ImageView(SkinManager.getInstance().getBallImage());
-        ballPreview.setFitWidth(80);
-        ballPreview.setPreserveRatio(true);
-
-        Button ballLeft = new Button("◀");
-        Button ballRight = new Button("▶");
-
-        String[] ballSkins = SkinManager.getInstance().getAvailableBallSkins();
-        final int[] ballIndex = {0};
-
-        ballLeft.setOnAction(e -> {
-            ballIndex[0] = (ballIndex[0] - 1 + ballSkins.length) % ballSkins.length;
-            SkinManager.getInstance().setBallSkin(ballSkins[ballIndex[0]]);
-            ballPreview.setImage(SkinManager.getInstance().getBallImage());
-        });
-
-        ballRight.setOnAction(e -> {
-            ballIndex[0] = (ballIndex[0] + 1) % ballSkins.length;
-            SkinManager.getInstance().setBallSkin(ballSkins[ballIndex[0]]);
-            ballPreview.setImage(SkinManager.getInstance().getBallImage());
-        });
-
-        HBox ballBox = new HBox(20, ballLeft, ballPreview, ballRight);
-        ballBox.setAlignment(Pos.CENTER);
-
-        // ====== BUTTON BACK / OK ======
-        okButton.setOnMouseClicked(e->changeskinoverplay.setVisible(false));
-
-        contentBox.getChildren().addAll(
-                 paddleBox,
-                 ballBox,
-                 okButton
-        );
-
-        // Đặt nội dung giữa màn hình
-        StackPane.setAlignment(contentBox, Pos.CENTER);
-
-        // Thêm nền + nội dung vào overlay
-        changeskinoverplay.getChildren().addAll(bg, contentBox);
     }
-    public void  showChangeSkinOverlay() {
-        changeskinoverplay.setVisible(true);
-    }
-
-     */
-
 }
