@@ -18,7 +18,11 @@ public class ImgManager {
     }
 
     private void loadTextures() {
-        textures.put("LIFE", Load.loadImage("57-Breakout-Tiles.png", GameConstants.BRICK_WIDTH, 0, true, false));
+        //=============BALL=====================//
+        textures.put("BALL",Load.loadImage("ball0.png",GameConstants.BALL_WIDTH,0,true,false));
+        textures.put("EXTRA_BALL", Load.loadImage("43-Breakout-Tiles.png", GameConstants.POWERUP_WIDTH, 0, true, false));
+
+        //=============BRICK===================//
         textures.put("SILVER_BRICK", Load.loadImage("17-Breakout-Tiles.png", GameConstants.BRICK_WIDTH, 0, true, false));
         textures.put("RED_BRICK", Load.loadImage("07-Breakout-Tiles.png", GameConstants.BRICK_WIDTH, 0, true, false));
         textures.put("RED_BRICK_", Load.loadImage("08-Breakout-Tiles.png", GameConstants.BRICK_WIDTH, 0, true, false));
@@ -28,22 +32,27 @@ public class ImgManager {
         textures.put("GREEN_BRICK_", Load.loadImage("08-Breakout-Tiles.png", GameConstants.BRICK_WIDTH, 0, true, false));
         textures.put("PURPLE_BRICK", Load.loadImage("13-Breakout-Tiles.png", GameConstants.BRICK_WIDTH, 0, true, false));
         textures.put("PURPLE_BRICK_", Load.loadImage("14-Breakout-Tiles.png", GameConstants.BRICK_WIDTH, 0, true, false));
-        textures.put("EXTRA_BALL", Load.loadImage("43-Breakout-Tiles.png", GameConstants.POWERUP_WIDTH, 0, true, false));
-        textures.put("LASER", Load.loadImage("48-Breakout-Tiles.png", GameConstants.POWERUP_WIDTH, 0, true, false));
+        for (int i = 0; i < 8; i++) {
+            int j = 1 + i;
+            Image explosionimg = Load.loadImage("HYPER_" + j + ".png", GameConstants.PADDLE_WIDTH, 0, true, false);
+            textures.put("EXPLOSIONBRICK" + i, explosionimg);
+        }
+
+        //==============PADDLE===============//
         textures.put("EXPAND_PADDLE", Load.loadImage("56-Breakout-Tiles.png", GameConstants.EXTRAPADDLE_WIDTH, 0, true, false));
-        textures.put("HEART", Load.loadImage("60-Breakout-Tiles.png", GameConstants.HEART_WIDTH, 0, true, false));
-        textures.put("BULLET", Load.loadImage("bullet_1.png", GameConstants.BULLET_WIDTH, 0, true, false));
-        textures.put("PLAYER_ICON", Load.loadImage("player_icon.png", GameConstants.ICON_WIDTH, 0, true, false));
-        textures.put("GAMER", Load.loadImage("gamer.png", GameConstants.ICON_WIDTH, 0, true, false));
-        textures.put("REPLAY_NORMAL", Load.loadImage("replay.png", 0, 0, true, false));
-        textures.put("REPLAY_HOVER", Load.loadImage("replay_hover.png", 0, 0, true, false));
-        textures.put("REPLAY_PRESS", Load.loadImage("replay_press.png", 0, 0, true, false));
-        textures.put("OPTIONS_NORMAL", Load.loadImage("options.png", 0, 0, true, false));
-        textures.put("OPTIONS_HOVER", Load.loadImage("options_hover.png", 0, 0, true, false));
-        textures.put("OPTIONS_PRESS", Load.loadImage("options_press.png", 0, 0, true, false));
-        textures.put("EXIT_NORMAL", Load.loadImage("exit.png", 0, 0, true, false));
-        textures.put("EXIT_HOVER", Load.loadImage("exit_hover.png", 0, 0, true, false));
-        textures.put("EXIT_PRESS", Load.loadImage("exit_press.png", 0, 0, true, false));
+        for (int i = 0; i < GameConstants.PADDLE_FRAMES; i++) {
+            int j = 50 + i;
+            Image paddleimg = Load.loadImage(j + "-Breakout-Tiles.png", GameConstants.PADDLE_WIDTH, 0, true, false);
+            textures.put("PADDLE" + i, paddleimg);
+        }
+        //=============BACKGROUND===========//
+        textures.put("SETTING_BG", Load.loadImage("setting_bg.png", GameConstants.SETTINGBG_WIDTH, 0, true, false));
+        textures.put("RANKING_BG", Load.loadImage("ranking_bg.png", GameConstants.SETTINGBG_WIDTH, 0, true, false));
+        textures.put("MENU_BG",Load.loadImage("menu_bg1.png", GameConstants.SCREEN_WIDTH,0, true, false));
+        textures.put("GAME_BG",Load.loadImage("game_bg1.png", GameConstants.SCREEN_WIDTH,0, true, false));
+        textures.put("INTRO_BG", Load.loadImage("Intro.png", GameConstants.SCREEN_WIDTH, 0, true, false));
+
+        //=============BUTTON=============//
         textures.put("REPLAY_NORMAl", Load.loadImage("replay.png", GameConstants.ICON_WIDTH, 0, true, false));
         textures.put("REPLAY_HOVER", Load.loadImage("replay_hover.png", GameConstants.ICON_WIDTH, 0, true, false));
         textures.put("REPLAY_PRESS", Load.loadImage("replay_press.png", GameConstants.ICON_WIDTH, 0, true, false));
@@ -53,29 +62,26 @@ public class ImgManager {
         textures.put("EXIT_NORMAL", Load.loadImage("exit.png", GameConstants.ICON_WIDTH, 0, true, false));
         textures.put("EXIT_HOVER", Load.loadImage("exit_hover.png", GameConstants.ICON_WIDTH, 0, true, false));
         textures.put("EXIT_PRESS", Load.loadImage("exit_press.png", GameConstants.ICON_WIDTH, 0, true, false));
-        textures.put("INTRO_BG", Load.loadImage("Intro.png", GameConstants.SCREEN_WIDTH, 0, true, false));
-
         textures.put("STORE", Load.loadImage("store.png", GameConstants.ICON_WIDTH, 0, true, false));
         textures.put("OK_BUTTON", Load.loadImage("ok_button.png", GameConstants.OKBUTTON_WIDTH, 0, true, false));
         textures.put("BACK_BUTTON", Load.loadImage("back_button.png", GameConstants.OKBUTTON_WIDTH, 0, true, false));
         textures.put("START_BUTTON", Load.loadImage("play_button1.png", GameConstants.START_BUTTON_WIDTH, 0, true, false));
-        textures.put("SETTING_BUTTON", Load.loadImage("options_button1.png", GameConstants.START_BUTTON_WIDTH, 0, true, false));
+        textures.put("OPTIONS_BUTTON", Load.loadImage("options_button1.png", GameConstants.START_BUTTON_WIDTH, 0, true, false));
+        textures.put("RANKING_BUTTON", Load.loadImage("ranking_button1.png", GameConstants.START_BUTTON_WIDTH, 0, true, false));
         textures.put("EXIT_BUTTON", Load.loadImage("exit_button1.png", GameConstants.START_BUTTON_WIDTH, 0, true, false));
-        textures.put("SETTING_BG", Load.loadImage("setting_bg.png", GameConstants.SETTINGBG_WIDTH, 0, true, false));
-        textures.put("RANKING_BG", Load.loadImage("ranking_bg.png", GameConstants.SETTINGBG_WIDTH, 0, true, false));
-        textures.put("BALL", Load.loadImage("ball1.png", GameConstants.BALL_WIDTH, 0, true, false));
-        textures.put("MENU_BG",Load.loadImage("menu_bg1.png", GameConstants.SCREEN_WIDTH,0, true, false));
-        textures.put("GAME_BG",Load.loadImage("game_bg1.png", GameConstants.SCREEN_WIDTH,0, true, false));
-        for (int i = 0; i < GameConstants.PADDLE_FRAMES; i++) {
-            int j = 50 + i;
-            Image paddleimg = Load.loadImage(j + "-Breakout-Tiles.png", GameConstants.PADDLE_WIDTH, 0, true, false);
-            textures.put("PADDLE" + i, paddleimg);
-        }
-        for (int i = 0; i < 8; i++) {
-            int j = 1 + i;
-            Image explosionimg = Load.loadImage("HYPER_" + j + ".png", GameConstants.PADDLE_WIDTH, 0, true, false);
-            textures.put("EXPLOSIONBRICK" + i, explosionimg);
-        }
+        textures.put("PAUSE_BUTTON_IC",Load.loadImage("pause_button1.png",GameConstants.ICON_WIDTH,0,true,false));
+        textures.put("RESUME_BUTTON_IC",Load.loadImage("resume_button1.png",GameConstants.ICON_WIDTH,0,true,false));
+        textures.put("MENU_BUTTON_IC",Load.loadImage("menu_button1.png",GameConstants.ICON_WIDTH,0,true,false));
+
+        //=============ENTITY============//
+        textures.put("LIFE", Load.loadImage("heart_1.png", GameConstants.BRICK_WIDTH, 0, true, false));
+        textures.put("LASER", Load.loadImage("48-Breakout-Tiles.png", GameConstants.POWERUP_WIDTH, 0, true, false));
+        textures.put("HEART", Load.loadImage("60-Breakout-Tiles.png", GameConstants.HEART_WIDTH, 0, true, false));
+        textures.put("BULLET", Load.loadImage("bullet_1.png", GameConstants.BULLET_WIDTH, 0, true, false));
+        textures.put("PLAYER_ICON", Load.loadImage("player_icon.png", GameConstants.ICON_WIDTH, 0, true, false));
+        textures.put("GAMER", Load.loadImage("gamer.png", GameConstants.ICON_WIDTH, 0, true, false));
+
+
     }
 
     public Image getImage(String id) {
