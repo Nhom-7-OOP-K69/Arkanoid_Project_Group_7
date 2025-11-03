@@ -1,6 +1,6 @@
 // File: GameStateManager.java
 public class GameStateManager {
-    public enum GameState {MENU, READY, PLAYING, PAUSED, GAME_OVER}
+    public enum GameState {MENU, READY, PLAYING, PAUSED, GAME_OVER,GAME_WIN}
     private GameState currentState;
     private boolean isSoundEffectsOn;
     private boolean isMusicOn;
