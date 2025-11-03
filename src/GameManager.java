@@ -148,10 +148,15 @@ public class GameManager {
         brickLayer.loadBrick(fileName[currentLevel]);
 
         ballLayer.clearBall();
+        ball = new Ball(442, 570, GameConstants.BALL_WIDTH, GameConstants.BALL_HEIGHT); // Tạo ball mới để reset dx/dy nếu cần
         ballLayer.addBall(ball);
 
         paddle.setX((double) (GameConstants.SCREEN_WIDTH - GameConstants.PADDLE_WIDTH) / 2);
         paddle.setY(GameConstants.SCREEN_HEIGHT - 100);
+        paddle.setWidth(GameConstants.PADDLE_WIDTH); // Reset width qua setWidth() (cập nhật current/target)
+        paddle.activePowerUps = 0;
+        paddle.isAnimating = false; // Dừng animation nếu có
+        paddle.animationProgress = 0;
 
         powerUpManager.clearPowerUp();
 

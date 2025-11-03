@@ -33,7 +33,7 @@ public class PowerUpManager {
                         x, y,
                         GameConstants.POWERUP_WIDTH,
                         GameConstants.POWERUP_HEIGHT,
-                        3); // 5s
+                        5); // 5s
                 fallingPowerUps.add(powerUp);
             } else {
                 // Extra Ball
