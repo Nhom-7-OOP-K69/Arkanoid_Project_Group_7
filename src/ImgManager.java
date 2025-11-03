@@ -41,6 +41,7 @@ public class ImgManager {
         textures.put("EXIT_NORMAL", Load.loadImage("exit.png", GameConstants.ICON_WIDTH, 0, true, false));
         textures.put("EXIT_HOVER", Load.loadImage("exit_hover.png", GameConstants.ICON_WIDTH, 0, true, false));
         textures.put("EXIT_PRESS", Load.loadImage("exit_press.png", GameConstants.ICON_WIDTH, 0, true, false));
+        textures.put("INTRO_BG", Load.loadImage("Intro.png", GameConstants.SCREEN_WIDTH, 0, true, false));
 
         textures.put("STORE", Load.loadImage("store.png", GameConstants.ICON_WIDTH, 0, true, false));
         textures.put("OK_BUTTON", Load.loadImage("ok_button.png", GameConstants.OKBUTTON_WIDTH, 0, true, false));
