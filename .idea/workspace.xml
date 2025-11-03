@@ -6,14 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="0c2c2745-22e6-49e3-8791-87cb328c1f44" name="Changes" comment="sửa Explosion &#10;thêm Lives&#10;cải tiến màn hình game">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/GameManager$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/GameManager$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/GameManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/GameManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/LevelIntro.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/LevelIntro.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/PowerUpManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/PowerUpManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/UIManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/UIManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ranking.txt" beforeDir="false" afterPath="$PROJECT_DIR$/ranking.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GameManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/InputHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/InputHandler.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,7 +22,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="Khang10" />
+        <entry key="$PROJECT_DIR$" value="Khang11" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -58,22 +50,22 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;Khang11&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;E:/Java/Arkanoid_Project_Group_7 - Copy&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Main.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "Khang12",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "E:/Java/Arkanoid_Project_Group_7 - Copy",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.pluginManager"
   }
-}</component>
+}]]></component>
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="Main" />
@@ -231,7 +223,15 @@
       <option name="project" value="LOCAL" />
       <updated>1762143257100</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="sửa Explosion &#10;thêm Lives&#10;cải tiến màn hình game">
+      <option name="closed" value="true" />
+      <created>1762151596225</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1762151596225</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
