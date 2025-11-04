@@ -3,6 +3,7 @@ package powerUp;
 import game.GameConstants;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
+import manager.AudioManager;
 import manager.ImgManager;
 import object.ball.Ball;
 import object.ball.BallLayer;
@@ -28,6 +29,7 @@ public class BulletPowerUp extends PowerUp {
 
     @Override
     public void applyEffect(Paddle paddle, BallLayer ballLayer) {
+        AudioManager.getInstance().playSfx("GET_ITEM");
         if (!active) {
             paddle.activatePowerUp(this.type); // Thêm vào bitmask
             startTime = System.currentTimeMillis();
@@ -35,7 +37,6 @@ public class BulletPowerUp extends PowerUp {
             start();
             System.out.println("[BulletPowerUp] Paddle đã kích hoạt chế độ bắn đạn!");
         }
-        // Bỏ phần else vì giờ xử lý reset ở PowerUpManager
     }
 
     public boolean isExpired() {
@@ -74,6 +75,8 @@ public class BulletPowerUp extends PowerUp {
 
             newBullets.add(b1);
             newBullets.add(b2);
+
+            AudioManager.getInstance().playSfx("SHOT");
 
             System.out.println("[BulletPowerUp] Bắn đạn tại X=" + leftX + ", " + rightX + " | Y=" + y);
         }

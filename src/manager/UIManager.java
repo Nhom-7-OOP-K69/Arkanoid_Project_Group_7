@@ -198,10 +198,10 @@ public class UIManager {
                 menu_bg,
                 menuLayout,
                 skinButton,
-                settingsOverlay,
                 rankingOverlay,
                 nameInputOverlay,
-                pauseOverlay
+                pauseOverlay,
+                settingsOverlay
         );
 
         menuScene = new Scene(menuPane, GameConstants.SCREEN_WIDTH, GameConstants.SCREEN_HEIGHT);
@@ -365,13 +365,16 @@ public class UIManager {
         ImageView okButton = new ImageView(ImgManager.getInstance().getImage("OK_BUTTON"));
         okButton.setFitWidth(120);
         okButton.setFitHeight(60);
-        okButton.setOnMouseClicked(e -> settingsOverlay.setVisible(false));
+        okButton.setOnMouseClicked(e -> {
+            settingsOverlay.setVisible(false);
+            gameManager.resumeGame();
+        });
 
         // Nút BACK
         ImageView backButton = new ImageView(ImgManager.getInstance().getImage("BACK_BUTTON"));
         backButton.setFitWidth(120);
         backButton.setFitHeight(60);
-        backButton.setOnMouseClicked(e -> settingsOverlay.setVisible(false));
+        backButton.setOnMouseClicked(e -> gameManager.returnToMenu());
 
         // HBox chứa 2 nút
         HBox buttonBox = new HBox(40, okButton, backButton);
@@ -548,15 +551,36 @@ public class UIManager {
 
 
     public void createGameScene(Canvas canvasPane) {
+        scoreLabel = new Label("Score: 0");
+        scoreLabel.setStyle("-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: white;");
+
+        VBox scoreBox = new VBox(5, scoreLabel);
+        scoreBox.setAlignment(Pos.CENTER_LEFT);
+        scoreBox.setPadding(new Insets(0, 0, 0, 15)); // Khoảng đệm trái
+
         MouseEvent();
 
         addHoverEffect(pauseButton_ic);
         addHoverEffect(menuButton_ic);
         addHoverEffect(resumeButton_ic);
 
-        HBox topUIPanel = new HBox(20, pauseButton_ic, resumeButton_ic, menuButton_ic);
+        // MỚI: Tạo Spacer
+        Region spacer = new Region();
+        HBox.setHgrow(spacer, Priority.ALWAYS); // Đặt Spacer chiếm hết không gian
+
+        // SỬA HBox: Thêm scoreBox, Spacer, và các nút
+        HBox topUIPanel = new HBox(
+                10, // Giảm khoảng cách giữa các phần tử trong HBox
+                scoreBox,       // TRÁI
+                spacer,         // VÙNG ĐỆM
+                pauseButton_ic,
+                resumeButton_ic,
+                menuButton_ic   // PHẢI
+        );
+
         topUIPanel.setPadding(new Insets(5));
-        topUIPanel.setAlignment(Pos.CENTER_RIGHT);
+        // SỬA: Căn chỉnh thành CENTER (để căn giữa dọc) hoặc CENTER_LEFT
+        topUIPanel.setAlignment(Pos.CENTER);
         topUIPanel.setPrefHeight(GameConstants.UI_TOP_BAR_HEIGHT);
         topUIPanel.setMaxHeight(GameConstants.UI_TOP_BAR_HEIGHT + 5);
         topUIPanel.setStyle("-fx-background-color: transparent; -fx-border-width: 0;");
@@ -591,15 +615,14 @@ public class UIManager {
         pauseOverlay.setVisible(false);
     }
 
-    /*public void updateHighScoreLabel(int newHighScore) {
+    public void updateScoreLabel(int newHighScore) {
         Platform.runLater(() -> {
-            if (highScoreLabel != null) {
-                highScoreLabel.setText("High Score: " + newHighScore);
+            if (scoreLabel != null) {
+                scoreLabel.setText("Score: " + newHighScore);
             }
         });
     }
 
-     */
     // Hàm hỗ trợ tạo hiệu ứng (Bạn nên thêm hàm này vào lớp của mình)
     private void addHoverZoom(ImageView imageView) {
         imageView.setOnMouseEntered(e -> {
@@ -620,8 +643,12 @@ public class UIManager {
 
     private void MouseEvent() {
         startButton.setOnMouseClicked(e -> showNameInputOverlay());
+        optionsButton.setOnMouseClicked(e -> showSettings());
         exitButton.setOnMouseClicked(e -> gameManager.exitGame());
-        menuButton_ic.setOnMouseClicked(e -> showSettings());
+        menuButton_ic.setOnMouseClicked(e -> {
+            showSettings();
+            gameManager.pauseGame();
+        });
         pauseButton_ic.setOnMouseClicked(e -> gameManager.pauseGame());
         resumeButton_ic.setOnMouseClicked(e -> gameManager.startResumeCountdown(countdownText));
         rankingButton.setOnMouseClicked(e -> {
@@ -638,6 +665,7 @@ public class UIManager {
     }
 
     public void showSettings() {
+        System.out.println("đã in ra");
         settingsOverlay.setVisible(true);
     }
 

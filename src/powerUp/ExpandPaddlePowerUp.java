@@ -1,5 +1,6 @@
 package powerUp;
 
+import manager.AudioManager;
 import object.ball.Ball;
 import object.ball.BallLayer;
 import object.paddle.Paddle;
@@ -16,6 +17,7 @@ public class ExpandPaddlePowerUp extends PowerUp {
 
     @Override
     public void applyEffect(Paddle paddle, BallLayer ballLayer) {
+        AudioManager.getInstance().playSfx("GET_ITEM");
         if (!active) {
             paddle.expandPaddle(expandSize); // Animation tự động bắt đầu
             paddle.activatePowerUp(this.type);

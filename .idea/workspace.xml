@@ -6,44 +6,25 @@
   <component name="ChangeListManager">
     <list default="true" id="0c2c2745-22e6-49e3-8791-87cb328c1f44" name="Changes" comment="sửa lỗi">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AudioManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/manager/AudioManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Ball.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/object/ball/Ball.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/BallLayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/object/ball/BallLayer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Brick.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/object/brick/Brick.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/BrickLayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/object/brick/BrickLayer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Bullet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/object/bullet/Bullet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/BulletPowerUp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/powerUp/BulletPowerUp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ExpandPaddlePowerUp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/powerUp/ExpandPaddlePowerUp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Explosion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/object/explosion/Explosion.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ExplosionBrick.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/object/brick/ExplosionBrick.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ExplosionLayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/object/explosion/ExplosionLayer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ExtraBallPowerUp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/powerUp/ExtraBallPowerUp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/FontManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/manager/FontManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GameConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/GameConstants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GameManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/GameManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GameObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/object/gameObject/GameObject.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GameOverScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/GameOverScreen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GameStateManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/GameStateManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GameWinScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/GameWinScreen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ImgManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/manager/ImgManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/InputHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/manager/InputHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LevelIntro.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/LevelIntro.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Lives.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/Lives.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MovableObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/object/gameObject/MovableObject.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/NormalBrick.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/object/brick/NormalBrick.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Paddle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/object/paddle/Paddle.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/PendingExplosion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/object/explosion/PendingExplosion.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/PlayerScore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/score/PlayerScore.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/PowerUp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/powerUp/PowerUp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/PowerUpManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/powerUp/PowerUpManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Ranking.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/score/Ranking.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Score.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/score/Score.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SpawnPowerUp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/powerUp/SpawnPowerUp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/StrongBrick.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/object/brick/StrongBrick.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SuperBrick.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/object/brick/SuperBrick.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/UIManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/manager/UIManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Wall.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/object/brick/Wall.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/game/GameManager$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/game/GameManager$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/game/GameManager$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/game/GameManager$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/game/GameManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/game/GameManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/game/LevelIntro.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/game/LevelIntro.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/manager/ImgManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/manager/ImgManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/manager/Load.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/manager/Load.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/manager/UIManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/manager/UIManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/powerUp/BulletPowerUp.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/powerUp/BulletPowerUp.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/powerUp/ExpandPaddlePowerUp.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/powerUp/ExpandPaddlePowerUp.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/powerUp/ExtraBallPowerUp.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/powerUp/ExtraBallPowerUp.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/powerUp/PowerUpManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7/powerUp/PowerUpManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ranking.txt" beforeDir="false" afterPath="$PROJECT_DIR$/ranking.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/GameManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/GameManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/GameOverScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/GameOverScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/manager/ImgManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/manager/ImgManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/manager/UIManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/manager/UIManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/powerUp/BulletPowerUp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/powerUp/BulletPowerUp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/powerUp/ExpandPaddlePowerUp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/powerUp/ExpandPaddlePowerUp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/powerUp/ExtraBallPowerUp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/powerUp/ExtraBallPowerUp.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -88,24 +69,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.Main.executor": "Run",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "create.test.in.the.same.root": "true",
-    "git-widget-placeholder": "Khang15",
-    "ignore.virus.scanning.warn.message": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "E:/Java/Arkanoid_Project_Group_7 - Copy",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "MavenSettings"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;create.test.in.the.same.root&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Khang15&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;E:/Java/Arkanoid_Project_Group_7 - Copy&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;MavenSettings&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="Main" />
@@ -319,7 +300,15 @@
       <option name="project" value="LOCAL" />
       <updated>1762159958316</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="sửa lỗi">
+      <option name="closed" value="true" />
+      <created>1762183454535</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1762183454535</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

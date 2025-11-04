@@ -3,6 +3,7 @@ package powerUp;
 import game.GameConstants;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
+import manager.AudioManager;
 import manager.ImgManager;
 import object.ball.Ball;
 import object.ball.BallLayer;
@@ -22,6 +23,7 @@ public class ExtraBallPowerUp extends PowerUp {
 
     @Override
     public void applyEffect(Paddle paddle, BallLayer ballLayer){
+        AudioManager.getInstance().playSfx("GET_ITEM");
         System.out.println("Thêm 2 bóng mới");
 
         // tạo 2 bóng mới

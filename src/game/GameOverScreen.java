@@ -1,5 +1,6 @@
 package game;
 
+import game.GameManager;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.BackgroundPosition;
@@ -132,7 +133,7 @@ public class GameOverScreen extends VBox {
             replayPressed = this.replay_press;
 
             // Gán cho biến 'menu...' mà constructor sử dụng
-            // (Lấy từ biến 'options...' đã khai báo ở trên)
+// (Lấy từ biến 'options...' đã khai báo ở trên)
             menuNormal = this.options_normal;
             menuHover = this.options_hover;
             menuPressed = this.options_press;
