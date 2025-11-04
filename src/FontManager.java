@@ -5,6 +5,7 @@ public class FontManager {
 
     private static final String DEFAULT_FONT_FILE = "font1";
     private static final float DEFAULT_SIZE = 16f;
+    private static final String FONT_PATH = "Arka_solid";
 
     private static volatile FontManager instance;
     private Font customFont; // Bây giờ là javafx.scene.text.Font

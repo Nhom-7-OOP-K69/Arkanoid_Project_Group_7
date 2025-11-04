@@ -1,13 +1,9 @@
-// File: UIManager.java (Phiên bản đã sửa đổi và tích hợp GridPane)
-
 import javafx.animation.FadeTransition;
 import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 // THÊM CÁC IMPORT CẦN THIẾT CHO GRIDPANE VÀ CĂN CHỈNH
-import javafx.geometry.HPos;
 import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.*;
 import javafx.scene.effect.DropShadow;
@@ -19,8 +15,6 @@ import javafx.scene.image.Image; // Import cho Image
 import javafx.scene.image.ImageView; // Import cho ImageView
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.LinearGradient;
-import javafx.scene.paint.Stop;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
@@ -28,10 +22,8 @@ import javafx.scene.text.Text;
 import javafx.util.Duration;
 
 import java.util.Collections;
-import java.util.Optional;
 
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.List;
 
 public class UIManager {
@@ -41,10 +33,6 @@ public class UIManager {
     private static final Font CUSTOM_BASE_FONT = FontManager.getInstance().getFont();
     private static final String CUSTOM_FONT_FAMILY = CUSTOM_BASE_FONT.getFamily();
     private static final String FONT_CSS = "-fx-font-family: \"" + CUSTOM_FONT_FAMILY + "\"; ";
-
-    // Cập nhật các style để bao gồm font mới
-    private static final String BUTTON_BASE_STYLE = FONT_CSS + "-fx-background-color: #2a2a2a; -fx-text-fill: white; -fx-font-size: 16px; -fx-min-width: 120px; -fx-padding: 8px; -fx-border-color: #cccccc; -fx-border-width: 2px; -fx-border-radius: 8px; -fx-background-radius: 8px;";
-    private static final String BUTTON_HOVER_STYLE = FONT_CSS + "-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-size: 16px; -fx-min-width: 120px; -fx-padding: 8px; -fx-border-color: #ffffff; -fx-border-width: 2px; -fx-border-radius: 8px; -fx-background-radius: 8px;";
 
     // Các biến GameManager và GameStateManager
     private final GameManager gameManager;
@@ -99,6 +87,7 @@ public class UIManager {
 
     public final Font medievalFont = Font.loadFont(getClass().getResourceAsStream("/fonts/MedievalSharp-Book.ttf"), 24);
     public final Font titleFont = Font.loadFont(getClass().getResourceAsStream("/fonts/MedievalSharp-Book.ttf"), 50);
+    public final Font ArkaFont = Font.loadFont(getClass().getResourceAsStream("/fonts/Arka_solid.ttf"), 50);
 
     public final Color Text_Color = Color.web("#b08b58");
 
@@ -154,6 +143,15 @@ public class UIManager {
         menu_bg.setFitHeight(GameConstants.SCREEN_HEIGHT);
         menu_bg.setPreserveRatio(false);
         menu_bg.setOpacity(1.0);
+
+        Text title = new Text("ARKANOID");
+        title.setFont(ArkaFont);
+        title.setFill(Color.rgb(255, 100, 0)); // Màu cam rực
+        title.setStroke(Color.DARKRED);
+        title.setStrokeWidth(2.5);
+
+        DropShadow titleGlow = new DropShadow(50, Color.rgb(255, 150, 0, 0.9));
+        title.setEffect(titleGlow);
 
         // Tạo overlays
         createSettingsOverlay();

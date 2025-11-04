@@ -24,7 +24,7 @@ public class GameOverScreen extends VBox {
     private static final double SCREEN_PADDING = 50;
 
     // --- Hằng số Tài nguyên ---
-    private static final String FONT_PATH = "/Arka_solid.ttf";
+    private static final String FONT_PATH = "/fonts/Arka_solid.ttf";
     private static final String BACKGROUND_IMAGE_PATH = "/images/GameOverScreenBg.png";
 
     // Nút Replay
