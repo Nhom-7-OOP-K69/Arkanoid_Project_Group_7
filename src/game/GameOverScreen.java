@@ -53,9 +53,6 @@ public class GameOverScreen extends VBox {
     public ImageView exitPressButton = new ImageView(exit_press);
 
 
-
-
-
     // --- Biến lớp ---
     private GameManager gameManager; // <-- Biến để lưu GameManager
     private Font titleFont;

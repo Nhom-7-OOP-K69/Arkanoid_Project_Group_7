@@ -4,15 +4,81 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a344e164-a763-4d61-82bc-63f012b3db58" name="Changes" comment="" />
+    <list default="true" id="a344e164-a763-4d61-82bc-63f012b3db58" name="Changes" comment="ko co gi">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7_/AudioLoader.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7_/AudioManager.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7_/Ball.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7_/BallLayer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7_/Brick.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7_/BrickLayer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7_/Bullet.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7_/BulletPowerUp.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7_/ExpandPaddlePowerUp.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7_/Explosion$Particle.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7_/Explosion.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7_/ExplosionBrick.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7_/ExplosionLayer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7_/ExtraBallPowerUp.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7_/FontManager.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7_/GameConstants.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7_/GameManager$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7_/GameManager$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7_/GameManager.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7_/GameObject.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7_/GameOverScreen.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7_/GameStateManager$GameState.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7_/GameStateManager.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7_/GameWinScreen.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7_/ImgManager.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7_/InputHandler.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7_/LevelIntro.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7_/Lives.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7_/Load.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7_/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7_/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7_/MovableObject.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7_/NormalBrick.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7_/Paddle.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7_/PendingExplosion.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7_/PlayerScore.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7_/PowerUp.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7_/PowerUpManager.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7_/Ranking.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7_/Score.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7_/SpawnPowerUp.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7_/StrongBrick.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7_/SuperBrick.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7_/UIManager.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Arkanoid_Project_Group_7_/Wall.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ranking.txt" beforeDir="false" afterPath="$PROJECT_DIR$/ranking.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/GameOverScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/GameOverScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/manager/FontManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/manager/FontManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/manager/UIManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/manager/UIManager.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="hai9" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/Nhom-7-OOP-K69/Arkanoid_Project_Group_7.git",
+    "accountId": "048ae3cb-35e4-48c8-a1ab-0879c5a14516"
+  }
+}]]></component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Application.Main.executor": "Run",
     "Application.Unnamed.executor": "Run",
+    "git-widget-placeholder": "hai10",
     "node.js.selected.package.tslint": "(autodetect)",
     "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.15",
@@ -25,7 +91,7 @@
     </key>
   </component>
   <component name="RunManager">
-    <configuration name="Unnamed" type="Application" factoryName="Application" nameIsGenerated="true">
+    <configuration name="Main" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="Main" />
       <module name="Arkanoid_Project_Group_7_" />
       <option name="VM_PARAMETERS" value="--module-path &quot;C:\Users\doanm\Downloads\openjfx-25_windows-x64_bin-sdk\javafx-sdk-25\lib&quot;  --add-modules javafx.controls,javafx.fxml,javafx.media  --enable-native-access=javafx.graphics,javafx.media  --add-opens=javafx.base/com.sun.javafx=ALL-UNNAMED  --add-opens=javafx.graphics/com.sun.javafx.tk=ALL-UNNAMED " />
@@ -35,10 +101,20 @@
     </configuration>
   </component>
   <component name="TaskManager">
+    <task id="LOCAL-00001" summary="ko co gi">
+      <option name="closed" value="true" />
+      <created>1762239417184</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1762239417184</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="gamewin" />
-    <option name="LAST_COMMIT_MESSAGE" value="gamewin" />
+    <MESSAGE value="ko co gi" />
+    <option name="LAST_COMMIT_MESSAGE" value="ko co gi" />
   </component>
 </project>
