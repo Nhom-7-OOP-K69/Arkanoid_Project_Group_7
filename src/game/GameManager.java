@@ -25,6 +25,7 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import javafx.scene.layout.StackPane;
 import manager.AudioManager;
+import manager.ImgManager;
 import manager.InputHandler;
 import manager.UIManager;
 import object.ball.Ball;
@@ -42,6 +43,7 @@ public class GameManager {
     private Stage primaryStage;
     private GameStateManager gameStateManager;
     private UIManager uiManager;
+    private ImgManager imgManager = ImgManager.getInstance();
     private InputHandler inputHandler;
 
     private final Canvas canvas = new Canvas(GameConstants.SCREEN_WIDTH, GameConstants.SCREEN_HEIGHT);
@@ -67,7 +69,7 @@ public class GameManager {
     private Scene gameWinScene;
     private GameWinScreen gameWinScreen;
 
-    private Lives lives = new Lives();
+    private Lives lives;
 
     private AnimationTimer gameLoop;
 
@@ -89,6 +91,7 @@ public class GameManager {
         this.uiManager = new UIManager(this, this.gameStateManager);
 
         // Tải tài nguyên và tạo giao diện
+        this.imgManager.loadTextures();
         this.loadFileName();
         this.uiManager.createMenuScene();
         this.createGameEntities();
@@ -122,6 +125,7 @@ public class GameManager {
         ball = new Ball(ballStartX, ballStartY, GameConstants.BALL_WIDTH, GameConstants.BALL_HEIGHT);
         this.paddle = new Paddle(PADDLE_START_X, PADDLE_START_Y, GameConstants.PADDLE_WIDTH, GameConstants.PADDLE_HEIGHT);
         ballLayer.addBall(this.ball);
+        lives = new Lives();
     }
 
     // MỚI: Phương thức gom logic reset paddle và ball, tránh lặp code
@@ -158,8 +162,6 @@ public class GameManager {
 
         brickLayer = new BrickLayer(); // Tạo lại để đảm bảo không còn gạch cũ
         brickLayer.loadBrick(fileName[currentLevel]);
-        // System.out.println(fileName[currentLevel]);
-        // System.out.println(currentLevel);
 
         // Gọi phương thức reset chung
         resetPaddleAndBall();
@@ -406,13 +408,12 @@ public class GameManager {
 
 
     public void startGame() {
-
         gameStateManager.setCurrentState(GameStateManager.GameState.READY);
         primaryStage.setScene(uiManager.getGameScene());
         uiManager.getGamePane().requestFocus();
+        uiManager.getPauseOverlay().setVisible(false);
 
         resetGame();
-
         uiManager.showLevelIntro(currentLevel, () -> {
             gameStateManager.setCurrentState(GameStateManager.GameState.READY);
         }, uiManager.medievalFont);
@@ -503,6 +504,7 @@ public class GameManager {
 
     public void exitGame() {
         System.out.println("Thoát game!");
+        imgManager.shutdown();
         Platform.exit();
     }
 
