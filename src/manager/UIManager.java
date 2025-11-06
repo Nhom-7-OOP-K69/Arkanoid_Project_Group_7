@@ -41,29 +41,26 @@ import java.util.Arrays;
 import java.util.List;
 
 public class UIManager {
-    private VBox nameInputOverlay;
-    private TextField nameField;
-
+    //=============Font=============
     private static final Font CUSTOM_BASE_FONT = FontManager.getInstance().getFont();
     private static final String CUSTOM_FONT_FAMILY = CUSTOM_BASE_FONT.getFamily();
     private static final String FONT_CSS = "-fx-font-family: \"" + CUSTOM_FONT_FAMILY + "\"; ";
     private static final String FONT_PATH = "/fonts/Arka_solid.ttf";
 
+    public final Font medievalFont = Font.loadFont(getClass().getResourceAsStream("/fonts/MedievalSharp-Book.ttf"), 24);
+    public final Color Text_Color = Color.web("#b08b58");
 
-    // Cập nhật các style để bao gồm font mới
+    //============== Cập nhật các style để bao gồm font mới=============
     private static final String BUTTON_BASE_STYLE = FONT_CSS + "-fx-background-color: #2a2a2a; -fx-text-fill: white; -fx-font-size: 16px; -fx-min-width: 120px; -fx-padding: 8px; -fx-border-color: #cccccc; -fx-border-width: 2px; -fx-border-radius: 8px; -fx-background-radius: 8px;";
     private static final String BUTTON_HOVER_STYLE = FONT_CSS + "-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-size: 16px; -fx-min-width: 120px; -fx-padding: 8px; -fx-border-color: #ffffff; -fx-border-width: 2px; -fx-border-radius: 8px; -fx-background-radius: 8px;";
-
-    // Các biến GameManager và GameStateManager
+    //===============Các biến GameManager và GameStateManager========
     private final GameManager gameManager;
 
-    // Các Scene và Panes chính
+    // ===============Các Scene và Panes chính===============
     private Scene menuScene, gameScene;
     private StackPane gamePane;
 
-
-    // Các Overlay và các nút liên quan
-
+    //============Các Overlay và các nút liên quan==========
     private StackPane settingsOverlay;
     private VBox rankingOverlay;
     private StackPane pauseOverlay;
@@ -75,48 +72,43 @@ public class UIManager {
     // THÊM: Biến cho danh sách xếp hạng để có thể cập nhật
     private VBox rankingListContainer;
 
-    // Khởi ảnh tạo các nút
-    private Image startImg = ImgManager.getInstance().getImage("START_BUTTON");
-    //private Image startImg_Exit = ImgManager.getInstance().getImage("START_EXIT");
-    private Image rankingImg = ImgManager.getInstance().getImage("RANKING_BUTTON");
-    //private Image rankingImg_Exit = ImgManager.getInstance().getImage("RANKING_EXIT");
-    private Image optionsImg = ImgManager.getInstance().getImage("OPTIONS_BUTTON");
-    //private Image settingImg_Exit = ImgManager.getInstance().getImage("SETTING_EXIT");
-    private Image exitImg = ImgManager.getInstance().getImage("EXIT_BUTTON");
-    //private Image exitImg_Exit = ImgManager.getInstance().getImage("EXIT_EXIT");
-    private Image skinImg = ImgManager.getInstance().getImage("STORE");
-    private Image pauseImg = ImgManager.getInstance().getImage("PAUSE_BUTTON_IC");
-    private Image resumeImg = ImgManager.getInstance().getImage("RESUME_BUTTON_IC");
-    private Image menuImg = ImgManager.getInstance().getImage("MENU_BUTTON_IC");
-    private Image ob_buttonimg = ImgManager.getInstance().getImage("OB_BUTTON");
-
-    // Khởi tạo các nút
-    private ImageView startButton = new ImageView(startImg);
-    private ImageView rankingButton = new ImageView(rankingImg);
-    private ImageView optionsButton = new ImageView(optionsImg);
-    private ImageView exitButton = new ImageView(exitImg);
-    private ImageView skinButton = new ImageView(skinImg);
-    private ImageView pauseButton_ic = new ImageView(pauseImg);
-    private ImageView resumeButton_ic = new ImageView(resumeImg);
-    private ImageView menuButton_ic = new ImageView(menuImg);
-    private ImageView okButton = new ImageView(ob_buttonimg);
-
-    private ImageView setting_bg = new ImageView(ImgManager.getInstance().getImage("SETTING_BG"));
-    private ImageView ranking_bg = new ImageView(ImgManager.getInstance().getImage("RANKING_BG"));
-    private ImageView menu_bg = new ImageView(ImgManager.getInstance().getImage("MENU_BG"));
-    private ImageView game_bg = new ImageView(ImgManager.getInstance().getImage("GAME_BG"));
-
-    public final Font medievalFont = Font.loadFont(getClass().getResourceAsStream("/fonts/MedievalSharp-Book.ttf"), 24);
-    public final Color Text_Color = Color.web("#b08b58");
-
-    public UIManager(GameManager gameManager, GameStateManager gameStateManager) {
-        this.gameManager = gameManager;
+    //================== Khởi tạo các nút===============
+    private ImageView startButton;
+    private ImageView rankingButton;
+    private ImageView optionsButton;
+    private ImageView exitButton;
+    private ImageView skinButton;
+    private ImageView pauseButton_ic;
+    private ImageView resumeButton_ic ;
+    private ImageView menuButton_ic;
+    private ImageView okButton ;
+    private ImageView backButton;
+    private void createButtons() {
+        startButton = new ImageView(ImgManager.getInstance().getImage("START_BUTTON"));
+        rankingButton = new ImageView(ImgManager.getInstance().getImage("RANKING_BUTTON"));
+        optionsButton = new ImageView(ImgManager.getInstance().getImage("OPTIONS_BUTTON"));
+        exitButton = new ImageView(ImgManager.getInstance().getImage("EXIT_BUTTON"));
+        skinButton = new ImageView(ImgManager.getInstance().getImage("SKIN_BUTTON"));
+        pauseButton_ic = new ImageView(ImgManager.getInstance().getImage("PAUSE_BUTTON_IC"));
+        resumeButton_ic = new ImageView(ImgManager.getInstance().getImage("RESUME_BUTTON_IC"));
+        menuButton_ic = new ImageView(ImgManager.getInstance().getImage("MENU_BUTTON_IC"));
+        okButton = new ImageView(ImgManager.getInstance().getImage("OK_BUTTON"));
+        backButton = new ImageView(ImgManager.getInstance().getImage("BACK_BUTTON"));
     }
-    public StackPane getGamePane() {return gamePane;}
-    public Scene getMenuScene() {return menuScene;}
-    public Scene getGameScene() {return gameScene;}
-    public StackPane getPauseOverlay() {return pauseOverlay;}
-    public Text getCountdownText() {return countdownText;}
+    //========Khởi tạo background=======
+    private ImageView setting_bg;
+    private ImageView ranking_bg;
+    private ImageView menu_bg;
+    private ImageView game_bg;
+    private void createBackgrounds() {
+        setting_bg = new ImageView(ImgManager.getInstance().getImage("SETTING_BG"));
+        ranking_bg = new ImageView(ImgManager.getInstance().getImage("RANKING_BG"));
+        menu_bg = new ImageView(ImgManager.getInstance().getImage("MENU_BG"));
+        game_bg = new ImageView(ImgManager.getInstance().getImage("GAME_BG"));
+    }
+    //===================Nhập tên===========================
+    private VBox nameInputOverlay;
+    private TextField nameField;
 
     //=================== Intro Scene ==================================
     private boolean isShowingIntro = true;
@@ -152,9 +144,9 @@ public class UIManager {
     }
 
     //=================================================================
-
-
     public void createMenuScene() {
+        createButtons();
+        createBackgrounds();
         StackPane menuPane = new StackPane();
         VBox menuLayout = new VBox(25);
         menuLayout.setAlignment(Pos.CENTER);
@@ -399,7 +391,6 @@ public class UIManager {
         sfxBox.setAlignment(Pos.CENTER);
 
         // Nút OK
-        ImageView okButton = new ImageView(ImgManager.getInstance().getImage("OK_BUTTON"));
         okButton.setFitWidth(120);
         okButton.setFitHeight(60);
         okButton.setOnMouseClicked(e -> {
@@ -408,10 +399,12 @@ public class UIManager {
         });
 
         // Nút BACK
-        ImageView backButton = new ImageView(ImgManager.getInstance().getImage("BACK_BUTTON"));
         backButton.setFitWidth(120);
         backButton.setFitHeight(60);
-        backButton.setOnMouseClicked(e -> gameManager.returnToMenu());
+        backButton.setOnMouseClicked(e -> {
+            gameManager.returnToMenu();
+            settingsOverlay.setVisible(false);
+        });
 
         // HBox chứa 2 nút
         HBox buttonBox = new HBox(40, okButton, backButton);
@@ -726,7 +719,12 @@ public class UIManager {
         imageView.setFitHeight(newHeight);
     }
 
-    private void openSkinManager() {
-
+    public UIManager(GameManager gameManager, GameStateManager gameStateManager) {
+        this.gameManager = gameManager;
     }
+    public StackPane getGamePane() {return gamePane;}
+    public Scene getMenuScene() {return menuScene;}
+    public Scene getGameScene() {return gameScene;}
+    public StackPane getPauseOverlay() {return pauseOverlay;}
+    public Text getCountdownText() {return countdownText;}
 }
