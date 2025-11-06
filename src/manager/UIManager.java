@@ -45,6 +45,8 @@ public class UIManager {
     private static final Font CUSTOM_BASE_FONT = FontManager.getInstance().getFont();
     private static final String CUSTOM_FONT_FAMILY = CUSTOM_BASE_FONT.getFamily();
     private static final String FONT_CSS = "-fx-font-family: \"" + CUSTOM_FONT_FAMILY + "\"; ";
+    private static final String FONT_PATH = "/fonts/Arka_solid.ttf";
+
     public final Font medievalFont = Font.loadFont(getClass().getResourceAsStream("/fonts/MedievalSharp-Book.ttf"), 24);
     public final Color Text_Color = Color.web("#b08b58");
 
@@ -156,11 +158,44 @@ public class UIManager {
         menu_bg.setPreserveRatio(false);
         menu_bg.setOpacity(1.0);
 
+        Text title = new Text("ARKANOID");
+        try {
+            // Tải font Arka_solid.ttf từ FONT_PATH đã định nghĩa
+            Font titleFont = Font.loadFont(getClass().getResourceAsStream(FONT_PATH), 80);
+
+            if (titleFont != null) {
+                title.setFont(titleFont);
+            } else {
+                // Fallback nếu không tải được font
+                title.setFont(Font.font("Arial", FontWeight.BOLD, 80));
+                System.err.println("LỖI: Không thể tải font: " + FONT_PATH);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            title.setFont(Font.font("Arial", FontWeight.BOLD, 80));
+        }
+
+        title.setFill(Color.WHITE);
+        DropShadow redGlow = new DropShadow();
+        redGlow.setColor(Color.RED);
+        redGlow.setRadius(55);
+        redGlow.setSpread(0.5);
+
+        DropShadow darkShadow = new DropShadow();
+        darkShadow.setOffsetY(3.0);
+        darkShadow.setColor(Color.rgb(0, 0, 0, 0.5));
+        darkShadow.setRadius(5);
+
+        // Kết hợp cả hai hiệu ứng: bóng đổ trước, rồi ánh đỏ
+        redGlow.setInput(darkShadow);
+        title.setEffect(redGlow);
+
         // Tạo overlays
         createSettingsOverlay();
         createRankingOverlay();
         createNameInputOverlay();
         createPauseOverlay();
+
 
         // Set hiệu ứng hover cho các nút
         addHoverEffect(startButton);
@@ -176,12 +211,14 @@ public class UIManager {
         // Đặt vị trí skinButton góc phải trên
         StackPane.setAlignment(skinButton, Pos.TOP_RIGHT);
         StackPane.setMargin(skinButton, new Insets(20));
+        VBox.setMargin(title, new Insets(-200, 0, 80, 0));
 
         // Gán sự kiện chuột
         MouseEvent();
 
         // Thêm các phần tử vào layout
         menuLayout.getChildren().addAll(
+                title,
                 startButton,
                 rankingButton,
                 exitButton
@@ -563,12 +600,12 @@ public class UIManager {
 
         // SỬA HBox: Thêm scoreBox, Spacer, và các nút
         HBox topUIPanel = new HBox(
-                10, // Giảm khoảng cách giữa các phần tử trong HBox
-                scoreBox,       // TRÁI
-                spacer,         // VÙNG ĐỆM
+                10,
+                scoreBox,
+                spacer,
                 pauseButton_ic,
                 resumeButton_ic,
-                menuButton_ic   // PHẢI
+                menuButton_ic
         );
 
         topUIPanel.setPadding(new Insets(5));
