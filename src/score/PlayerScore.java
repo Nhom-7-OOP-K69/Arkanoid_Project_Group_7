@@ -1,6 +1,6 @@
 package score;
 
-import java.io.Serializable; // Để có thể lưu trữ đối tượng nếu cần
+import java.io.Serializable;
 
 public class PlayerScore implements Comparable<PlayerScore>, Serializable {
     private String name;

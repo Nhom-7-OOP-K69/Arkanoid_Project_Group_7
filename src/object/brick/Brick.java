@@ -2,7 +2,6 @@ package object.brick;
 
 import game.GameConstants;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.image.Image;
 import manager.AudioManager;
 import object.gameObject.GameObject;
 
@@ -13,18 +12,6 @@ public abstract class Brick extends GameObject {
     public Brick(double x, double y, int hitPoints, int type) {
         super(x, y, GameConstants.BRICK_WIDTH, GameConstants.BRICK_HEIGHT);
         this.hitPoints = hitPoints;
-        this.type = type;
-    }
-
-    public void HandleHit() {
-        hitPoints--;
-    }
-
-    public void setHitPoints(int hitPoints) {
-        this.hitPoints = hitPoints;
-    }
-
-    public void setType(int type) {
         this.type = type;
     }
 

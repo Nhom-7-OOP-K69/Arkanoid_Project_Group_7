@@ -8,7 +8,7 @@ public class NormalBrick extends Brick {
 
     public NormalBrick(double x, double y) {
         super(x, y, GameConstants.NORMAL_BRICK_HP, GameConstants.NORMAL_TYPE);
-        this.setImg(ImgManager.getInstance().getImage("GREEN_BRICK"));
+        this.setImg(ImgManager.getInstance().getImage("RED_BRICK"));
     }
 
     @Override

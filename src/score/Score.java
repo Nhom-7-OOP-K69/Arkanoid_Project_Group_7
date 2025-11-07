@@ -11,10 +11,6 @@ public class Score {
         return score;
     }
 
-    public void setScore(int score) {
-        this.score = score;
-    }
-
     public void updateScore(int scorePlus) {
         score += scorePlus;
     }

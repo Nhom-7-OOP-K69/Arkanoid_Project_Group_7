@@ -121,10 +121,10 @@ public class Explosion extends GameObject {
             double velX = Math.cos(angle) * speed;
             double velY = Math.sin(angle) * speed;
 
-            // Tuổi thọ ngẫu nhiên (tính bằng giây)
+            // Tuổi thọ ngẫu nhiên
             double lifetime = (random.nextDouble() * (MAX_LIFETIME_SEC / 2.0)) + (MAX_LIFETIME_SEC / 2.0);
 
-            // Chọn màu ngẫu nhiên (Đỏ hoặc Cam san hô)
+            // Chọn màu ngẫu nhiên
             Color chosenColor;
             if (random.nextBoolean()) {
                 chosenColor = Color.ORANGERED;

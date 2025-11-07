@@ -594,11 +594,9 @@ public class UIManager {
         addHoverEffect(menuButton_ic);
         addHoverEffect(resumeButton_ic);
 
-        // MỚI: Tạo Spacer
         Region spacer = new Region();
         HBox.setHgrow(spacer, Priority.ALWAYS); // Đặt Spacer chiếm hết không gian
 
-        // SỬA HBox: Thêm scoreBox, Spacer, và các nút
         HBox topUIPanel = new HBox(
                 10,
                 scoreBox,
@@ -609,13 +607,10 @@ public class UIManager {
         );
 
         topUIPanel.setPadding(new Insets(5));
-        // SỬA: Căn chỉnh thành CENTER (để căn giữa dọc) hoặc CENTER_LEFT
         topUIPanel.setAlignment(Pos.CENTER);
         topUIPanel.setPrefHeight(GameConstants.UI_TOP_BAR_HEIGHT);
         topUIPanel.setMaxHeight(GameConstants.UI_TOP_BAR_HEIGHT + 5);
         topUIPanel.setStyle("-fx-background-color: transparent; -fx-border-width: 0;");
-
-        //createPauseOverlay();
 
         gamePane = new StackPane(game_bg, canvasPane, topUIPanel, pauseOverlay, settingsOverlay);
         gamePane.setStyle("-fx-background-color: #000000;");
