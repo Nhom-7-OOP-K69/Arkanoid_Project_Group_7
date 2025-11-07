@@ -15,8 +15,8 @@ public class StrongBrick extends Brick {
     public StrongBrick(double x, double y) {
         super(x, y, GameConstants.STRONG_BRICK_HP, GameConstants.STRONG_TYPE);
         img = new ArrayList<>();
-        img.add(ImgManager.getInstance().getImage("RED_BRICK"));
-        img.add(ImgManager.getInstance().getImage("RED_BRICK_"));
+        img.add(ImgManager.getInstance().getImage("ORANGE_BRICK"));
+        img.add(ImgManager.getInstance().getImage("ORANGE_BRICK_"));
         current_img = img.getFirst();
     }
 

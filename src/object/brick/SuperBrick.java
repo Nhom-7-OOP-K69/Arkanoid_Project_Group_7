@@ -14,18 +14,20 @@ public class SuperBrick extends Brick {
     public SuperBrick(double x, double y) {
         super(x, y, GameConstants.SUPER_BRICK_HP, GameConstants.SUPER_TYPE);
         this.img = new ArrayList<>();
-        img.add(ImgManager.getInstance().getImage("PURPLE_BRICK"));
-        img.add(ImgManager.getInstance().getImage("PURPLE_BRICK_"));
+        img.add(ImgManager.getInstance().getImage("YELLOW_BRICK"));
+        img.add(ImgManager.getInstance().getImage("YELLOW_BRICK_"));
+        img.add(ImgManager.getInstance().getImage("YELLOW_BRICK__"));
     }
 
     @Override
     public void render(GraphicsContext gc) {
         if (!this.isDestroyed()) {
-            if (this.getHitPoints() >= GameConstants.STRONG_BRICK_HP) {
+            if (this.getHitPoints() >= GameConstants.SUPER_BRICK_HP) {
                 gc.drawImage(img.get(0), this.getX(), this.getY());
-            }
-            else  {
+            } else if (this.getHitPoints() >= GameConstants.STRONG_BRICK_HP) {
                 gc.drawImage(img.get(1), this.getX(), this.getY());
+            } else  {
+                gc.drawImage(img.get(2), this.getX(), this.getY());
             }
         }
     }

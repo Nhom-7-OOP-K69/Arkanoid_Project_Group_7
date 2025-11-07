@@ -11,16 +11,14 @@ import java.util.Set;
 
 public class InputHandler {
 
-    // Nguồn chân lý duy nhất: tập hợp các phím đang được nhấn
     private Set<KeyCode> activeKeys = new HashSet<>();
 
-    public InputHandler(Scene gameScene, GameStateManager gameStateManager, GameManager gameManager, Paddle paddle) {
+    public void Handle(Scene gameScene, GameStateManager gameStateManager, GameManager gameManager, Paddle paddle) {
 
         gameScene.setOnKeyPressed(event -> {
             GameStateManager.GameState currentState = gameStateManager.getCurrentState();
             KeyCode code = event.getCode();
 
-            // Chỉ thêm phím vào, không cần logic phức tạp
             activeKeys.add(code);
 
             if (currentState == GameStateManager.GameState.PLAYING || currentState == GameStateManager.GameState.READY) {
@@ -32,7 +30,7 @@ public class InputHandler {
                 }
             }
 
-            // Xử lý phóng bóng (giữ nguyên)
+            // Xử lý phóng bóng
             if (currentState == GameStateManager.GameState.READY && code == KeyCode.SPACE) {
                 gameManager.launchBall();
             }
@@ -52,18 +50,18 @@ public class InputHandler {
                 if (code == KeyCode.LEFT || code == KeyCode.A) {
                     // Kiểm tra xem phím Phải (hoặc D) có còn được nhấn không
                     if (activeKeys.contains(KeyCode.RIGHT) || activeKeys.contains(KeyCode.D)) {
-                        paddle.moveRight(); // Nếu có, di chuyển sang phải
+                        paddle.moveRight();
                     } else {
-                        paddle.stop(); // Nếu không, dừng lại
+                        paddle.stop();
                     }
                 }
                 // Nếu phím vừa nhả là phím Phải (hoặc D)
                 else if (code == KeyCode.RIGHT || code == KeyCode.D) {
                     // Kiểm tra xem phím Trái (hoặc A) có còn được nhấn không
                     if (activeKeys.contains(KeyCode.LEFT) || activeKeys.contains(KeyCode.A)) {
-                        paddle.moveLeft(); // Nếu có, di chuyển sang trái
+                        paddle.moveLeft();
                     } else {
-                        paddle.stop(); // Nếu không, dừng lại
+                        paddle.stop();
                     }
                 }
             }

@@ -1,11 +1,8 @@
 package game;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
-import game.*;
 import javafx.animation.Animation;
 import javafx.animation.AnimationTimer;
 import javafx.animation.KeyFrame;
@@ -16,10 +13,6 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.image.Image;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
-import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -44,16 +37,15 @@ public class GameManager {
     private GameStateManager gameStateManager;
     private UIManager uiManager;
     private ImgManager imgManager = ImgManager.getInstance();
-    private InputHandler inputHandler;
+    private InputHandler inputHandler = new InputHandler();
 
     private final Canvas canvas = new Canvas(GameConstants.SCREEN_WIDTH, GameConstants.SCREEN_HEIGHT);
     private final GraphicsContext ctx = canvas.getGraphicsContext2D();
 
-    // MỚI: Khởi tạo mảng fileName với kích thước động từ hằng số
     private String[] fileName = new String[GameConstants.LEVEL];
 
     private Paddle paddle;
-    private Ball ball; // Quả bóng "chính", được dùng để khởi tạo
+    private Ball ball;
     private BrickLayer brickLayer = new BrickLayer();
     private BallLayer ballLayer = new BallLayer();
     private PowerUpManager powerUpManager = new PowerUpManager(ballLayer);
@@ -73,10 +65,10 @@ public class GameManager {
 
     private AnimationTimer gameLoop;
 
-    // MỚI: Hằng số để giới hạn delta time, tránh "spiral of death" khi game lag
+    //Hằng số để giới hạn delta time
     private static final double MAX_DELTA_TIME = 0.05; // 50ms
 
-    // MỚI: Hằng số cho vị trí bắt đầu (thay vì magic numbers)
+    //Hằng số cho vị trí bắt đầu
     private static final double PADDLE_START_Y = GameConstants.SCREEN_HEIGHT - 100;
     private static final double PADDLE_START_X = (GameConstants.SCREEN_WIDTH - GameConstants.PADDLE_WIDTH) / 2.0;
     private static final double BALL_START_Y_OFFSET = -GameConstants.BALL_HEIGHT; // Offset so với paddle
@@ -98,7 +90,7 @@ public class GameManager {
         this.uiManager.createGameScene(this.canvas);
 
         // Khởi tạo trình xử lý input sau khi gameScene đã được tạo
-        this.inputHandler = new InputHandler(uiManager.getGameScene(), this.gameStateManager, this, this.paddle);
+        this.inputHandler.Handle(uiManager.getGameScene(), this.gameStateManager, this, this.paddle);
 
         this.createGameLoop();
         AudioManager.getInstance().playBackgroundMusic();
@@ -128,7 +120,6 @@ public class GameManager {
         lives = new Lives();
     }
 
-    // MỚI: Phương thức gom logic reset paddle và ball, tránh lặp code
     private void resetPaddleAndBall() {
         // 1. Reset vị trí/trạng thái paddle
         paddle.setX(PADDLE_START_X);
@@ -150,11 +141,8 @@ public class GameManager {
 
         // 4. Đặt trạng thái
         gameStateManager.setCurrentState(GameStateManager.GameState.READY);
-
-        // System.out.println("Bóng đã reset. Nhấn Space để chơi tiếp.");
     }
 
-    // TÁI CẤU TRÚC: Phương thức reset game (khi bắt đầu game mới)
     private void resetGame() {
         currentLevel = 0;
         lives.reset();
@@ -167,24 +155,15 @@ public class GameManager {
         resetPaddleAndBall();
     }
 
-    // TÁI CẤU TRÚC: Phương thức reset khi mất mạng
     public void resetLaunch() {
-        // Chỉ cần reset paddle và ball
         resetPaddleAndBall();
     }
 
-    // TÁI CẤU TRÚC: Phương thức qua màn
+    /**
+     * Qua màn tiếp theo.
+     */
     private void nextLevel() {
         currentLevel++;
-
-        // Kiểm tra nếu hết màn
-        if (currentLevel >= GameConstants.LEVEL) {
-            // TODO: Hiển thị màn hình chiến thắng
-            System.out.println("YOU WIN!");
-            // Tạm thời quay về menu
-            returnToMenu();
-            return;
-        }
 
         brickLayer = new BrickLayer();
         brickLayer.loadBrick(fileName[currentLevel]);
@@ -221,7 +200,6 @@ public class GameManager {
                 double deltaTime = (now - lastUpdate) / 1_000_000_000.0;
                 lastUpdate = now;
 
-                // MỚI: Giới hạn deltaTime để tránh lỗi vật lý khi lag
                 if (deltaTime > MAX_DELTA_TIME) {
                     deltaTime = MAX_DELTA_TIME;
                 }
@@ -232,7 +210,12 @@ public class GameManager {
         };
     }
 
-    // MỚI: Tách logic tính điểm ra khỏi va chạm
+    /**
+     * hàm tính điểm của viên gạch.
+     *
+     * @param brick viên gạch bị phá.
+     * @return số điểm.
+     */
     private int getScoreForBrick(Brick brick) {
         switch (brick.getType()) {
             case GameConstants.NORMAL_TYPE:
@@ -249,7 +232,11 @@ public class GameManager {
         }
     }
 
-    // TÁI CẤU TRÚC: Hàm va chạm gạch
+    /**
+     * Hàm va chạm gạch.
+     *
+     * @return điểm số.
+     */
     public int checkCollisionBricks() {
         int score = 0;
         List<Brick> bricksToRemove = new ArrayList<>();
@@ -261,7 +248,6 @@ public class GameManager {
                     if (brick.isDestroyed()) {
                         powerUpManager.spawnPowerUp(brick.getX(), brick.getY());
                         bricksToRemove.add(brick);
-                        // MỚI: Gọi hàm tính điểm
                         score += getScoreForBrick(brick);
                     }
                     ball.bounceOff(brick);
@@ -273,13 +259,16 @@ public class GameManager {
         return score;
     }
 
-    // TÁI CẤU TRÚC: `update` chính, giờ chỉ điều hướng
+    /**
+     * Logic update.
+     *
+     * @param deltaTime fps.
+     */
     private void update(double deltaTime) {
-        uiManager.updateScoreLabel(score.getScore());
         if (uiManager.isShowingIntro()) return;
 
         // Cập nhật UI chung
-        //uiManager.updateScoreLabel(score.getScore());
+        uiManager.updateScoreLabel(score.getScore());
 
         // Xử lý logic dựa trên trạng thái
         switch (gameStateManager.getCurrentState()) {
@@ -293,7 +282,11 @@ public class GameManager {
         }
     }
 
-    // MỚI: Tách logic cho trạng thái READY
+    /**
+     * Logic uodate trạng thái chờ.
+     *
+     * @param deltaTime fps
+     */
     private void updateReadyState(double deltaTime) {
         // Paddle vẫn di chuyển
         paddle.move(deltaTime);
@@ -312,7 +305,11 @@ public class GameManager {
         score.updateScore(explosionScore);
     }
 
-    // MỚI: Tách logic cho trạng thái PLAYING
+    /**
+     * Logic update trạng thái chơi.
+     *
+     * @param deltaTime fps.
+     */
     private void updatePlayingState(double deltaTime) {
         int scorePlus = 0;
 
@@ -357,7 +354,11 @@ public class GameManager {
         checkGameStatus();
     }
 
-    // MỚI: Gom logic xử lý va chạm
+    /**
+     * Xử lý logic va chạm.
+     *
+     * @return điểm của viên gạch.
+     */
     private int handleCollisions() {
         int brickScore = checkCollisionBricks();
         ballLayer.checkCollisionPaddle(paddle);

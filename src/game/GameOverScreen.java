@@ -1,6 +1,5 @@
 package game;
 
-import game.GameManager;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.BackgroundPosition;

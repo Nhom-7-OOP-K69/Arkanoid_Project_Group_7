@@ -23,7 +23,7 @@ public class ImgManager {
         List<Callable<Void>> tasks = new ArrayList<>();
         //=============BALL=====================//
         tasks.add(() -> {
-            put("BALL", Load.loadImage("ball0.png", GameConstants.BALL_WIDTH, 0, true, false));
+            put("BALL", Load.loadImage("58-Breakout-Tiles.png", GameConstants.BALL_WIDTH, 0, true, false));
             return null;
         });
         tasks.add(() -> {
@@ -45,31 +45,27 @@ public class ImgManager {
             return null;
         });
         tasks.add(() -> {
-            put("BLUE_BRICK", Load.loadImage("01-Breakout-Tiles.png", GameConstants.BRICK_WIDTH, 0, true, false));
+            put("ORANGE_BRICK", Load.loadImage("09-Breakout-Tiles.png", GameConstants.BRICK_WIDTH, 0, true, false));
             return null;
         });
         tasks.add(() -> {
-            put("BLUE_BRICK_", Load.loadImage("02-Breakout-Tiles.png", GameConstants.BRICK_WIDTH, 0, true, false));
+            put("ORANGE_BRICK_", Load.loadImage("10-Breakout-Tiles.png", GameConstants.BRICK_WIDTH, 0, true, false));
             return null;
         });
         tasks.add(() -> {
-            put("GREEN_BRICK", Load.loadImage("07-Breakout-Tiles.png", GameConstants.BRICK_WIDTH, 0, true, false));
+            put("YELLOW_BRICK", Load.loadImage("13-Breakout-Tiles.png", GameConstants.BRICK_WIDTH, 0, true, false));
             return null;
         });
         tasks.add(() -> {
-            put("GREEN_BRICK_", Load.loadImage("08-Breakout-Tiles.png", GameConstants.BRICK_WIDTH, 0, true, false));
+            put("YELLOW_BRICK_", Load.loadImage("14-Breakout-Tiles.png", GameConstants.BRICK_WIDTH, 0, true, false));
             return null;
         });
         tasks.add(() -> {
-            put("PURPLE_BRICK", Load.loadImage("13-Breakout-Tiles.png", GameConstants.BRICK_WIDTH, 0, true, false));
-            return null;
-        });
-        tasks.add(() -> {
-            put("PURPLE_BRICK_", Load.loadImage("14-Breakout-Tiles.png", GameConstants.BRICK_WIDTH, 0, true, false));
+            put("YELLOW_BRICK__", Load.loadImage("15-Breakout-Tiles.png", GameConstants.BRICK_WIDTH, 0, true, false));
             return null;
         });
         for (int i = 0; i < 8; i++) {
-            final int index = i; // Cần final cho biến được sử dụng trong Lambda
+            final int index = i;
             tasks.add(() -> {
                 int j = 1 + index;
                 Image explosionimg = Load.loadImage("HYPER_" + j + ".png", GameConstants.PADDLE_WIDTH, 0, true, false);
@@ -84,7 +80,7 @@ public class ImgManager {
             return null;
         });
         for (int i = 0; i < GameConstants.PADDLE_FRAMES; i++) {
-            final int index = i; // Cần final cho biến được sử dụng trong Lambda
+            final int index = i;
             tasks.add(() -> {
                 int j = 50 + index;
                 Image paddleimg = Load.loadImage(j + "-Breakout-Tiles.png", GameConstants.PADDLE_WIDTH, 0, true, false);
