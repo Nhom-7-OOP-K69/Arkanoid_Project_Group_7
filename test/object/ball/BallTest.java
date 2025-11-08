@@ -27,12 +27,6 @@ public class BallTest {
         canvas = new Canvas(GameConstants.SCREEN_WIDTH, GameConstants.SCREEN_HEIGHT);
     }
 
-    // test1: test setSpeed && getSpeed
-    @Test
-    void testSpeedGetterSetter() {
-        ball.setSpeed(GameConstants.BALL_SPEED);
-        assertEquals(GameConstants.BALL_SPEED, ball.getSpeed());
-    }
 
     // test2: check wall collision
     @Test
@@ -66,7 +60,6 @@ public class BallTest {
     void testBoundOff() {
         Paddle paddle = new Paddle((GameConstants.SCREEN_WIDTH - GameConstants.PADDLE_WIDTH) / 2.0,
                 GameConstants.SCREEN_HEIGHT - 100, GameConstants.PADDLE_WIDTH, GameConstants.PADDLE_HEIGHT);
-        ball.setSpeed(GameConstants.BALL_SPEED);
 
         // centre
         ball.setX(paddle.getX() + paddle.getWidth() / 2.0 - ball.getWidth() / 2.0);
