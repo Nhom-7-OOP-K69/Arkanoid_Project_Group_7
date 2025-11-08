@@ -21,7 +21,7 @@ public class Paddle extends MovableObject {
     protected double animationProgress = 0; // 0.0 -> 1.0
     private long animationStartTime = 0;
     private static final double ANIMATION_DURATION = 0.6; // 300ms mượt
-    private boolean isAnimating = false;
+    protected boolean isAnimating = false;
 
     public Paddle(double x, double y, double width, double height) {
         super(x, y, width, height);
