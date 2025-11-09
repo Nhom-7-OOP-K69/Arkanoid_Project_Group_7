@@ -1,5 +1,6 @@
 package game;
 
+import game.GameManager;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.BackgroundPosition;
@@ -27,30 +28,21 @@ public class GameOverScreen extends VBox {
     private static final double SCREEN_PADDING = 50;
 
     // --- Hằng số Tài nguyên ---
-    private static final String FONT_PATH = "/fonts/Arka_solid.ttf";
+    private static final String FONT_PATH = "/Arka_solid.ttf";
     private static final String BACKGROUND_IMAGE_PATH = "/images/GameOverScreenBg.png";
 
     // Nút Replay
-    private final Image replay_normal = ImgManager.getInstance().getImage("REPLAY_NORMAL");
-    private final Image replay_hover = ImgManager.getInstance().getImage("REPLAY_HOVER");
-    private final Image replay_press = ImgManager.getInstance().getImage("REPLAY_PRESS");
-    private final Image options_normal = ImgManager.getInstance().getImage("OPTIONS_NORMAL");
-    private final Image options_hover = ImgManager.getInstance().getImage("OPTIONS_HOVER");
-    private final Image options_press = ImgManager.getInstance().getImage("OPTIONS_PRESS");
-    private final Image exit_normal = ImgManager.getInstance().getImage("EXIT_NORMAL");
-    private final Image exit_hover = ImgManager.getInstance().getImage("EXIT_HOVER");
-    private final Image exit_press = ImgManager.getInstance().getImage("EXIT_PRESS");
 
-    public ImageView replayNormalButton = new ImageView(replay_normal);
-    public ImageView replayHoverButton = new ImageView(replay_hover);
-    public ImageView replayPressButton = new ImageView(replay_press);
-    public ImageView optionsNormalButton = new ImageView(options_normal);
-    public ImageView optionsHoverButton = new ImageView(options_hover);
-    public ImageView optionsPressButton = new ImageView(options_press);
-    public ImageView exitNormalButton = new ImageView(exit_normal);
-    public ImageView exitHoverButton = new ImageView(exit_hover);
-    public ImageView exitPressButton = new ImageView(exit_press);
 
+    public ImageView replayNormalButton;
+    public ImageView replayHoverButton;
+    public ImageView replayPressButton;
+    public ImageView optionsNormalButton;
+    public ImageView optionsHoverButton;
+    public ImageView optionsPressButton;
+    public ImageView exitNormalButton;
+    public ImageView exitHoverButton;
+    public ImageView exitPressButton;
 
     // --- Biến lớp ---
     private GameManager gameManager; // <-- Biến để lưu GameManager
@@ -61,6 +53,9 @@ public class GameOverScreen extends VBox {
     private Image menuNormal, menuHover, menuPressed;
     private Image exitNormal, exitHover, exitPressed;
     private Image backgroundImage;
+    private Image replay_normal,replay_hover,replay_press;
+    private Image options_normal,options_hover,options_press;
+    private Image exit_normal,exit_hover,exit_press;
 
     // --- Định nghĩa Hiệu ứng ---
     private final DropShadow TITLE_GLOW = new DropShadow(50, Color.rgb(255, 0, 0, 0.9));
@@ -70,7 +65,7 @@ public class GameOverScreen extends VBox {
         super(VBOX_SPACING); // Dùng hằng số
         this.gameManager = gameManager; // <-- Gán GameManager
         setAlignment(Pos.CENTER);
-
+        createButton();
         loadResources();
 
         BackgroundImage myBI = new BackgroundImage(
@@ -214,5 +209,25 @@ public class GameOverScreen extends VBox {
         });
 
         return buttonImageView; // Trả về ImageView
+    }
+    private void createButton() {
+        replay_normal = ImgManager.getInstance().getImage("REPLAY_NORMAL");
+        replay_hover = ImgManager.getInstance().getImage("REPLAY_HOVER");
+        replay_press = ImgManager.getInstance().getImage("REPLAY_PRESS");
+        options_normal = ImgManager.getInstance().getImage("OPTIONS_NORMAL");
+        options_hover = ImgManager.getInstance().getImage("OPTIONS_HOVER");
+        options_press = ImgManager.getInstance().getImage("OPTIONS_PRESS");
+        exit_normal = ImgManager.getInstance().getImage("EXIT_NORMAL");
+        exit_hover = ImgManager.getInstance().getImage("EXIT_HOVER");
+        exit_press = ImgManager.getInstance().getImage("EXIT_PRESS");
+        replayNormalButton = new ImageView(replay_normal);
+        replayHoverButton = new ImageView(replay_hover);
+        replayPressButton = new ImageView(replay_press);
+        optionsNormalButton = new ImageView(options_normal);
+        optionsHoverButton = new ImageView(options_hover);
+        optionsPressButton = new ImageView(options_press);
+        exitNormalButton = new ImageView(exit_normal);
+        exitHoverButton = new ImageView(exit_hover);
+        exitPressButton = new ImageView(exit_press);
     }
 }
