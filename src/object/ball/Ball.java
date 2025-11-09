@@ -25,6 +25,19 @@ public class Ball extends MovableObject {
         this.setImg(ImgManager.getInstance().getImage("BALL"));
     }
 
+    /**
+     * [ĐÃ THÊM] Đặt lại trạng thái bóng (vị trí, kích thước, tốc độ = 0)
+     */
+    public void reset(double x, double y, double width, double height) {
+        this.setX(x);
+        this.setY(y);
+        this.setWidth(width);
+        this.setHeight(height);
+        // Đặt vận tốc về 0 để bóng đứng yên trên thanh trượt trước khi phóng
+        this.setDx(0);
+        this.setDy(0);
+    }
+
     public boolean collisionWall(Canvas canvas) {
         // Va chạm tường trái và phải
         if (this.getX() <= 0 || this.getX() + this.getWidth() >= canvas.getWidth()) {

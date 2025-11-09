@@ -53,7 +53,7 @@ public class GameManager {
 
     private String playerName;
     private final Score score = new Score();
-    private int currentLevel = 1;
+    private int currentLevel = 0;
 
     private Scene gameOverScene;
     private GameOverScreen gameOverScreen;
@@ -133,7 +133,7 @@ public class GameManager {
         ballLayer.clearBall();
         double ballStartX = PADDLE_START_X + (paddle.getWidth() / 2.0) - (GameConstants.BALL_WIDTH / 2.0);
         double ballStartY = PADDLE_START_Y + BALL_START_Y_OFFSET;
-        ball = new Ball(ballStartX, ballStartY, GameConstants.BALL_WIDTH, GameConstants.BALL_HEIGHT);
+        ball.reset(ballStartX, ballStartY, GameConstants.BALL_WIDTH, GameConstants.BALL_HEIGHT); // Tái sử dụng ball
         ballLayer.addBall(ball);
 
         // 3. Xóa power-up
@@ -144,7 +144,7 @@ public class GameManager {
     }
 
     private void resetGame() {
-        currentLevel = 0;
+        currentLevel = 0; // Luôn bắt đầu từ màn 0 (Level_1.txt)
         lives.reset();
         score.resetScore();
 
@@ -163,7 +163,7 @@ public class GameManager {
      * Qua màn tiếp theo.
      */
     private void nextLevel() {
-        currentLevel++;
+        currentLevel++; // currentLevel bây giờ là 1, 2, 3...
 
         brickLayer = new BrickLayer();
         brickLayer.loadBrick(fileName[currentLevel]);
@@ -172,7 +172,8 @@ public class GameManager {
         resetPaddleAndBall();
 
         // intro màn mới
-        uiManager.showLevelIntro(currentLevel, () -> {
+        // [SỬA] Phải là currentLevel + 1 để hiển thị (ví dụ: "Level 2")
+        uiManager.showLevelIntro(currentLevel + 1, () -> {
             gameStateManager.setCurrentState(GameStateManager.GameState.READY);
         }, uiManager.medievalFont);
     }
@@ -183,29 +184,47 @@ public class GameManager {
 
             @Override
             public void handle(long now) {
-                // TÁI CẤU TRÚC: Kiểm tra trạng thái game ngay từ đầu
-                if (gameStateManager.getCurrentState() == GameStateManager.GameState.MENU ||
-                        gameStateManager.getCurrentState() == GameStateManager.GameState.PAUSED ||
-                        gameStateManager.getCurrentState() == GameStateManager.GameState.GAME_OVER ||
-                        gameStateManager.getCurrentState() == GameStateManager.GameState.GAME_WIN) {
-                    lastUpdate = 0;
-                    return;
-                }
 
-                if (lastUpdate == 0) {
+                // --- BẮT ĐẦU KHỐI TRY-CATCH ---
+                // Bọc MỌI THỨ để bắt lỗi thật
+                try {
+
+                    // TÁI CẤU TRÚC: Kiểm tra trạng thái game ngay từ đầu
+                    // [SỬA] Đã thêm GAME_WIN vào danh sách
+                    if (gameStateManager.getCurrentState() == GameStateManager.GameState.MENU ||
+                            gameStateManager.getCurrentState() == GameStateManager.GameState.PAUSED ||
+                            gameStateManager.getCurrentState() == GameStateManager.GameState.GAME_OVER ||
+                            gameStateManager.getCurrentState() == GameStateManager.GameState.GAME_WIN) {
+                        lastUpdate = 0;
+                        return;
+                    }
+
+                    if (lastUpdate == 0) {
+                        lastUpdate = now;
+                        return;
+                    }
+
+                    double deltaTime = (now - lastUpdate) / 1_000_000_000.0;
                     lastUpdate = now;
-                    return;
+
+                    if (deltaTime > MAX_DELTA_TIME) {
+                        deltaTime = MAX_DELTA_TIME;
+                    }
+
+                    // LỖI THẬT CỦA BẠN CÓ THỂ ĐANG XẢY RA Ở ĐÂY:
+                    update(deltaTime);
+                    render();
+
+                    // --- KHỐI CATCH ĐỂ IN RA LỖI THẬT ---
+                } catch (Exception e) {
+                    // In ra lỗi thật sự đã xảy ra
+                    System.err.println("!!! LỖI GỐC ĐÃ BỊ BẮT: " + e.getMessage() + " !!!");
+                    e.printStackTrace();
+
+                    // Dừng game loop lại để không bị spam lỗi
+                    gameLoop.stop();
                 }
-
-                double deltaTime = (now - lastUpdate) / 1_000_000_000.0;
-                lastUpdate = now;
-
-                if (deltaTime > MAX_DELTA_TIME) {
-                    deltaTime = MAX_DELTA_TIME;
-                }
-
-                update(deltaTime);
-                render();
+                // --- KẾT THÚC KHỐI TRY-CATCH ---
             }
         };
     }
@@ -328,30 +347,37 @@ public class GameManager {
         // Xử lý va chạm
         scorePlus += handleCollisions();
 
-        if (brickLayer.isEmpty()) {
-            if (currentLevel == GameConstants.LEVEL - 1) {
-                try {
-                    Ranking.saveScore(playerName, score.getScore());
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
-                gameStateManager.setCurrentState(GameStateManager.GameState.GAME_WIN);
-                showGameWinScreen(score.getScore());
-                gameLoop.stop();
-            } else {
-                nextLevel();
-            }
-        }
         // Cập nhật power-up
         paddle.updateAnimation(deltaTime);
         int powerUpScore = powerUpManager.update(deltaTime, paddle, ballLayer, brickLayer);
         scorePlus += powerUpScore;
 
         score.updateScore(scorePlus);
-        // System.out.println(score.getScore());
 
-        // Kiểm tra điều kiện kết thúc (thua/qua màn)
+        // [SỬA] Luồng logic Thắng/Thua
+
+        // 1. Kiểm tra xem người chơi có THUA không
         checkGameStatus();
+
+        // 2. Nếu người chơi VẪN ĐANG CHƠI (chưa thua), kiểm tra xem có THẮNG không
+        if (gameStateManager.getCurrentState() == GameStateManager.GameState.PLAYING && brickLayer.isEmpty()) {
+            if (currentLevel == GameConstants.LEVEL - 1) {
+                // Đã thắng màn cuối cùng
+                try {
+                    Ranking.saveScore(playerName, score.getScore());
+                } catch (IOException e) {
+                    // [SỬA] Không crash game, chỉ in lỗi
+                    System.err.println("Không thể lưu điểm (Win): " + e.getMessage());
+                    e.printStackTrace();
+                }
+                gameStateManager.setCurrentState(GameStateManager.GameState.GAME_WIN);
+                showGameWinScreen(score.getScore());
+                gameLoop.stop();
+            } else {
+                // Thắng màn hiện tại -> qua màn tiếp theo
+                nextLevel();
+            }
+        }
     }
 
     /**
@@ -366,6 +392,9 @@ public class GameManager {
         return brickScore;
     }
 
+    /**
+     * [SỬA] Hàm này GIỜ CHỈ KIỂM TRA THUA (MẤT BÓNG)
+     */
     private void checkGameStatus() {
         if (ballLayer.isEmpty()) {
             lives.decreaseLife();
@@ -374,9 +403,9 @@ public class GameManager {
             } else {
                 resetLaunch();
             }
-        } else if (brickLayer.isEmpty()) {
-            nextLevel();
         }
+        // [ĐÃ XÓA] Khối "else if (brickLayer.isEmpty())"
+        // đã được chuyển lên updatePlayingState() để sửa lỗi logic.
     }
 
     private void handleGameOver() {
@@ -414,8 +443,10 @@ public class GameManager {
         uiManager.getGamePane().requestFocus();
         uiManager.getPauseOverlay().setVisible(false);
 
-        resetGame();
-        uiManager.showLevelIntro(currentLevel, () -> {
+        resetGame(); // Đặt lại level về 0, reset điểm, reset mạng
+
+        // Hiển thị intro cho màn 1 (vì currentLevel đang là 0)
+        uiManager.showLevelIntro(currentLevel + 1, () -> {
             gameStateManager.setCurrentState(GameStateManager.GameState.READY);
         }, uiManager.medievalFont);
 
@@ -480,7 +511,8 @@ public class GameManager {
                 })
         );
 
-        timeline[0].setCycleCount(Animation.INDEFINITE);
+        // [SỬA] Chỉ chạy 3 lần, không chạy vô hạn
+        timeline[0].setCycleCount(3);
         timeline[0].playFromStart();
 
         System.out.println("Bắt đầu đếm ngược để tiếp tục game...");

@@ -40,7 +40,7 @@ public class LevelIntro {
 
         gc.setFill(Color.web("#F5E027"));
         gc.setFont(titleFont);
-        gc.fillText("LEVEL " + (level + 1), 400, 320);
+        gc.fillText("LEVEL " + (level), 400, 320);
 
         gc.setFill(Color.web("#F5E027"));
         gc.fillText("GET READY!", 370, 390);
