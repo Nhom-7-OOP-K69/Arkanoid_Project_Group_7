@@ -97,7 +97,7 @@ public final class GameConstants {
     /** Chiều cao của đạn. */
     public static final int BULLET_HEIGHT = 40;
     /** Tốc độ di chuyển của đạn. */
-    public static final int BULLET_SPEED = 4;
+    public static final int BULLET_SPEED = 2;
     /** Khoảng thời gian giữa các lần bắn liên tiếp (tính bằng mili giây). */
     public static final int BULLET_SHOT_INTERVAL = 500;
 
