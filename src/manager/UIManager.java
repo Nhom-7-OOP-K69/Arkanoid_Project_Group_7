@@ -125,16 +125,6 @@ public class UIManager {
         isShowingIntro = true;
     }
 
-    public boolean isIntroActive() {
-        return levelIntro != null && levelIntro.isActive();
-    }
-
-    public void renderIntro(GraphicsContext gc) {
-        if (levelIntro != null && levelIntro.isActive()) {
-            levelIntro.render(gc);
-        }
-    }
-
     public boolean isShowingIntro() {
         return currentIntro != null && currentIntro.isActive();
     }
