@@ -1,4 +1,8 @@
 # Arkanoid_Project_Group_7
+
+biểu đồ UML: https://drive.google.com/file/d/1-cefNPk5j6avyExFGgoSmn_D-vCqloye/view?usp=sharing
+
+
 🎮 Giới thiệu chung
 Dungeon Breaker là một phiên bản lấy cảm hứng từ trò chơi arcade kinh điển Arkanoid,
 nhưng được khoác lên một lớp áo ngục tối (dungeon) bí ẩn và rực lửa.
