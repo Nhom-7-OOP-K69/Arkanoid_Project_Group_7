@@ -110,7 +110,6 @@ public class GameManager {
 
     // Tạo các thực thể trong game
     private void createGameEntities() {
-        // TÁI CẤU TRÚC: Sử dụng hằng số/tính toán thay vì magic numbers
         double ballStartX = PADDLE_START_X + (GameConstants.PADDLE_WIDTH / 2.0) - (GameConstants.BALL_WIDTH / 2.0);
         double ballStartY = PADDLE_START_Y + BALL_START_Y_OFFSET;
 
@@ -188,9 +187,6 @@ public class GameManager {
                 // --- BẮT ĐẦU KHỐI TRY-CATCH ---
                 // Bọc MỌI THỨ để bắt lỗi thật
                 try {
-
-                    // TÁI CẤU TRÚC: Kiểm tra trạng thái game ngay từ đầu
-                    // [SỬA] Đã thêm GAME_WIN vào danh sách
                     if (gameStateManager.getCurrentState() == GameStateManager.GameState.MENU ||
                             gameStateManager.getCurrentState() == GameStateManager.GameState.PAUSED ||
                             gameStateManager.getCurrentState() == GameStateManager.GameState.GAME_OVER ||
