@@ -137,6 +137,10 @@ public class Paddle extends MovableObject {
         this.setX(this.getX() + this.dx * deltaTime);
     }
 
+    public void applyPowerUp() {
+
+    }
+
     public void checkCollisionWall(Canvas canvas) {
         if (this.getX() <= 0) {
             this.setX(0);
